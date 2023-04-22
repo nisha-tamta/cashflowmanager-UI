@@ -1,0 +1,16 @@
+/* styles.module.css (using CSS modules) */
+.spending-analyzer {
+    border: 1px solid #0350f7;
+    border-radius: 4px;
+    padding: 16px;
+    margin-top: 24px;
+  }
+  
+  .spending-analyzer__title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .spending-analyzer__item {
+    margin-bottom: 8px;
+  }

@@ -1,0 +1,30 @@
+/* styles.css */
+/* Add styles for HomeScreen component */
+.homescreen-container {
+    background-color:#f7ea8e;
+    display: flex;
+    flex-direction: row; /* Set the flex direction to row for horizontal layout */
+  }
+  
+  .content-container {
+    flex: 1; /* Allow the content container to take up remaining width */
+    padding: 16px;
+  }
+  
+  .content-header {
+    margin-bottom: 16px;
+  }
+  
+  .content-body {
+    display: grid; /* Use grid layout for the content body */
+    gap: 16px;
+    grid-template-columns: 1fr; /* Use one grid column for mobile layout */
+  }
+  
+  @media (min-width: 768px) {
+    /* Update styles for tablet and larger screens */
+    .content-body {
+      grid-template-columns: repeat(2, 1fr); /* Use two grid columns for tablet and larger screens */
+    }
+  }
+  
