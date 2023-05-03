@@ -1,0 +1,106 @@
+/* ConsumerProfile.css */
+.consumer-profile-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .consumer-profile-item {
+    flex: 0 0 50%; /* Adjust the width as needed */
+    margin-bottom: 1rem;
+  }
+  
+  .consumer-profile-item h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .consumer-profile-item p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  
+.reset-password-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.reset-password-button {
+    position: fixed;
+    /* Set position to fixed for absolute positioning */
+    top: 16px;
+    /* Set distance from top */
+    right: 16px;
+    /* Set distance from right */
+    color: #ffffff;
+    /* Set text color to white */
+    background-color: #880505;
+    /* Set background color to a soft red */
+    padding: 12px 20px;
+    /* Add padding for spacing */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add border radius for rounded edges */
+    cursor: pointer;
+    /* Add cursor pointer on hover */
+    text-decoration: none;
+    /* Remove underline from link */
+    font-size: 16px;
+    /* Set font size */
+    font-weight: bold;
+    /* Set font weight to bold */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Add smooth transition effect for background color and transform */
+  }
+  
+  .reset-password-button:hover {
+    background-color: #bc3f3f;
+    /* Change background color on hover */
+    transform: scale(1.05);
+    /* Add slight scale effect on hover */
+  }
+  
+  .reset-password-button:focus {
+    outline: none;
+    /* Remove default outline on focus */
+  }
+
+  .reset-password-form-button {
+    margin-right: 10px;
+    /* Add margin to create space between buttons */
+    color: #ffffff;
+    /* Set text color to white */
+    background-color: #058826;
+    /* Set background color to a soft red */
+    padding: 12px 20px;
+    /* Add padding for spacing */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add border radius for rounded edges */
+    cursor: pointer;
+    /* Add cursor pointer on hover */
+    text-decoration: none;
+    /* Remove underline from link */
+    font-size: 16px;
+    /* Set font size */
+    font-weight: bold;
+    /* Set font weight to bold */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Add smooth transition effect for background color and transform */
+  }
+  
+  
+  .reset-password-form-button:hover {
+    background-color: #0ab936;
+    /* Change background color on hover */
+    transform: scale(1.05);
+    /* Add slight scale effect on hover */
+  }
+  
+  .reset-password-form-button:focus {
+    outline: none;
+    /* Remove default outline on focus */
+  }

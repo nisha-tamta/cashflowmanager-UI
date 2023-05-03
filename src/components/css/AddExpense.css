@@ -1,0 +1,85 @@
+/* AddExpensePage.css */
+
+/* Container for the AddExpensePage */
+.add-expense-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Content area within the AddExpensePage container */
+.add-expense-content {
+    max-width: 400px;
+    width: 100%;
+    padding: 16px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading for the AddExpensePage */
+.add-expense-content h1 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Form inside the AddExpensePage */
+.add-expense-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form input fields */
+.add-expense-content form label {
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.add-expense-content form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reset-password-form-button {
+    margin-right: 10px;
+    /* Add margin to create space between buttons */
+    color: #ffffff;
+    /* Set text color to white */
+    background-color: #058826;
+    /* Set background color to a soft red */
+    padding: 12px 20px;
+    /* Add padding for spacing */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add border radius for rounded edges */
+    cursor: pointer;
+    /* Add cursor pointer on hover */
+    text-decoration: none;
+    /* Remove underline from link */
+    font-size: 16px;
+    /* Set font size */
+    font-weight: bold;
+    /* Set font weight to bold */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Add smooth transition effect for background color and transform */
+  }
+  
+  
+  .reset-password-form-button:hover {
+    background-color: #0ab936;
+    /* Change background color on hover */
+    transform: scale(1.05);
+    /* Add slight scale effect on hover */
+  }
+  
+  .reset-password-form-button:focus {
+    outline: none;
+    /* Remove default outline on focus */
+  }

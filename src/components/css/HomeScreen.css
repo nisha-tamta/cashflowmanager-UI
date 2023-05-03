@@ -1,11 +1,14 @@
-/* styles.css */
+/* HomeScreen.css */
 /* Add styles for HomeScreen component */
 .homescreen-container {
-    background-color:#f7ea8e;
-    display: flex;
-    flex-direction: row; /* Set the flex direction to row for horizontal layout */
-  }
-  
+  background-color:#f7ea8e;
+  display: flex;
+  flex-direction: row; /* Set the flex direction to row for horizontal layout */
+  justify-content: space-between; /* Add space between items and align the logout button to the right */
+  height: 100vh; /* set height to 100vh to cover entire viewport height */
+  width: 100vw; /* set width to 100vw to cover entire viewport width */
+}
+
   .content-container {
     flex: 1; /* Allow the content container to take up remaining width */
     padding: 16px;
@@ -26,5 +29,6 @@
     .content-body {
       grid-template-columns: repeat(2, 1fr); /* Use two grid columns for tablet and larger screens */
     }
+
   }
   

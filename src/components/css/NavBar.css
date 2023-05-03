@@ -1,0 +1,129 @@
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  /* Set the width of the navbar and the remaining space for the content */
+  height: 100vh;
+  /* Set the height of the container to take the full height of the viewport */
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  /* Set the flex direction to column for vertical layout */
+  justify-content: flex-start;
+  /* Align items to the top of the container */
+  align-items: flex-start;
+  /* Align items to the start of the container */
+  background-color: #f4edc2;
+  padding: 16px;
+  box-shadow: 0px 0px 10px #666;
+  /* Add box shadow */
+}
+
+
+.navbar-list {
+  list-style-type: none;
+  /* Remove bullet points from list items */
+  padding: 0;
+  /* Remove default padding from list */
+  margin: 0;
+  /* Remove default margin from list */
+  font: 400 14px/20px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  position: relative;
+  letter-spacing: .01428571em;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+
+.navbar-item {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-item:hover {
+  background-color: #f8f8f8;
+}
+
+
+.about-page-container {
+  background-color: #e8e9e7;
+}
+
+.about-page-content {
+  align-items: center;
+  /* Align items to the start of the container */
+  padding: 16px;
+  /* Add padding for spacing */
+  height: 100%;
+  /* Set the height to 100% to take up the full height of the container */
+}
+
+.home-logo {
+  width: 100px;
+  /* Adjust size as needed */
+  height: 100px;
+  /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #879fec;
+  /* Change background color on hover */
+}
+
+.home-logo:hover {
+  background-color: #ff6f6f;
+  /* Change background color on hover */
+  transform: scale(1.05);
+  /* Add slight scale effect on hover */
+}
+
+.home-logo:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+
+/* Add styles for Logout button */
+.login-chat-logout {
+  margin-top: auto; /* Move the Logout button to the bottom of the navbar */
+  margin-left: 16px;
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #880505;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 50px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+
+.login-chat-logout:hover {
+  background-color: #bc3f3f;
+  /* Change background color on hover */
+  transform: scale(1.0) rotate(90deg);
+  /* Add slight scale effect on hover */
+}
+
+.login-chat-logout:focus {
+  outline: none;
+  /* Remove default outline on focus */ 
+}

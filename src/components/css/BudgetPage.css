@@ -1,0 +1,99 @@
+.buttons-container {
+  flex: 1;
+  /* Allow the content container to take up remaining width */
+  padding: 16px;
+}
+
+.add-budget-button {
+  position: fixed;
+  /* Set position to fixed for absolute positioning */
+  top: 16px;
+  /* Set distance from top */
+  right: 16px;
+  /* Set distance from right */
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #058826;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 16px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+.add-budget-button:hover {
+  background-color: #0ab936;
+  /* Change background color on hover */
+  transform: scale(1.05);
+  /* Add slight scale effect on hover */
+}
+
+.add-budget-button:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+
+
+/* ExpensesPage.css */
+
+.buttons-container {
+  display: flex;
+}
+
+/* Update ExpensesPage.css */
+
+/* Update ExpensesPage.css */
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tab-item {
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  background-color: #f7ea8e;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  transition: all 0.3s ease;
+}
+
+.tab-item:hover {
+  background-color: #f7ea8e;
+}
+
+.tab-item.active {
+  color: #000;
+  background-color: #f7ea8e;
+  border-bottom: 8px solid #9b9461; /* Add green underline */
+}
+
+
+.tab-content {
+  padding: 20px;
+  background-color: #f7ea8e;
+  border-radius: 0 0 5px 5px;
+}
+
+.expense-list-container {
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px #666;
+  width: 50vh;
+  height: 50vh;
+}

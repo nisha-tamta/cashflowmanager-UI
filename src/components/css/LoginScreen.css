@@ -72,6 +72,8 @@
     cursor: pointer; /* Add cursor pointer on hover */
     font-size: 16px; /* Set font size for the button */
     font-weight: bold; /* Set font weight for the button */
+    transition: transform 0.3s ease-in-out;transition: transform 0.3s ease-in-out;
+
   }
   
   .login-chat-button:hover {
@@ -90,4 +92,3 @@
     border-radius: 50%;
     /* Add additional styles as needed */
   }
-  
