@@ -8,9 +8,8 @@ import "../css/BudgetPage.css";
 
 const BudgetPage = () => {
   const navigate = useNavigate();
-  const [reports, setReports] = useState([]);
   const [allReports, setAllReports] = useState([]);
-  const [activeTab, setActiveTab] = useState("thisMonth");
+  const [activeTab, setActiveTab] = useState("allReports");
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -41,7 +40,7 @@ const BudgetPage = () => {
       <NavBar />
       <div className="content-container">
         <div className="content-header">
-          <h1>Budget</h1>
+          <h1>Reports</h1>
           <div className="buttons-container">
             <button
               onClick={handleSetBudget}
@@ -53,23 +52,15 @@ const BudgetPage = () => {
         </div>
         <div className="tab-container">
           <div
-            className={`tab-item ${activeTab === "thisMonth" ? "active" : ""}`}
-            onClick={() => handleTabChange("thisMonth")}
-          >
-            This Month
-          </div>
-          <div
             className={`tab-item ${activeTab === "allReports" ? "active" : ""}`}
             onClick={() => handleTabChange("allReports")}
           >
-            All Time
+            This Year
           </div>
         </div>
 
         <div className="expense-list-container">
-          {activeTab === "thisMonth" ? (
-            <ReportList reports={reports} />
-          ) : activeTab === "allReports" && <ReportList reports={allReports} />}
+          {activeTab === "allReports" && <ReportList reports={allReports} />}
         </div>
       </div>
     </div>

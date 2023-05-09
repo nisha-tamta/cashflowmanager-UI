@@ -2,25 +2,54 @@ import React from "react";
 
 const ReportList = ({ reports }) => {
   return (
-    <div className="expense-list-container">
-      <div className="expense-list-header">
-        <div className="expense-list-header-item">Date</div>
-        <div className="expense-list-header-item">Category</div>
-        <div className="expense-list-header-item">Description</div>
-        <div className="expense-list-header-item">Amount</div>
-      </div>
-      {reports.length ? (
-        reports.map((report) => (
-          <div key={`${report.consumer.id}-${report.month}`} className="expense-list-item">
-            <div className="expense-list-item">{report.month}</div>
-            <div className="expense-list-item">{`$${report.budget}`}</div>
-            <div className="expense-list-item">{`$${report.expenditure}`}</div>
-            <div className="expense-list-item">{`$${report.saving}`}</div>
-          </div>
-        ))
-      ) : (
-        <div className="expense-list-no-items-message">No reports available.</div>
-      )}
+    <div>
+      <table style={{ border: "1px solid black", borderCollapse: "collapse" }}>
+        <thead>
+          <tr style={{ border: "1px solid black" }}>
+            <th
+              style={{ border: "1px solid black", padding: "8px" }}
+            >
+              Month
+            </th>
+            <th style={{ border: "1px solid black", padding: "8px" }}
+            >
+              Budget
+            </th>
+            <th
+              style={{ border: "1px solid black", padding: "8px" }}
+            >
+              Expenditure
+            </th>
+            <th
+              style={{ border: "1px solid black", padding: "8px" }}
+            >
+              Saving
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {reports.length ? (
+            reports.map((report) => (
+              <tr key={`${report.consumer.id}-${report.month}`} className="expense-list-item">
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {report.month}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {`$${report.budget}`}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {report.expenditure}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {report.saving}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <div className="expense-list-no-items-message">No reports available.</div>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -46,6 +46,7 @@ const CreateUserForm = () => {
         console.error("Error during user creation: ", error);
         // Perform any error handling or UI updates as needed
       });
+      navigate("/login");
   };
 
   return (
@@ -117,10 +118,6 @@ const CreateUserForm = () => {
                 value={user.password}
                 onChange={handleChange}
               />
-
-              {/* Add more input fields as needed */}
-              {/* Add form validation and error handling as needed */}
-              {/* Add submit button or use onClick on a button as needed */}
             </form>
             <div className="add-expense-buttons">
               <button onClick={handleSubmit} className="reset-password-form-button" >

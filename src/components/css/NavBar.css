@@ -78,9 +78,9 @@
 }
 
 .home-logo:hover {
-  background-color: #ff6f6f;
+  background-color: #880505;
   /* Change background color on hover */
-  transform: scale(1.05);
+  transform: scale(1.3);
   /* Add slight scale effect on hover */
 }
 
@@ -107,7 +107,7 @@
   /* Add cursor pointer on hover */
   text-decoration: none;
   /* Remove underline from link */
-  font-size: 50px;
+  font-size: 20px;
   /* Set font size */
   font-weight: bold;
   /* Set font weight to bold */
@@ -118,9 +118,7 @@
 
 .login-chat-logout:hover {
   background-color: #bc3f3f;
-  /* Change background color on hover */
-  transform: scale(1.0) rotate(90deg);
-  /* Add slight scale effect on hover */
+  transform: scale(0.8) rotate(4deg);
 }
 
 .login-chat-logout:focus {

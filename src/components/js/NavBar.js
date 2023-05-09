@@ -49,17 +49,17 @@ const Navbar = () => {
           <button className="navbar-item" onClick={handleExpenses} >Expenses</button>
         </div>
         <div className="login-chat-header">
-          <button className="navbar-item" onClick={handleBudget} >Budget</button>
+          <button className="navbar-item" onClick={handleBudget} >Reports</button>
         </div>
-        <div className="login-chat-header">
+{/*         <div className="login-chat-header">
           <button className="navbar-item" onClick={handleDashboard} >Dashboard</button>
-        </div>
+        </div> */}
         <div className="login-chat-header">
           <button className="navbar-item" onClick={handleAbout} >About</button>
         </div>
       </ul>
       <div>
-          <button onClick={handleLogout} className="login-chat-logout" >:(</button>
+          <button onClick={handleLogout} className="login-chat-logout" >Logout :(</button>
         </div>
     </nav>
   );
