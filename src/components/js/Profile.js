@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import "../css/NavBar.css";
-import "../css/ConsumerProfile.css";
+import "../css/Profile.css";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -11,6 +11,7 @@ const Profile = () => {
   const [oldPassword, setOldPassword] = useState(""); // State to store old password
   const [newPassword, setNewPassword] = useState(""); // State to store new password
   const [showResetForm, setShowResetForm] = useState(false); // State to determine if reset form should be shown
+  const [editable, setEditable] = useState(false);
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -57,6 +58,32 @@ const Profile = () => {
     }
   };
 
+  const handleSaveButtonClick = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/user/create`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (response.ok) {
+        setEditable(false);
+        const data = await response.json();
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+      } else {
+        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
+        setError(errorMessage);
+      }
+    } catch (error) {
+      setError(`Error during saving user: ${error.message}`);
+    }
+  }
+
   const handleResetButtonClick = () => {
     setShowResetForm(true);
   };
@@ -72,28 +99,79 @@ const Profile = () => {
         <div className="content-header">
           <h1>Profile</h1>
         </div>
+        <div>
+          {!editable && <button
+            onClick={() => setEditable(true)}
+            className="edit-button">Edit</button>}
+        </div>
         <div className="content-body">
           {user ? (
             <div className="consumer-profile-container">
               <div className="consumer-profile-item">
                 <h2>First Name:</h2>
-                <p>{user.firstName}</p>
+                {editable ? (
+                  <input type="text" value={user.firstName}
+                    onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+                  />) : (
+                  <p>{user.firstName}</p>
+                )}
               </div>
               <div className="consumer-profile-item">
                 <h2>Last Name:</h2>
-                <p>{user.lastName}</p>
+                {editable ? (
+                  <input type="text" value={user.lastName}
+                    onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                  />
+                ) : (
+                  <p>{user.lastName}</p>
+                )}
               </div>
               <div className="consumer-profile-item">
                 <h2>Username:</h2>
-                <p>{user.username}</p>
+                {editable ? (
+                  <input type="text" value={user.username}
+                    onChange={(e) => setUser({ ...user, username: e.target.value })}
+                  />
+                ) : (
+                  <p>{user.username}</p>
+                )}
               </div>
               <div className="consumer-profile-item">
                 <h2>Phone Number:</h2>
-                <p>{user.phoneNumber}</p>
+                {editable ? (
+                  <input type="text" value={user.phoneNumber}
+                    onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+                  />
+                ) : (
+                  <p>{user.phoneNumber}</p>
+                )}
               </div>
               <div className="consumer-profile-item">
                 <h2>Email Address:</h2>
-                <p>{user.emailAddress}</p>
+                {editable ? (
+                  <input type="email" value={user.emailAddress}
+                    onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
+                  />
+                ) : (
+                  <p>{user.emailAddress}</p>
+                )}
+              </div>
+              <div className="consumer-profile-item">
+                <h2>Default Budget:</h2>
+                {editable ? (
+                  <input type="number" value={user.defaultBudget}
+                    onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })}
+                  />
+                ) : (
+                  <p>{user.defaultBudget}</p>
+                )}
+              </div>
+              <div className="consumer-profile-item">
+                {editable ? (
+                  <button onClick={handleSaveButtonClick} className="reset-password-form-button" >Save</button>
+                ) : (
+                  <></>
+                )}
               </div>
               <div className="consumer-profile-item">
                 <div>

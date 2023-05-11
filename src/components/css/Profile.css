@@ -1,4 +1,3 @@
-/* ConsumerProfile.css */
 .consumer-profile-container {
     display: flex;
     flex-wrap: wrap;
@@ -10,23 +9,20 @@
   }
   
   .consumer-profile-item h2 {
-    font-size: 1rem;
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 0.5rem;
   }
   
   .consumer-profile-item p {
-    font-size: 0.9rem;
+    font-size: 20px;
     margin: 0;
   }
-  
+
 .reset-password-button {
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
-}
-
-.reset-password-button {
     position: fixed;
     /* Set position to fixed for absolute positioning */
     top: 16px;
@@ -63,6 +59,51 @@
   }
   
   .reset-password-button:focus {
+    outline: none;
+    /* Remove default outline on focus */
+  }
+
+  .edit-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    margin-right: 100px;
+    position: fixed;
+    /* Set position to fixed for absolute positioning */
+    top: 16px;
+    /* Set distance from top */
+    right: 100px;
+    /* Set distance from right */
+    color: #ffffff;
+    /* Set text color to white */
+    background-color: #058885;
+    /* Set background color to a soft red */
+    padding: 12px 20px;
+    /* Add padding for spacing */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add border radius for rounded edges */
+    cursor: pointer;
+    /* Add cursor pointer on hover */
+    text-decoration: none;
+    /* Remove underline from link */
+    font-size: 16px;
+    /* Set font size */
+    font-weight: bold;
+    /* Set font weight to bold */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Add smooth transition effect for background color and transform */
+  }
+
+  .edit-button:hover {
+    background-color: #42b6b3;
+    /* Change background color on hover */
+    transform: scale(1.05);
+    /* Add slight scale effect on hover */
+  }
+  
+  .edit-button:focus {
     outline: none;
     /* Remove default outline on focus */
   }

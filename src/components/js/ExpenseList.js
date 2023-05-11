@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/ExpenseList.css";
 
 const ExpenseList = ({ expenses }) => {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
   const [filterAmount, setFilterAmount] = useState("");
   const [filterAmountType, setFilterAmountType] = useState("");
   const [sortColumn, setSortColumn] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
+  const [selectedExpenseId, setSelectedExpenseId] = useState(null);
+  const [editedExpenseValue, setEditedExpenseValue] = useState("");
 
   const handleFilterCategoryChange = (e) => {
     setFilterCategory(e.target.value);
@@ -28,13 +34,63 @@ const ExpenseList = ({ expenses }) => {
     }
   };
 
+  const handleEditExpense = (expenseId) => {
+    setSelectedExpenseId(expenseId);
+    setEditedExpenseValue(expenses.find((expense) => expense.id === expenseId).amount);
+  };
+
+  const handleSaveExpense = async (expenseId) => {
+    // Update the amount of the selected expense in the expenses array
+    const updatedExpenses = expenses.find((expense) => {
+      if (expense.id === expenseId) {
+        expense.amount = editedExpenseValue;
+        return { ...expense, amount: editedExpenseValue };
+      }
+      return expense;
+    });
+
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/expenses?userId=${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedExpenses),
+        }
+      );
+
+      if (response.ok) {
+        navigate("/expenses");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
+    } catch (error) {
+      setError("Failed to login. Please try again later.");
+    }
+
+    // Update the expenses prop with the new array of expenses
+    // and clear the selectedExpenseId and editedExpenseValue state variables
+    setSelectedExpenseId(null);
+    setEditedExpenseValue("");
+    expenses(updatedExpenses);
+  };
+
+  const handleCancelEditExpense = () => {
+    setSelectedExpenseId(null);
+    setEditedExpenseValue("");
+  };
+
   const sortedExpenses = [...expenses].sort((a, b) => {
     const multiplier = sortDirection === "asc" ? 1 : -1;
     switch (sortColumn) {
       case "date":
         return multiplier * (new Date(a.date) - new Date(b.date));
       case "category":
-        return multiplier * a.category.name.localeCompare(b.category.name);
+        return multiplier * a.category.localeCompare(b.category);
       case "description":
         return multiplier * a.description.localeCompare(b.description);
       case "amount":
@@ -132,7 +188,33 @@ const ExpenseList = ({ expenses }) => {
                 {expense.description}
               </td>
               <td style={{ border: "1px solid black", padding: "8px" }}>
-                {expense.amount}
+                {selectedExpenseId === expense.id ? (
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    value={editedExpenseValue}
+                    onChange={(e) => setEditedExpenseValue(e.target.value)}
+                  />
+                ) : (
+                  expense.amount
+                )}
+              </td>
+              <td style={{ border: "1px solid black", padding: "8px" }}>
+                {selectedExpenseId === expense.id ? (
+                  <>
+                    <button onClick={() => handleSaveExpense(expense.id)}>
+                      Save
+                    </button>
+                    <button onClick={() => handleCancelEditExpense()}>
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <button onClick={() => handleEditExpense(expense.id)}>
+                    Edit
+                  </button>
+                )}
               </td>
             </tr>
           ))}
@@ -143,4 +225,3 @@ const ExpenseList = ({ expenses }) => {
 };
 
 export default ExpenseList;
-

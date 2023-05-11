@@ -1,0 +1,20 @@
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #f7ea8e;
+  }
+  
+  tr:hover {
+    background-color: #f3e053;
+    cursor: pointer;
+  }
+  
