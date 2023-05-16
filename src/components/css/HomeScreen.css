@@ -1,34 +1,57 @@
-/* HomeScreen.css */
-/* Add styles for HomeScreen component */
 .homescreen-container {
-  background-color:#f7ea8e;
+  background-image: linear-gradient(to bottom, #00710f 33%, #ebebeb 33%);
   display: flex;
-  flex-direction: row; /* Set the flex direction to row for horizontal layout */
-  justify-content: space-between; /* Add space between items and align the logout button to the right */
-  height: 100vh; /* set height to 100vh to cover entire viewport height */
-  width: 100vw; /* set width to 100vw to cover entire viewport width */
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif; /* Using a clean font */
 }
 
-  .content-container {
-    flex: 1; /* Allow the content container to take up remaining width */
-    padding: 16px;
-  }
-  
-  .content-header {
-    margin-bottom: 16px;
-  }
-  
-  .content-body {
-    display: grid; /* Use grid layout for the content body */
-    gap: 16px;
-    grid-template-columns: 1fr; /* Use one grid column for mobile layout */
-  }
-  
-  @media (min-width: 768px) {
-    /* Update styles for tablet and larger screens */
-    .content-body {
-      grid-template-columns: repeat(2, 1fr); /* Use two grid columns for tablet and larger screens */
-    }
+.content-container {
+  flex: 1;
+  padding: 20px;
+}
 
+.content-profile-container {
+  display: flex;
+  height: 100vh;
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin: auto;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vh;
+  max-width: 1200px;
+  max-height: 500px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); /* Softer shadow */
+}
+
+.content-chat-container {
+  text-align: center;
+  font-size: 18px; /* Larger font size */
+  color: #333; /* Dark gray color */
+}
+
+.content-header {
+  margin-bottom: 20px; /* Increasing margin slightly for more space */
+  font-size: 24px; /* Larger font size */
+  color: #333; /* Dark gray color */
+}
+
+.content-body {
+  display: grid;
+  gap: 20px; /* Increasing gap slightly for more space */
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .content-body {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
+}

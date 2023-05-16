@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../css/CreateUserForm.css";
 
 const CreateUserForm = () => {
@@ -51,7 +51,6 @@ const CreateUserForm = () => {
   };
 
   return (
-    
     <div className="create-background">
       <div className="create-container">
         <div className="create-chat-container">
