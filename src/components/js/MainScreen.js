@@ -32,6 +32,7 @@ const MainScreen = () => {
             {" "}
             Login{" "}
           </button>
+          <span className="button-spacing"></span>
           <button
             type="submit"
             className="login-chat-button"

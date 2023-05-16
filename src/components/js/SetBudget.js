@@ -19,8 +19,7 @@ const SetBudget = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
@@ -37,7 +36,7 @@ const SetBudget = () => {
       if (response.ok) {
         const data = await response.json();
         setBudget(JSON.stringify(data));
-        navigate("/budget");
+        navigate("/reports");
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -48,7 +47,7 @@ const SetBudget = () => {
   };
 
   const handleCancel = () => {
-    navigate("/budget");
+    navigate("/reports");
   };
 
   const today = new Date();

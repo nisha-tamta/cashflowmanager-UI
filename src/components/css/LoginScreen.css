@@ -1,94 +1,135 @@
-/* Login Screen Container */
 .login-background {
-    background-color:#f7ea8e;
-    /*background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBteuSWwRtzVq0U_FuskCSOgMUc1s5kcedfw&usqp=CAU');*/
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    height: 100vh; /* set height to 100vh to cover entire viewport height */
-    width: 100vw; /* set width to 100vw to cover entire viewport width */
-    display: flex; /* Use flexbox for vertical alignment */
-    align-items: center; /* Center align items vertically */
-    justify-content: center; /* Center align items horizontally */
+  /* background-color:#f7ea8e; */
+  background-image: linear-gradient(to bottom, #00710f 33%, #ebebeb 33%);
+  /*background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBteuSWwRtzVq0U_FuskCSOgMUc1s5kcedfw&usqp=CAU');*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  height: 100vh;
+  /* set height to 100vh to cover entire viewport height */
+  width: 100vw;
+  /* set width to 100vw to cover entire viewport width */
+  display: flex;
+  /* Use flexbox for vertical alignment */
+  align-items: center;
+  /* Center align items vertically */
+  justify-content: center;
+  /* Center align items horizontally */
+}
 
-  }
-  
-  .login-container {
-    background-color:#f7ea8e;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    height: 100vh; /* set height to 100vh to cover entire viewport height */
-    width: 100vw; /* set width to 100vw to cover entire viewport width */
-    max-width: 400px; /* Set max width of the login container */
-    max-height: 400px; /* Set max width of the login container */
-    padding: 24px; /* Set padding around the login container */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add box shadow for a subtle effect */
-  }
-  
-  /* Login Chat Container */
-  .login-chat-container {
-    text-align: center; /* Center align items in the chat container */
-  }
-  
-  .login-chat-header {
-    font-size: 24px; /* Set font size for the chat header */
-    font-weight: bold; /* Set font weight for the chat header */
-    margin-bottom: 16px; /* Add margin bottom to the chat header */
-  }
-  
-  .login-chat-body {
-    margin-bottom: 24px; /* Add margin bottom to the chat body */
-  }
-  
-  .login-chat-message {
-    font-size: 16px; /* Set font size for the chat message */
-    margin-bottom: 16px; /* Add margin bottom to the chat message */
-  }
-  
-  .login-chat-input-container {
-    margin-bottom: 16px; /* Add margin bottom to the input container */
-  }
-  
-  .login-chat-input {
-    width: 100%; /* Set input width to 100% of the container */
-    padding: 12px; /* Set padding for the input */
-    border: none; /* Remove border from the input */
-    border-radius: 4px; /* Add border radius to the input */
-  }
-  
-  .login-chat-button-container {
-    text-align: center; /* Center align the button container */
-  }
+.login-container {
+  background-color: #fff;
+  border-radius: 20px;
+  width: 670px;
+  padding: 34px 40px 40px;
 
-  .login-chat-button {
-    background-color: #10a37f; /* Set background color of the button */
-    color: #ffffff; /* Set text color of the button */
-    padding: 12px 24px; /* Set padding for the button */
-    border: none; /* Remove border from the button */
-    border-radius: 4px; /* Add border radius to the button */
-    cursor: pointer; /* Add cursor pointer on hover */
-    font-size: 16px; /* Set font size for the button */
-    font-weight: bold; /* Set font weight for the button */
-    transition: transform 0.3s ease-in-out;transition: transform 0.3s ease-in-out;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  height: 100vh;
+  /* set height to 100vh to cover entire viewport height */
+  width: 100vw;
+  /* set width to 100vw to cover entire viewport width */
+  max-width: 400px;
+  /* Set max width of the login container */
+  max-height: 400px;
+  /* Set max width of the login container */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  /* Add box shadow for a subtle effect */
+}
 
-  }
-  
-  .login-chat-button:hover {
-    background-color: #13795f; /* Change background color of the button on hover */
-  }
-  
-  .login-logo-container {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .login-logo {
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Adjust size as needed */
-    object-fit: cover;
-    border-radius: 50%;
-    /* Add additional styles as needed */
-  }
+.button-spacing {
+  margin-left: 0.3rem;
+}
+
+/* Login Chat Container */
+.login-chat-container {
+  text-align: center;
+  /* Center align items in the chat container */
+}
+
+.login-chat-header {
+  font-size: 24px;
+  /* Set font size for the chat header */
+  font-weight: bold;
+  /* Set font weight for the chat header */
+  margin-bottom: 16px;
+  /* Add margin bottom to the chat header */
+}
+
+.login-chat-body {
+  margin-bottom: 24px;
+  /* Add margin bottom to the chat body */
+}
+
+.login-chat-message {
+  font-size: 16px;
+  /* Set font size for the chat message */
+  margin-bottom: 16px;
+  /* Add margin bottom to the chat message */
+}
+
+.login-chat-input-container {
+  margin-bottom: 16px;
+  /* Add margin bottom to the input container */
+}
+
+.login-chat-input {
+  width: 100%;
+  /* Set input width to 100% of the container */
+  padding: 12px;
+  /* Set padding for the input */
+  border: none;
+  /* Remove border from the input */
+  border-radius: 4px;
+  /* Add border radius to the input */
+}
+
+.login-chat-button-container {
+  text-align: center;
+  /* Center align the button container */
+}
+
+.login-chat-button {
+  background-color: #10a37f;
+  /* Set background color of the button */
+  color: #ffffff;
+  /* Set text color of the button */
+  padding: 12px 24px;
+  /* Set padding for the button */
+  border: none;
+  /* Remove border from the button */
+  border-radius: 4px;
+  /* Add border radius to the button */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  font-size: 16px;
+  /* Set font size for the button */
+  font-weight: bold;
+  /* Set font weight for the button */
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.login-chat-button:hover {
+  background-color: #13795f;
+  /* Change background color of the button on hover */
+}
+
+.login-logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-logo {
+  width: 100px;
+  /* Adjust size as needed */
+  height: 100px;
+  /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 50%;
+  /* Add additional styles as needed */
+}

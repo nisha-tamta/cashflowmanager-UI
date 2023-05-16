@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../css/ExpenseList.css";
+import ReportPage from "./ReportPage";
 
 const ExpenseList = ({ expenses }) => {
   const navigate = useNavigate();

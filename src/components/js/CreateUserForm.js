@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 import "../css/CreateUserForm.css";
 
 const CreateUserForm = () => {
@@ -21,9 +21,6 @@ const CreateUserForm = () => {
   };
 
   const handleSubmit = () => {
-    // Perform form validation if needed
-
-    // Call the createUser API endpoint
     fetch("http://localhost:8080/api/user/create", {
       method: "PUT",
       headers: {
@@ -46,89 +43,121 @@ const CreateUserForm = () => {
         console.error("Error during user creation: ", error);
         // Perform any error handling or UI updates as needed
       });
-      navigate("/login");
+    navigate("/login");
+  };
+
+  const handleLogin = () => {
+    window.location.href = '/login';
   };
 
   return (
-    <div className="homescreen-container">
-      <div className="content-container">
-        <div className="content-header">
-          <h1>Create User</h1>
-          <div className="add-expense-content">
-            <form>
-              <label htmlFor="firstName">First Name</label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={user.firstName}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={user.lastName}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={user.username}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="emailAddress">Email</label>
-              <input
-                type="text"
-                id="emailAddress"
-                name="emailAddress"
-                value={user.emailAddress}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="phoneNumber">Phone number</label>
-              <input
-                type="number"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={user.phoneNumber}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="defaultBudget">Default budget</label>
-              <input
-                type="number"
-                id="defaultBudget"
-                name="defaultBudget"
-                value={user.defaultBudget}
-                onChange={handleChange}
-              />
-
-              <label htmlFor="password">password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={user.password}
-                onChange={handleChange}
-              />
-            </form>
-            <div className="add-expense-buttons">
-              <button onClick={handleSubmit} className="reset-password-form-button" >
-                Create User
-              </button>
-              <Link to="/login">Go to Login</Link>
-            </div>
+    
+    <div className="create-background">
+      <div className="create-container">
+        <div className="create-chat-container">
+          <div className="create-logo-container">
+            <img
+              src="https://pbs.twimg.com/media/EYhrRIGUYAEjmGN.jpg"
+              alt="Expense Tracker Logo"
+              className="create-logo"
+            />
           </div>
-        </div>
-      </div>
-    </div>
+          <div className="create-chat-header">Create Consumer account</div>
+          <div className="create-chat-body">
+            <div >
+              <form>
+                <div className="create-chat-input-container">
+                  <label htmlFor="firstName">First Name</label>
+                  <input
+                    className="create-chat-input"
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={user.firstName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="lastName">Last Name</label>
+                  <input
+                    className="create-chat-input"
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    value={user.lastName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="username">Username</label>
+                  <input
+                    className="create-chat-input"
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={user.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="emailAddress">Email</label>
+                  <input
+                    className="create-chat-input"
+                    type="text"
+                    id="emailAddress"
+                    name="emailAddress"
+                    value={user.emailAddress}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="phoneNumber">Phone number</label>
+                  <input
+                    className="create-chat-input"
+                    type="number"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={user.phoneNumber}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="defaultBudget">Default budget</label>
+                  <input
+                    className="create-chat-input"
+                    type="number"
+                    id="defaultBudget"
+                    name="defaultBudget"
+                    value={user.defaultBudget}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="password">password</label>
+                  <input
+                    className="create-chat-input"
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChange}
+                  />
+                </div>
+              </form >
+              <div className="create-chat-button-containers">
+                <button onClick={handleSubmit} className="create-chat-button" >
+                  Create User
+                </button>
+                <span className="button-spacing"></span>
+                <button onClick={handleLogin} type="submit" className="create-chat-button">
+                  Login
+                </button>
+              </div>
+            </div >
+          </div >
+        </div >
+      </div >
+    </div >
   );
 };
 

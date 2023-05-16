@@ -57,6 +57,7 @@
 /* Update ExpensesPage.css */
 
 .tab-container {
+  background-color: ##e4e4e4;
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -68,30 +69,31 @@
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  background-color: #f7ea8e;
+  background-color: #ffffff;
   border: none;
   border-radius: 5px 5px 0 0;
   transition: all 0.3s ease;
 }
 
 .tab-item:hover {
-  background-color: #f7ea8e;
+  background-color: #ffffff;
 }
 
 .tab-item.active {
   color: #000;
-  background-color: #f7ea8e;
+  background-color: #ffffff;
   border-bottom: 8px solid #9b9461; /* Add green underline */
 }
 
 
 .tab-content {
   padding: 20px;
-  background-color: #f7ea8e;
+  background-color: #ffffff;
   border-radius: 0 0 5px 5px;
 }
 
 .expense-list-container {
+  background-color: white;
   margin: 0 auto;
   box-shadow: 0px 0px 10px #666;
   width: 50vh;

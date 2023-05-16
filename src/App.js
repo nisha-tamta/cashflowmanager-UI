@@ -8,7 +8,7 @@ import Protected from "./components/js/Protected";
 import AboutPage from "./components/js/AboutPage";
 import DashboardPage from "./components/js/DashboardPage";
 import ExpensesPage from "./components/js/ExpensesPage";
-import BudgetPage from "./components/js/BudgetPage";
+import ReportPage from "./components/js/ReportPage";
 import Profile from "./components/js/Profile";
 import ListExpense from "./components/js/ListExpense";
 import AddExpense from "./components/js/AddExpense";
@@ -70,10 +70,10 @@ const App = () => {
           }
         />
         <Route
-          path="/budget"
+          path="/reports"
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
-              <BudgetPage />
+              <ReportPage />
             </Protected>
           }
         />

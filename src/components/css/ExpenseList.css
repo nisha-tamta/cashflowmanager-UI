@@ -10,11 +10,11 @@ table {
   }
   
   th {
-    background-color: #f7ea8e;
+    background-color: #white;
   }
   
   tr:hover {
-    background-color: #f3e053;
+    background-color: #white;
     cursor: pointer;
   }
   

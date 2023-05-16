@@ -14,11 +14,8 @@ const Navbar = () => {
   const handleExpenses = () => {
     navigate("/expenses");
   };
-  const handleBudget = () => {
-    navigate("/budget");
-  };
-  const handleDashboard = () => {
-    navigate("/dashboard");
+  const handleReports = () => {
+    navigate("/reports");
   };
   const handleAbout = () => {
     navigate("/about");
@@ -49,11 +46,8 @@ const Navbar = () => {
           <button className="navbar-item" onClick={handleExpenses} >Expenses</button>
         </div>
         <div className="login-chat-header">
-          <button className="navbar-item" onClick={handleBudget} >Reports</button>
+          <button className="navbar-item" onClick={handleReports} >Reports</button>
         </div>
-{/*         <div className="login-chat-header">
-          <button className="navbar-item" onClick={handleDashboard} >Dashboard</button>
-        </div> */}
         <div className="login-chat-header">
           <button className="navbar-item" onClick={handleAbout} >About</button>
         </div>
