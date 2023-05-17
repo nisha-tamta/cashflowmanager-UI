@@ -1,9 +1,9 @@
 .homescreen-container {
+  margin-left: 100px;
   background-image: linear-gradient(to bottom, #00710f 33%, #ebebeb 33%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 100vh;
   width: 100vw;
   font-family: Arial, sans-serif; /* Using a clean font */
 }
@@ -15,22 +15,20 @@
 
 .content-profile-container {
   display: flex;
-  height: 100vh;
-  flex: 1;
+  flex-direction: column;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 20px;
-  margin: auto;
+  margin: 100px auto; /* Add some top and bottom margins */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-  height: 100vh;
-  width: 100vh;
-  max-width: 1200px;
-  max-height: 500px;
+  width: 100%; /* Full width of the container */
+  max-width: 1000px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); /* Softer shadow */
 }
+
 
 .content-chat-container {
   text-align: center;

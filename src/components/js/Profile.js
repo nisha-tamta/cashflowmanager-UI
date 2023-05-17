@@ -58,7 +58,7 @@ const Profile = () => {
     }
   };
 
-  const handleSaveButtonClick = async () => {
+  const saveChanges = async () => {
     try {
       const response = await fetch(
         `http://localhost:8080/api/user/create`,
@@ -99,7 +99,8 @@ const Profile = () => {
       <div className="content-profile-container">
         <div className="content-chat-container">
           <div className="content-header">
-            <h1>Profile</h1>
+            <h1>Personal info</h1>
+            <h6>Info about you and your preferences across Expense Tracker</h6>
           </div>
           <div>
             {!editable && <button
@@ -108,154 +109,137 @@ const Profile = () => {
           </div>
           <div className="content-body">
             {user ? (
-              <div className="consumer-profile-container">
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <h2>First Name</h2>
-                      <input
-                        type="text"
-                        id="firstName"
-                        value={user.firstName}
-                        onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-                      />
-                    </div>
-                  ) : (
-                    <p className="name">{user.firstName} {user.lastName}</p>
-                    )}
-                </div>
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <h2>Last Name</h2>
-                      <input
-                        type="text"
-                        id="lastName"
-                        value={user.lastName}
-                        onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-                      />
-                    </div>
-                  ) : (
-                    <div></div>
-                  )}
-                </div>
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <h2>Username</h2>
-                      <input
-                        type="text"
-                        id="username"
-                        value={user.username}
-                        onChange={(e) => setUser({ ...user, username: e.target.value })}
-                      />
-                    </div>
-                  ) : (
-                    <p>{user.username}</p>
-                  )}
-
-                </div>
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <h2>Phone number</h2>
-                      <input
-                        type="text"
-                        id="phoneNumber"
-                        value={user.phoneNumber}
-                        onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
-                      />
-                    </div>
-                  ) : (
-                    <p>{user.phoneNumber}</p>
-                  )}
-
-                </div>
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <h2>Email Address</h2>
-                      <input
-                        type="email"
-                        id="emailAddress"
-                        value={user.emailAddress}
-                        onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
-                      />
-                    </div>
-                  ) : (
-                    <p>{user.emailAddress}</p>
-                  )}
-                </div>
-
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <h2>Default Budget</h2>
-                      <input
-                        type="number"
-                        id="defaultBudget"
-                        value={user.defaultBudget}
-                        onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })}
-                      />
-                    </div>
-                  ) : (
-                    <div>
-                      <h2> Default Budget </h2>
-                      <p>{user.defaultBudget}</p>
-                    </div>
-                  )}
-
-                </div>
-                <div className="consumer-profile-item">
-                  {editable ? (
-                    <div>
-                      <button onClick={handleSaveButtonClick} className="reset-password-form-button" >Save</button>
-                      <button onClick={handleCancelResetButtonClick} className="reset-password-form-button" >Cancel</button>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <div className="consumer-profile-item">
-                  <div>
-                    {showResetForm ? (
-                      // Render the password reset form
-                      <div className="password-reset-form">
-                        <h2>Password</h2>
-                        <div>
-                          <label>Old Password:</label>
-                          <input
-                            type="password"
-                            value={oldPassword}
-                            onChange={(e) => setOldPassword(e.target.value)}
-                          />
-                        </div>
-                        <div>
-                          <label>New Password:</label>
-                          <input
-                            type="password"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                          />
-                        </div>
-                        <div>
-                          <button onClick={handleResetPassword} className="reset-password-form-button" >Reset Password</button>
-                          <button onClick={handleCancelResetButtonClick} className="reset-password-form-button" >Cancel</button>
-                        </div>
-                        <div>
-                          <p>{resetStatus}</p>
-                        </div>
+              <div className="profile-sections">
+                <div className="profile-section">
+                  <div className="info-box">
+                    <h2>Basic info</h2>
+                    <div className="profile-details">
+                      <div className="profile-info">
+                        <div className="profile-label">Name:</div>
+                        <p className="name">{user.firstName} {user.lastName}</p>
+                        <div className="profile-label">Username:</div>
+                        <p>{user.username}</p>
                       </div>
-                    ) : (
-                      <button onClick={handleResetButtonClick} className="reset-password-button" >Reset Password</button>
+                    </div>
+                    {editable && (
+                      <div className="edit-profile-fields">
+                        <h3>First Name</h3>
+                        <input
+                          type="text"
+                          id="firstName"
+                          value={user.firstName}
+                          onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+                        />
+                        <h3>Last Name</h3>
+                        <input
+                          type="text"
+                          id="lastName"
+                          value={user.lastName}
+                          onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                        />
+                        <h3>Username</h3>
+                        <input
+                          type="text"
+                          id="username"
+                          value={user.username}
+                          onChange={(e) => setUser({ ...user, username: e.target.value })}
+                        />
+                      </div>
                     )}
                   </div>
                 </div>
+                <div className="profile-section">
+                  <div className="info-box">
+                    <h2>Contact info</h2>
+                    <div className="contact-details">
+                      <p>Phone: {user.phoneNumber}</p>
+                      <p>Email: {user.emailAddress}</p>
+                    </div>
+
+                    {editable && (
+                      <div className="edit-contact-fields">
+                        <h3>Phone number</h3>
+                        <input
+                          type="text"
+                          id="phoneNumber"
+                          value={user.phoneNumber}
+                          onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+                        />
+                        <h3>Email Address</h3>
+                        <input
+                          type="email"
+                          id="emailAddress"
+                          value={user.emailAddress}
+                          onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="profile-section">
+                  <div className="info-box">
+                    <h2>Account settings</h2>
+                    <div className="account-settings">
+                      <p>Default Budget: {user.defaultBudget}</p>
+                    </div>
+                    {editable && (
+                      <div className="edit-account-settings-fields">
+                        <h3>Default Budget</h3>
+                        <input
+                          type="number"
+                          id="defaultBudget"
+                          value={user.defaultBudget}
+                          onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="profile-section">
+                  <button onClick={saveChanges} className="reset-password-form-button" >Save</button>
+                  <button onClick={handleCancelResetButtonClick} className="reset-password-form-button" >Cancel</button>
+                </div>
+                <div className="profile-section">
+                  <button
+                    className="reset-password-button"
+                    onClick={() => setShowResetForm(!showResetForm)}>
+                    Reset Password
+                  </button>
+                  {showResetForm ? (
+                    // Render the password reset form
+                    <div className="password-reset-form">
+                      <h2>Password</h2>
+                      <div>
+                        <label>Old Password:</label>
+                        <input
+                          type="password"
+                          value={oldPassword}
+                          onChange={(e) => setOldPassword(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <label>New Password:</label>
+                        <input
+                          type="password"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <button onClick={handleResetPassword} className="reset-password-form-button" >Reset Password</button>
+                        <button onClick={handleCancelResetButtonClick} className="reset-password-form-button" >Cancel</button>
+                      </div>
+                      <div>
+                        <p>{resetStatus}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <button onClick={handleResetButtonClick} className="reset-password-button" >Reset Password</button>
+                  )}
+                </div>
               </div>
             ) : (
-              <p>Loading user data...</p>
+              <h2>Loading...</h2>
             )}
-            {error && <p className="error">{error}</p>}
           </div>
         </div>
       </div>

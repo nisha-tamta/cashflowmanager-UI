@@ -132,7 +132,7 @@ const CreateUserForm = () => {
                   />
                 </div>
                 <div className="create-chat-input-container">
-                  <label htmlFor="password">password</label>
+                  <label htmlFor="password">Password</label>
                   <input
                     className="create-chat-input"
                     type="password"

@@ -7,6 +7,11 @@
 }
 
 .navbar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 200px;
   display: flex;
   flex-direction: column;
   /* Set the flex direction to column for vertical layout */
