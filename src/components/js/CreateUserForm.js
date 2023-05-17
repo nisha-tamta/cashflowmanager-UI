@@ -47,7 +47,7 @@ const CreateUserForm = () => {
   };
 
   const handleLogin = () => {
-    window.location.href = '/login';
+    window.location.href = '/';
   };
 
   return (
@@ -149,7 +149,7 @@ const CreateUserForm = () => {
                 </button>
                 <span className="button-spacing"></span>
                 <button onClick={handleLogin} type="submit" className="create-chat-button">
-                  Login
+                  Back
                 </button>
               </div>
             </div >
