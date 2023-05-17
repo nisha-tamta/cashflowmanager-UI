@@ -24,7 +24,7 @@ const LoginScreen = ({ onLoginSuccess }) => {
       if (response.ok) {
         const userData = await response.json();
         localStorage.setItem("user", JSON.stringify(userData));
-        navigate("/home");
+        navigate("/dashboard");
         onLoginSuccess();
       } else {
         const errorData = await response.json();
@@ -33,6 +33,10 @@ const LoginScreen = ({ onLoginSuccess }) => {
     } catch (error) {
       setError("Failed to login. Please try again later.");
     }
+  };
+
+  const handleLogin = () => {
+    window.location.href = '/';
   };
 
   return (
@@ -74,6 +78,10 @@ const LoginScreen = ({ onLoginSuccess }) => {
               <div className="login-chat-button-container">
                 <button type="submit" className="login-chat-button">
                   Login
+                </button>
+                <span className="button-spacing"></span>
+                <button onClick={handleLogin} type="submit" className="cancel-button">
+                  Back
                 </button>
               </div>
             </form>

@@ -16,9 +16,9 @@
     /* Center align items vertically */
     justify-content: center;
     /* Center align items horizontally */
-  }
+}
 
-  .create-container {
+.create-container {
     background-color: #fff;
     border-radius: 20px;
     padding: 34px 40px 40px;
@@ -27,31 +27,34 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); /* Softer shadow */
+    height: 100vh;
+    /* set height to 100vh to cover entire viewport height */
+    width: 100vw;
+    /* set width to 100vw to cover entire viewport width */
+    max-width: 600px;
+    /* Set max width of the create container */
+    max-height: 500px;
+    /* Set max width of the create container */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+    /* Add box shadow for a subtle effect */
+}
 
-    display: flex;
-    flex-direction: column;
-    margin: 100px auto;
-  }
-  
 /* Login Chat Container */
-  .create-chat-container {
+.create-chat-container {
     text-align: center;
     /* Center align items in the chat container */
 }
-  
-  .create-chat-header {
+
+.create-chat-header {
     font-size: 24px;
     /* Set font size for the chat header */
     font-weight: bold;
     /* Set font weight for the chat header */
     margin-bottom: 16px;
     /* Add margin bottom to the chat header */
-  }
-  
-  .create-chat-body {
+}
+
+.create-chat-body {
     margin-bottom: 24px;
     /* Add margin bottom to the chat body */
 }
@@ -61,33 +64,33 @@
     /* Set font size for the chat message */
     margin-bottom: 16px;
     /* Add margin bottom to the chat message */
-  }
-  
-  .create-chat-input-container {
+}
+
+.create-chat-input-container {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-  
-  .create-chat-input-container label {
-    font-size: 14px;
-    color: #202124;
-    padding-bottom: 5px;
-  }
-  
-  .create-chat-input {
-    border: 1px solid #dadce0;
-    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.create-chat-input-container label {
+    margin-right: 1rem;
+}
+
+.create-chat-input {
+    width: 50%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    padding: 1px;
     border-radius: 4px;
-    font-size: 16px;
-  }
-  
+}
+
 .create-chat-button-container {
     text-align: center;
     /* Center align the button container */
-  }
-  
-  .create-chat-button {
+}
+
+.create-chat-button {
     background-color: #10a37f;
     /* Set background color of the button */
     color: #ffffff;
@@ -107,13 +110,13 @@
     transition: transform 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out;
 
-  }
-  
+}
+
 .create-chat-button:hover {
     background-color: #13795f;
     /* Change background color of the button on hover */
-  }
-  
+}
+
 .create-logo-container {
     text-align: center;
     margin-bottom: 20px;

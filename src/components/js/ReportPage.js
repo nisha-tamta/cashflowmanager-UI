@@ -73,9 +73,9 @@ const ReportPage = () => {
   return (
     <div className="homescreen-container">
       <NavBar />
-      <div className="content-container">
+      <h1>Dashboard</h1>
+      <div className="content-profile-container">
         <div className="content-header">
-          <h1>Reports</h1>
           <div className="buttons-container">
             <button
               onClick={handleSetBudget}

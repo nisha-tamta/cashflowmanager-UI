@@ -119,6 +119,33 @@
   /* Change background color of the button on hover */
 }
 
+.cancel-button {
+  background-color: #989898;
+  /* Set background color of the button */
+  color: #ffffff;
+  /* Set text color of the button */
+  padding: 12px 24px;
+  /* Set padding for the button */
+  border: none;
+  /* Remove border from the button */
+  border-radius: 4px;
+  /* Add border radius to the button */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  font-size: 16px;
+  /* Set font size for the button */
+  font-weight: bold;
+  /* Set font weight for the button */
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.cancel-button:hover {
+  background-color: #6a6a6a;
+  /* Change background color of the button on hover */
+}
+
 .login-logo-container {
   text-align: center;
   margin-bottom: 20px;

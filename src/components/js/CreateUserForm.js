@@ -148,7 +148,7 @@ const CreateUserForm = () => {
                   Create User
                 </button>
                 <span className="button-spacing"></span>
-                <button onClick={handleLogin} type="submit" className="create-chat-button">
+                <button onClick={handleLogin} type="submit" className="cancel-button">
                   Back
                 </button>
               </div>

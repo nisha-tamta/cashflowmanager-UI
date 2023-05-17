@@ -36,7 +36,7 @@ const SetBudget = () => {
       if (response.ok) {
         const data = await response.json();
         setBudget(JSON.stringify(data));
-        navigate("/reports");
+        navigate("/dashboard");
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -47,7 +47,7 @@ const SetBudget = () => {
   };
 
   const handleCancel = () => {
-    navigate("/reports");
+    navigate("/dashboard");
   };
 
   const today = new Date();

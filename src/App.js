@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginScreen from "./components/js/LoginScreen";
-import HomeScreen from "./components/js/HomeScreen";
 import CreateUserForm from "./components/js/CreateUserForm";
 import MainScreen from "./components/js/MainScreen";
 import Protected from "./components/js/Protected";
@@ -29,7 +28,7 @@ const App = () => {
           exact
           path="/"
           element={
-            localStorage.getItem("user") ? <HomeScreen /> : <MainScreen />
+            localStorage.getItem("user") ? <ReportPage /> : <MainScreen />
           }
         />
         <Route
@@ -38,10 +37,10 @@ const App = () => {
         />
         <Route path="/signup" element={<CreateUserForm />} />
         <Route
-          path="/home"
+          path="/dashboard"
           element={
-            <Protected isLoggedIn={isLoggedIn}>
-              <HomeScreen />
+            <Protected isLoggedIn={localStorage.getItem("user")}>
+              <ReportPage />
             </Protected>
           }
         />
@@ -70,7 +69,7 @@ const App = () => {
           }
         />
         <Route
-          path="/reports"
+          path="/dashboard"
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
               <ReportPage />

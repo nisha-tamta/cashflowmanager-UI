@@ -77,8 +77,8 @@
   height: 100px;
   /* Adjust size as needed */
   object-fit: cover;
-  border-radius: 50%;
-  background-color: #879fec;
+  border-radius: 100%;
+  background-color: #1c1f29;
   /* Change background color on hover */
 }
 
@@ -120,10 +120,9 @@
   /* Add smooth transition effect for background color and transform */
 }
 
-
 .login-chat-logout:hover {
   background-color: #bc3f3f;
-  transform: scale(0.8) rotate(4deg);
+  transform: scale(1.1) ;
 }
 
 .login-chat-logout:focus {
@@ -131,3 +130,69 @@
   /* Remove default outline on focus */ 
 }
 
+/* Add styles for Logout button */
+.login-chat-logout-green {
+  margin-top: auto; /* Move the Logout button to the bottom of the navbar */
+  margin-left: 16px;
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #05882a;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 20px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+.login-chat-logout-green:hover {
+  background-color: #50bc3f;
+  transform: scale(1.1) ;
+}
+
+.login-chat-logout-green:focus {
+  outline: none;
+  /* Remove default outline on focus */ 
+}
+
+
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.confirmation-dialog {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.confirmation-dialog h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.confirmation-buttons button {
+  margin-right: 10px;
+}

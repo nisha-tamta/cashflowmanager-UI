@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/NavBar.css';
 
+const LogoutConfirmation = ({ onConfirm, onCancel }) => {
+  return (
+    <div className="confirmation-overlay">
+      <div className="confirmation-dialog">
+        <h2>Are you sure you want to logout?</h2>
+        <div className="confirmation-buttons">
+          <button className="login-chat-logout" onClick={onConfirm}>Logout</button>
+          <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+        </div>
+      </div>
+    </div>
+  );
+};
 const Navbar = () => {
   const navigate = useNavigate();
 
   const handleHome = () => {
-    navigate("/");
+    navigate("/profile");
   };
   const handleProfile = () => {
     navigate("/profile");
@@ -15,16 +28,33 @@ const Navbar = () => {
     navigate("/expenses");
   };
   const handleReports = () => {
-    navigate("/reports");
+    navigate("/dashboard");
   };
   const handleAbout = () => {
     navigate("/about");
   };
 
+  // const handleLogout = () => {
+  //   const confirmed = window.confirm("Are you sure you want to logout?");
+  //   if (confirmed) {
+  //     localStorage.removeItem("user");
+  //     window.location.href = "/";
+  //   }
+  // };
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    window.location.href = '/';
+    setShowConfirmation(true);
   };
+
+  const handleLogoutConfirmation = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
+  const handleCancelLogout = () => {
+    setShowConfirmation(false);
+  };
+
 
   return (
     <nav className="navbar-container">
@@ -32,7 +62,7 @@ const Navbar = () => {
         <div className="login-chat-header">
           <button onClick={handleHome} >
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0x7tP3v82u1jMLRYOWATA6KaV0bBUmYZztQ&usqp=CAU"
+              src="https://www.citypng.com/public/uploads/preview/download-profile-user-round-orange-icon-symbol-png-11639594360ksf6tlhukf.png"
               alt="Expense Tracker Logo"
               className="home-logo"
               style={{ width: '50px', height: 'auto' }}
@@ -43,18 +73,24 @@ const Navbar = () => {
           <button className="navbar-item" onClick={handleProfile} >Profile</button>
         </div>
         <div className="login-chat-header">
-          <button className="navbar-item" onClick={handleExpenses} >Expenses</button>
+          <button className="navbar-item" onClick={handleReports} >Dashboard</button>
         </div>
         <div className="login-chat-header">
-          <button className="navbar-item" onClick={handleReports} >Reports</button>
+          <button className="navbar-item" onClick={handleExpenses} >Expenses</button>
         </div>
         <div className="login-chat-header">
           <button className="navbar-item" onClick={handleAbout} >About</button>
         </div>
       </ul>
       <div>
-          <button onClick={handleLogout} className="login-chat-logout" >Logout :(</button>
-        </div>
+        <button onClick={handleLogout} className="login-chat-logout" >Logout :(</button>
+        {showConfirmation && (
+        <LogoutConfirmation
+          onConfirm={handleLogoutConfirmation}
+          onCancel={handleCancelLogout}
+        />
+      )}
+      </div>
     </nav>
   );
 };
