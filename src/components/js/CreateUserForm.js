@@ -4,6 +4,7 @@ import "../css/CreateUserForm.css";
 
 const CreateUserForm = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const [user, setUser] = useState({
     firstName: "",
@@ -32,7 +33,9 @@ const CreateUserForm = () => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Error during user creation");
+          return response.text().then(errorText => {
+            throw new Error(errorText || "Error during user creation");
+          });
         }
       })
       .then((data) => {
@@ -41,9 +44,9 @@ const CreateUserForm = () => {
       })
       .catch((error) => {
         console.error("Error during user creation: ", error);
-        // Perform any error handling or UI updates as needed
+        setError(error.message);
       });
-    navigate("/login");
+    // navigate("/login");
   };
 
   const handleLogin = () => {
@@ -65,6 +68,7 @@ const CreateUserForm = () => {
           <div className="create-chat-body">
             <div >
               <form>
+              {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
                   <label htmlFor="firstName">First Name</label>
                   <input

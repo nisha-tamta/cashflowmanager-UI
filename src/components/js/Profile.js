@@ -11,7 +11,6 @@ const Profile = () => {
   const [oldPassword, setOldPassword] = useState(""); // State to store old password
   const [newPassword, setNewPassword] = useState(""); // State to store new password
   const [showResetForm, setShowResetForm] = useState(false); // State to determine if reset form should be shown
-  const [editable, setEditable] = useState(false);
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -36,7 +35,252 @@ const Profile = () => {
     }
   }, []);
 
-  const handleResetPassword = async () => {
+  const [showBasicInfoEdit, setShowBasicInfoEdit] = useState(false);
+
+  const handleBasicInfo = () => {
+    setShowBasicInfoEdit(true);
+  };
+
+  const BasicInfoEdit = ({ onConfirm, onCancel }) => {
+    return (
+      <div className="confirmation-overlay">
+        <div className="confirmation-dialog">
+          <h2>Edit Basic Information</h2>
+          {error && <div className="error-message">{error}</div>}
+          <div className="confirmation-buttons">
+            <div className="edit-profile-fields">
+              <h3>First Name</h3>
+              <input
+                type="text"
+                id="firstName"
+                value={user.firstName}
+                onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+              />
+              <h3>Last Name</h3>
+              <input
+                type="text"
+                id="lastName"
+                value={user.lastName}
+                onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+              />
+              <h3>Username</h3>
+              <input
+                type="text"
+                id="username"
+                value={user.username}
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
+              />
+            </div>
+            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
+            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleBasicInfoEdit = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/user/create`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+      } else {
+        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
+        setError(errorMessage);
+      }
+    } catch (error) {
+      setError(`Error during saving user: ${error.message}`);
+    }
+    setShowBasicInfoEdit(false);
+  }
+
+  const handleCancelBasicInfoEdit = () => {
+    setShowBasicInfoEdit(false);
+  };
+
+  // Below code for Edit Contact Info
+
+  const [showContactInfoEdit, setShowContactInfoEdit] = useState(false);
+
+  const handleContactInfo = () => {
+    setShowContactInfoEdit(true);
+  };
+
+  const ContactInfoEdit = ({ onConfirm, onCancel }) => {
+    return (
+      <div className="confirmation-overlay">
+        <div className="confirmation-dialog">
+          <h2>Edit Contact Information</h2>
+          {error && <div className="error-message">{error}</div>}
+          <div className="confirmation-buttons">
+            <div className="edit-contact-fields">
+              <h3>Phone number</h3>
+              <input
+                type="text"
+                id="phoneNumber"
+                value={user.phoneNumber}
+                onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+              />
+              <h3>Email Address</h3>
+              <input
+                type="email"
+                id="emailAddress"
+                value={user.emailAddress}
+                onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
+              />
+            </div>
+            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
+            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleContactInfoEdit = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/user/create`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+      } else {
+        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
+        setError(errorMessage);
+      }
+    } catch (error) {
+      setError(`Error during saving user: ${error.message}`);
+    }
+    setShowContactInfoEdit(false);
+  }
+
+  const handleCancelContactInfoEdit = () => {
+    setShowContactInfoEdit(false);
+  };
+
+  // Below code for Account Settings
+
+  const [showAccountSettingsEdit, setShowAccountSettingsEdit] = useState(false);
+
+  const handleAccountSettings = () => {
+    setShowAccountSettingsEdit(true);
+  };
+
+  const AccountSettingsEdit = ({ onConfirm, onCancel }) => {
+    return (
+      <div className="confirmation-overlay">
+        <div className="confirmation-dialog">
+          <h2>Edit Account Settings</h2>
+          {error && <div className="error-message">{error}</div>}
+          <div className="confirmation-buttons">
+            <div className="edit-account-settings-fields">
+              <h3>Default Budget</h3>
+              <input
+                type="number"
+                id="defaultBudget"
+                value={user.defaultBudget}
+                onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })} />
+            </div>
+            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
+            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleAccountSettingsEdit = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/user/create`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setUser(data);
+        localStorage.setItem("user", JSON.stringify(data));
+      } else {
+        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
+        setError(errorMessage);
+      }
+    } catch (error) {
+      setError(`Error during saving user: ${error.message}`);
+    }
+    setShowAccountSettingsEdit(false);
+  }
+
+  const handleCancelAccountSettingsEdit = () => {
+    setShowAccountSettingsEdit(false);
+  };
+
+  // Below code for Reset Password
+
+  const [showResetPasswordEdit, setShowResetPasswordEdit] = useState(false);
+
+  const handleResetPassword = () => {
+    setShowResetPasswordEdit(true);
+  };
+
+  const ResetPasswordEdit = ({ onConfirm, onCancel }) => {
+    return (
+      <div className="confirmation-overlay">
+        <div className="confirmation-dialog">
+          <h2>Reset Password</h2>
+          {error && <div className="error-message">{error}</div>}
+          <div className="confirmation-buttons">
+            <div className="password-reset-form">
+              <div>
+                <label>Old Password:</label>
+                <input
+                  type="password"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <label>New Password:</label>
+                <input
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </div>
+            </div>
+            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
+            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleResetPasswordEdit = async () => {
     const username = JSON.parse(localStorage.getItem("user")).username;
     try {
       const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -56,41 +300,11 @@ const Profile = () => {
     } catch (error) {
       console.error("Error fetching expenses:", error);
     }
+    setShowResetPasswordEdit(false);
   };
 
-  const saveChanges = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/user/create`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        }
-      );
-      if (response.ok) {
-        setEditable(false);
-        const data = await response.json();
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
-      } else {
-        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
-        setError(errorMessage);
-      }
-    } catch (error) {
-      setError(`Error during saving user: ${error.message}`);
-    }
-  }
-
-  const handleResetButtonClick = () => {
-    setShowResetForm(true);
-  };
-
-  const handleCancelResetButtonClick = () => {
-    setShowResetForm(false);
-    window.location.href = '/profile';
+  const handleCancelResetPasswordEdit = () => {
+    setShowResetPasswordEdit(false);
   };
 
   return (
@@ -98,14 +312,10 @@ const Profile = () => {
       <NavBar />
       <div className="content-profile-container">
         <div className="content-chat-container">
+        {error && <div className="error-message">{error}</div>}
           <div className="content-header">
             <h1>Personal info</h1>
             <h6>Info about you and your preferences across Expense Tracker</h6>
-          </div>
-          <div>
-            {!editable && <button
-              onClick={() => setEditable(true)}
-              className="edit-button">Edit</button>}
           </div>
           <div className="content-body">
             {user ? (
@@ -119,33 +329,15 @@ const Profile = () => {
                         <p className="name">{user.firstName} {user.lastName}</p>
                         <div className="profile-label">Username:</div>
                         <p>{user.username}</p>
+                        <button onClick={handleBasicInfo} className="login-chat-logout-green" >Edit</button>
+                        {showBasicInfoEdit && (
+                          <BasicInfoEdit
+                            onConfirm={handleBasicInfoEdit}
+                            onCancel={handleCancelBasicInfoEdit}
+                          />
+                        )}
                       </div>
                     </div>
-                    {editable && (
-                      <div className="edit-profile-fields">
-                        <h3>First Name</h3>
-                        <input
-                          type="text"
-                          id="firstName"
-                          value={user.firstName}
-                          onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-                        />
-                        <h3>Last Name</h3>
-                        <input
-                          type="text"
-                          id="lastName"
-                          value={user.lastName}
-                          onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-                        />
-                        <h3>Username</h3>
-                        <input
-                          type="text"
-                          id="username"
-                          value={user.username}
-                          onChange={(e) => setUser({ ...user, username: e.target.value })}
-                        />
-                      </div>
-                    )}
                   </div>
                 </div>
                 <div className="profile-section">
@@ -154,26 +346,14 @@ const Profile = () => {
                     <div className="contact-details">
                       <p>Phone: {user.phoneNumber}</p>
                       <p>Email: {user.emailAddress}</p>
+                      <button onClick={handleContactInfo} className="login-chat-logout-green" >Edit</button>
+                      {showContactInfoEdit && (
+                        <ContactInfoEdit
+                          onConfirm={handleContactInfoEdit}
+                          onCancel={handleCancelContactInfoEdit}
+                        />
+                      )}
                     </div>
-
-                    {editable && (
-                      <div className="edit-contact-fields">
-                        <h3>Phone number</h3>
-                        <input
-                          type="text"
-                          id="phoneNumber"
-                          value={user.phoneNumber}
-                          onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
-                        />
-                        <h3>Email Address</h3>
-                        <input
-                          type="email"
-                          id="emailAddress"
-                          value={user.emailAddress}
-                          onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
-                        />
-                      </div>
-                    )}
                   </div>
                 </div>
                 <div className="profile-section">
@@ -181,59 +361,23 @@ const Profile = () => {
                     <h2>Account settings</h2>
                     <div className="account-settings">
                       <p>Default Budget: {user.defaultBudget}</p>
+                      <button onClick={handleAccountSettings} className="login-chat-logout-green" >Edit</button>
+                      {showAccountSettingsEdit && (
+                        <AccountSettingsEdit
+                          onConfirm={handleAccountSettingsEdit}
+                          onCancel={handleCancelAccountSettingsEdit}
+                        />
+                      )}
                     </div>
-                    {editable && (
-                      <div className="edit-account-settings-fields">
-                        <h3>Default Budget</h3>
-                        <input
-                          type="number"
-                          id="defaultBudget"
-                          value={user.defaultBudget}
-                          onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })} />
-                      </div>
-                    )}
                   </div>
                 </div>
                 <div className="profile-section">
-                  <button onClick={saveChanges} className="reset-password-form-button" >Save</button>
-                  <button onClick={handleCancelResetButtonClick} className="reset-password-form-button" >Cancel</button>
-                </div>
-                <div className="profile-section">
-                  <button
-                    className="reset-password-button"
-                    onClick={() => setShowResetForm(!showResetForm)}>
-                    Reset Password
-                  </button>
-                  {showResetForm ? (
-                    // Render the password reset form
-                    <div className="password-reset-form">
-                      <h2>Password</h2>
-                      <div>
-                        <label>Old Password:</label>
-                        <input
-                          type="password"
-                          value={oldPassword}
-                          onChange={(e) => setOldPassword(e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <label>New Password:</label>
-                        <input
-                          type="password"
-                          value={newPassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <button onClick={handleResetPassword} className="reset-password-form-button" >Reset Password</button>
-                        <button onClick={handleCancelResetButtonClick} className="reset-password-form-button" >Cancel</button>
-                      </div>
-                      <div>
-                        <p>{resetStatus}</p>
-                      </div>
-                    </div>
-                  ) : (
-                    <button onClick={handleResetButtonClick} className="reset-password-button" >Reset Password</button>
+                  <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
+                  {showResetPasswordEdit && (
+                    <ResetPasswordEdit
+                      onConfirm={handleResetPasswordEdit}
+                      onCancel={handleCancelResetPasswordEdit}
+                    />
                   )}
                 </div>
               </div>

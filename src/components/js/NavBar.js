@@ -15,6 +15,7 @@ const LogoutConfirmation = ({ onConfirm, onCancel }) => {
     </div>
   );
 };
+
 const Navbar = () => {
   const navigate = useNavigate();
 
@@ -34,14 +35,8 @@ const Navbar = () => {
     navigate("/about");
   };
 
-  // const handleLogout = () => {
-  //   const confirmed = window.confirm("Are you sure you want to logout?");
-  //   if (confirmed) {
-  //     localStorage.removeItem("user");
-  //     window.location.href = "/";
-  //   }
-  // };
   const [showConfirmation, setShowConfirmation] = useState(false);
+
   const handleLogout = () => {
     setShowConfirmation(true);
   };
@@ -85,11 +80,11 @@ const Navbar = () => {
       <div>
         <button onClick={handleLogout} className="login-chat-logout" >Logout :(</button>
         {showConfirmation && (
-        <LogoutConfirmation
-          onConfirm={handleLogoutConfirmation}
-          onCancel={handleCancelLogout}
-        />
-      )}
+          <LogoutConfirmation
+            onConfirm={handleLogoutConfirmation}
+            onCancel={handleCancelLogout}
+          />
+        )}
       </div>
     </nav>
   );

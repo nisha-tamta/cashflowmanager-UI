@@ -116,6 +116,7 @@ const ExpenseList = ({ expenses }) => {
 
   return (
     <div>
+      {error && <div className="error-message">{error}</div>}
       <div style={{ marginBottom: "16px" }}>
         <label>
           Category like{" "}

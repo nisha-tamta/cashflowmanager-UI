@@ -27,11 +27,12 @@ const LoginScreen = ({ onLoginSuccess }) => {
         navigate("/dashboard");
         onLoginSuccess();
       } else {
-        const errorData = await response.json();
-        setError(errorData.message);
+        response.text().then(errorText => {
+          setError(errorText || "Error during login");
+        });
       }
     } catch (error) {
-      setError("Failed to login. Please try again later.");
+      setError(error.message);
     }
   };
 
@@ -51,8 +52,10 @@ const LoginScreen = ({ onLoginSuccess }) => {
             />
           </div>
           <div className="login-chat-header">Welcome to Expense Tracker</div>
+          {error && <div className="error-message">{error}</div>}
 
           <div className="login-chat-body">
+
             <form onSubmit={handleSubmit}>
               <div className="login-chat-message">
                 Log in with your Consumer account to continue
