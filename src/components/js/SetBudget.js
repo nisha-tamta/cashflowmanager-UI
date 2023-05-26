@@ -61,7 +61,7 @@ const SetBudget = () => {
   return (
       <div className="homescreen-container">
         <NavBar />
-        <div className="content-container">
+        <div className="content-profile-container">
           <div className="content-header">
             <h1>Set Budget</h1>
             <div className="add-expense-content">

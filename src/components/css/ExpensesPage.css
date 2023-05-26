@@ -13,7 +13,7 @@
   /* Set distance from right */
   color: #ffffff;
   /* Set text color to white */
-  background-color: #058826;
+  background-color: #ed905d;
   /* Set background color to a soft red */
   padding: 12px 20px;
   /* Add padding for spacing */
@@ -34,7 +34,7 @@
 }
 
 .add-expense-button:hover {
-  background-color: #0ab936;
+  background-color: #f4da52;
   /* Change background color on hover */
   transform: scale(1.05);
   /* Add slight scale effect on hover */
@@ -80,7 +80,8 @@
 .tab-item.active {
   color: #000;
   background-color: #f7ea8e;
-  border-bottom: 8px solid #9b9461; /* Add green underline */
+  border-bottom: 8px solid #9b9461;
+  /* Add green underline */
 }
 
 
@@ -95,4 +96,31 @@
   box-shadow: 0px 0px 10px #666;
   width: 50vh;
   height: 50vh;
+}
+
+h1 {
+  font-family: 'Domine', serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  color: rgb(32, 33, 36);
+}
+
+h2 {
+  font-family: 'Nunito', sans-serif;  
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgb(32, 33, 36);
+}
+
+h6 {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 0px;
+  font: "Google Sans Text", "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(37, 39, 41);
 }

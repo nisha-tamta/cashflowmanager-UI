@@ -1,6 +1,6 @@
 .login-background {
   /* background-color:#f7ea8e; */
-  background-image: linear-gradient(to bottom, #00710f 33%, #ebebeb 33%);
+  background-image: linear-gradient(to bottom, #005a71 33%, #ebebeb 33%);
   /*background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBteuSWwRtzVq0U_FuskCSOgMUc1s5kcedfw&usqp=CAU');*/
   background-size: cover;
   background-repeat: no-repeat;
@@ -148,7 +148,7 @@
 
 .login-logo-container {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .login-logo {

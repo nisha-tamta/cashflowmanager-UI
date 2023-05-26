@@ -1,6 +1,6 @@
 .create-background {
     /* background-color:#f7ea8e; */
-    background-image: linear-gradient(to bottom, #00710f 33%, #ebebeb 33%);
+    background-image: linear-gradient(to bottom, #005a71 33%, #ebebeb 33%);
     /*background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBteuSWwRtzVq0U_FuskCSOgMUc1s5kcedfw&usqp=CAU');*/
     background-size: cover;
     background-repeat: no-repeat;
@@ -31,7 +31,7 @@
     /* set height to 100vh to cover entire viewport height */
     width: 100vw;
     /* set width to 100vw to cover entire viewport width */
-    max-width: 600px;
+    max-width: 400px;
     /* Set max width of the create container */
     max-height: 500px;
     /* Set max width of the create container */
@@ -56,6 +56,7 @@
 
 .create-chat-body {
     margin-bottom: 24px;
+    align-items: center;
     /* Add margin bottom to the chat body */
 }
 
@@ -68,13 +69,17 @@
 
 .create-chat-input-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin-bottom: 1rem;
 }
 
 .create-chat-input-container label {
-    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    flex-basis: 110px;
+    margin-right: 24px;
+    padding-top: 4px;
 }
 
 .create-chat-input {

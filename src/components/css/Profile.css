@@ -1,156 +1,153 @@
 .consumer-profile-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .consumer-profile-item {
-    flex: 0 0 50%; /* Adjust the width as needed */
-    margin-bottom: 1rem;
-  }
-  
-  .consumer-profile-item h2 {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .consumer-profile-item p {
-    font-size: 20px;
-    margin: 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.consumer-profile-item {
+  flex: 0 0 50%;
+  /* Adjust the width as needed */
+  margin-bottom: 1rem;
+}
+
+.consumer-profile-item h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.consumer-profile-item p {
+  font-size: 20px;
+  margin: 0;
+}
 
 .reset-password-button {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    position: fixed;
-    /* Set position to fixed for absolute positioning */
-    top: 16px;
-    /* Set distance from top */
-    right: 16px;
-    /* Set distance from right */
-    color: #ffffff;
-    /* Set text color to white */
-    background-color: #880505;
-    /* Set background color to a soft red */
-    padding: 12px 20px;
-    /* Add padding for spacing */
-    border: none;
-    /* Remove border */
-    border-radius: 5px;
-    /* Add border radius for rounded edges */
-    cursor: pointer;
-    /* Add cursor pointer on hover */
-    text-decoration: none;
-    /* Remove underline from link */
-    font-size: 16px;
-    /* Set font size */
-    font-weight: bold;
-    /* Set font weight to bold */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    /* Add smooth transition effect for background color and transform */
-  }
-  
-  .reset-password-button:hover {
-    background-color: #bc3f3f;
-    /* Change background color on hover */
-    transform: scale(1.05);
-    /* Add slight scale effect on hover */
-  }
-  
-  .reset-password-button:focus {
-    outline: none;
-    /* Remove default outline on focus */
-  }
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  position: fixed;
+  /* Set position to fixed for absolute positioning */
+  top: 16px;
+  /* Set distance from top */
+  right: 16px;
+  /* Set distance from right */
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #880505;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 16px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
 
-  .edit-button {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 16px;
-    margin-right: 100px;
-    position: fixed;
-    /* Set position to fixed for absolute positioning */
-    top: 16px;
-    /* Set distance from top */
-    right: 100px;
-    /* Set distance from right */
-    color: #ffffff;
-    /* Set text color to white */
-    background-color: #058885;
-    /* Set background color to a soft red */
-    padding: 12px 20px;
-    /* Add padding for spacing */
-    border: none;
-    /* Remove border */
-    border-radius: 5px;
-    /* Add border radius for rounded edges */
-    cursor: pointer;
-    /* Add cursor pointer on hover */
-    text-decoration: none;
-    /* Remove underline from link */
-    font-size: 16px;
-    /* Set font size */
-    font-weight: bold;
-    /* Set font weight to bold */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    /* Add smooth transition effect for background color and transform */
-  }
+.reset-password-button:hover {
+  background-color: #bc3f3f;
+  /* Change background color on hover */
+  transform: scale(1.05);
+  /* Add slight scale effect on hover */
+}
 
-  .edit-button:hover {
-    background-color: #42b6b3;
-    /* Change background color on hover */
-    transform: scale(1.05);
-    /* Add slight scale effect on hover */
-  }
-  
-  .edit-button:focus {
-    outline: none;
-    /* Remove default outline on focus */
-  }
+.reset-password-button:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
 
-  .reset-password-form-button {
-    margin-right: 10px;
-    /* Add margin to create space between buttons */
-    color: #ffffff;
-    /* Set text color to white */
-    background-color: #058826;
-    /* Set background color to a soft red */
-    padding: 12px 20px;
-    /* Add padding for spacing */
-    border: none;
-    /* Remove border */
-    border-radius: 5px;
-    /* Add border radius for rounded edges */
-    cursor: pointer;
-    /* Add cursor pointer on hover */
-    text-decoration: none;
-    /* Remove underline from link */
-    font-size: 16px;
-    /* Set font size */
-    font-weight: bold;
-    /* Set font weight to bold */
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    /* Add smooth transition effect for background color and transform */
-  }
-  
-  
-  .reset-password-form-button:hover {
-    background-color: #0ab936;
-    /* Change background color on hover */
-    transform: scale(1.05);
-    /* Add slight scale effect on hover */
-  }
-  
-  .reset-password-form-button:focus {
-    outline: none;
-    /* Remove default outline on focus */
-  }
+.edit-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  margin-right: 100px;
+  position: fixed;
+  /* Set position to fixed for absolute positioning */
+  top: 16px;
+  /* Set distance from top */
+  right: 100px;
+  /* Set distance from right */
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #058885;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 16px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
 
-  .name {
-    font-weight: bold;
-  }
+.edit-button:hover {
+  background-color: #42b6b3;
+  /* Change background color on hover */
+  transform: scale(1.05);
+  /* Add slight scale effect on hover */
+}
 
-  .profile-container {
+.edit-button:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+
+.reset-password-form-button {
+  margin-right: 10px;
+  /* Add margin to create space between buttons */
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #058826;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 16px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+
+.reset-password-form-button:hover {
+  background-color: #0ab936;
+  /* Change background color on hover */
+  transform: scale(1.05);
+  /* Add slight scale effect on hover */
+}
+
+.reset-password-form-button:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+
+.profile-container {
   /* max-width: 800px; */
   margin: 0 auto;
   padding: 16px;
@@ -217,33 +214,90 @@
   padding: 20px 0;
 }
 
-.profile-details, .contact-details, .account-settings {
+.profile-details,
+.contact-details,
+.account-settings {
   display: flex;
-}
-
-.profile-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
 }
 
 .profile-info {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.profile-info .name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 5px;
+.profile-field {
+  display: flex;
+  margin-right: 5px;
+  /* add some space between label and value */
+  align-items: center;
+  /* center align label and value vertically */
 }
 
-.edit-profile-fields, .edit-contact-fields, .edit-account-settings-fields {
+.profile-label {
+  font-family: 'Nunito', sans-serif;  
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgb(32, 33, 36);
+}
+
+.name{
+  font-family: 'Nunito', sans-serif;  
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(32, 33, 36);
+}
+
+.tab-list account-info-list{
+  line-height: 1.428571429;
+  font-size: 12px;
+  font-family: "Nunito",Helvetica,Arial,sans-serif;
+  color: #002D6B;
+}
+
+.account-info-list > div:not(:last-child) {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.account-info-item{
+  font-family: "Nunito",Helvetica,Arial,sans-serif;
+  color: #002D6B;
+  font-size: 1rem;
+  line-height: 2.4rem;
+  min-width: 10rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+}
+
+.account-info{
+  font-family: "Nunito",Helvetica,Arial,sans-serif;
+  color: #002D6B;
+  font-size: 1rem;
+  line-height: 2.4rem;
+  min-width: 10rem;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-profile-fields,
+.edit-contact-fields,
+.edit-account-settings-fields {
   margin-top: 20px;
 }
 
-.edit-button, .save-button, .reset-password-button {
+.edit-button,
+.save-button,
+.reset-password-button {
   margin-top: 10px;
 }
 
@@ -253,3 +307,122 @@
   border-radius: 10px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }
+
+.info-header {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+
+/* Add styles for Logout button */
+.edit-profile-button {
+  margin-top: 0;
+  /* Move the Logout button to the bottom of the navbar */
+  margin-left: 12px;
+  color: #000000;
+  /* Set text color to white */
+  /* background-color: #10a37f; */
+  /* Set background color to a soft red */
+  /* padding: 12px 20px; */
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 17px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+.edit-profile-button:hover {
+  /* background-color: #13795f; */
+  transform: scale(1.05);
+}
+
+.edit-profile-button:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+
+.save-edit-button {
+  margin-top: auto;
+  /* Move the Logout button to the bottom of the navbar */
+  margin-left: 16px;
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #10a37f;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 20px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+.save-edit-button:hover {
+  background-color: #13795f;
+  transform: scale(1.1);
+}
+
+.save-edit-button:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+
+/* Add styles for Logout button */
+.save-edit-button-green {
+  margin-top: auto;
+  /* Move the Logout button to the bottom of the navbar */
+  margin-left: 16px;
+  color: #ffffff;
+  /* Set text color to white */
+  background-color: #989898;
+  /* Set background color to a soft red */
+  padding: 12px 20px;
+  /* Add padding for spacing */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Add border radius for rounded edges */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  text-decoration: none;
+  /* Remove underline from link */
+  font-size: 20px;
+  /* Set font size */
+  font-weight: bold;
+  /* Set font weight to bold */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Add smooth transition effect for background color and transform */
+}
+
+.save-edit-button-green:hover {
+  background-color: #6a6a6a;
+  transform: scale(1.1);
+}
+
+.save-edit-button-green:focus {
+  outline: none;
+  /* Remove default outline on focus */
+}
+

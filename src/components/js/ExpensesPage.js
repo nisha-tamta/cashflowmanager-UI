@@ -80,68 +80,72 @@ const ExpensesPage = () => {
       <div className="content-container">
         <div className="content-header">
           <h1>Expenses</h1>
-          <div className="buttons-container">
-            <button
-              onClick={handleAddExpense}
-              className="add-expense-button"
+        </div>
+        <div className="content-profile-container">
+          <div className="content-header">
+            <div className="buttons-container">
+              <button
+                onClick={handleAddExpense}
+                className="add-expense-button"
+              >
+                Add Expense
+              </button>
+            </div>
+          </div>
+          <div className="tab-container">
+            <div
+              className={`tab-item ${activeTab === "thisMonth" ? "active" : ""
+                }`}
+              onClick={() => handleTabChange("thisMonth")}
             >
-              Add Expense
-            </button>
+              This Month
+            </div>
+            <div
+              className={`tab-item ${activeTab === "allExpenses" ? "active" : ""
+                }`}
+              onClick={() => handleTabChange("allExpenses")}
+            >
+              All Time
+            </div>
+            <div
+              className={`tab-item ${activeTab === "betweenDates" ? "active" : ""
+                }`}
+              onClick={() => handleTabChange("betweenDates")}
+            >
+              Date Range
+            </div>
           </div>
-        </div>
-        <div className="tab-container">
-          <div
-            className={`tab-item ${activeTab === "thisMonth" ? "active" : ""
-              }`}
-            onClick={() => handleTabChange("thisMonth")}
-          >
-            This Month
-          </div>
-          <div
-            className={`tab-item ${activeTab === "allExpenses" ? "active" : ""
-              }`}
-            onClick={() => handleTabChange("allExpenses")}
-          >
-            All Time
-          </div>
-          <div
-            className={`tab-item ${activeTab === "betweenDates" ? "active" : ""
-              }`}
-            onClick={() => handleTabChange("betweenDates")}
-          >
-            Date Range
-          </div>
-        </div>
 
-        <div className="expense-list-container">
-          {activeTab === "thisMonth" ? (
-            <ExpenseList expenses={expenses} />
-          ) : activeTab === "allExpenses" ? (
-            <ExpenseList expenses={allExpenses} />
-          ) : (
-            activeTab === "betweenDates" && (
-              <div>
-                <div className="filter-container">
-                  <label htmlFor="start-date">Start Date:</label>
-                  <input
-                    type="date"
-                    id="start-date"
-                    value={startDate}
-                    onChange={handleStartDateChange}
-                  />
-                  <label htmlFor="end-date">End Date:</label>
-                  <input
-                    type="date"
-                    id="end-date"
-                    value={endDate}
-                    onChange={handleEndDateChange}
-                  />
-                  <button onClick={handleFilterExpenses}>Filter</button>
+          <div className="expense-list-container">
+            {activeTab === "thisMonth" ? (
+              <ExpenseList expenses={expenses} />
+            ) : activeTab === "allExpenses" ? (
+              <ExpenseList expenses={allExpenses} />
+            ) : (
+              activeTab === "betweenDates" && (
+                <div>
+                  <div className="filter-container">
+                    <label htmlFor="start-date">Start Date:</label>
+                    <input
+                      type="date"
+                      id="start-date"
+                      value={startDate}
+                      onChange={handleStartDateChange}
+                    />
+                    <label htmlFor="end-date">End Date:</label>
+                    <input
+                      type="date"
+                      id="end-date"
+                      value={endDate}
+                      onChange={handleEndDateChange}
+                    />
+                    <button onClick={handleFilterExpenses}>Filter</button>
+                  </div>
+                  <ExpenseList expenses={filteredExpenses} />
                 </div>
-                <ExpenseList expenses={filteredExpenses} />
-              </div>
-            )
-          )}
+              )
+            )}
+          </div>
         </div>
       </div>
     </div>

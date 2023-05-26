@@ -38,7 +38,7 @@ const ListExpense = () => {
     return (
         <div className="homescreen-container">
             <NavBar />
-            <div className="content-container">
+            <div className="content-profile-container">
                 <div className="content-header">
                     <h1>Expenses List</h1>
                 </div>

@@ -64,7 +64,7 @@ const AddExpensePage = () => {
   return (
     <div className="homescreen-container">
       <NavBar />
-      <div className="content-container">
+      <div className="content-profile-container">
         <div className="content-header">
           <h1>Add Expense</h1>
           {error && <div className="error-message">{error}</div>}

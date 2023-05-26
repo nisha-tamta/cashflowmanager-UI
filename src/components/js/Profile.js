@@ -1,4 +1,6 @@
 import React, { useState, useEffect, } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt} from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
 import "../css/NavBar.css";
 import "../css/Profile.css";
@@ -71,8 +73,8 @@ const Profile = () => {
                 onChange={(e) => setUser({ ...user, username: e.target.value })}
               />
             </div>
-            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
-            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+            <button className="save-edit-button" onClick={onConfirm}>Save</button>
+            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
           </div>
         </div>
       </div>
@@ -140,8 +142,8 @@ const Profile = () => {
                 onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
               />
             </div>
-            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
-            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+            <button className="save-edit-button" onClick={onConfirm}>Save</button>
+            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
           </div>
         </div>
       </div>
@@ -201,8 +203,8 @@ const Profile = () => {
                 value={user.defaultBudget}
                 onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })} />
             </div>
-            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
-            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+            <button className="save-edit-button" onClick={onConfirm}>Save</button>
+            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
           </div>
         </div>
       </div>
@@ -272,8 +274,8 @@ const Profile = () => {
                 />
               </div>
             </div>
-            <button className="login-chat-logout" onClick={onConfirm}>Save</button>
-            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+            <button className="save-edit-button" onClick={onConfirm}>Save</button>
+            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
           </div>
         </div>
       </div>
@@ -310,26 +312,24 @@ const Profile = () => {
   return (
     <div className="homescreen-container">
       <NavBar />
-      <div className="content-profile-container">
-        <div className="content-chat-container">
-        {error && <div className="error-message">{error}</div>}
-          <div className="content-header">
-            <h1>Personal info</h1>
-            <h6>Info about you and your preferences across Expense Tracker</h6>
-          </div>
-          <div className="content-body">
-            {user ? (
-              <div className="profile-sections">
-                <div className="profile-section">
-                  <div className="info-box">
-                    <h2>Basic info</h2>
-                    <div className="profile-details">
-                      <div className="profile-info">
-                        <div className="profile-label">Name:</div>
-                        <p className="name">{user.firstName} {user.lastName}</p>
-                        <div className="profile-label">Username:</div>
-                        <p>{user.username}</p>
-                        <button onClick={handleBasicInfo} className="login-chat-logout-green" >Edit</button>
+      <div className="content-container">
+        <div className="content-header">
+          <h1>My Account</h1>
+          <h6>Info about you and your preferences across Expense Tracker</h6>
+        </div>
+        <div>
+          <div className="content-chat-container">
+            {error && <div className="error-message">{error}</div>}
+            <div className="content-body">
+              {user ? (
+                <div className="profile-sections">
+                  <div className="profile-section">
+                    <div className="info-box">
+                      <div className="info-header">
+                        <h2>Basic info</h2>
+                        <button onClick={handleBasicInfo} className="edit-profile-button">
+                          <FontAwesomeIcon icon={faPencilAlt} />
+                        </button>
                         {showBasicInfoEdit && (
                           <BasicInfoEdit
                             onConfirm={handleBasicInfoEdit}
@@ -337,57 +337,98 @@ const Profile = () => {
                           />
                         )}
                       </div>
+                      <div className="profile-details">
+                        <div className="profile-info">
+                          <div class="tab-list account-info-list">
+                            <div>
+                              <span class="account-info-item">Name:</span>
+                              <span class="account-info">{user.firstName} {user.lastName}</span>
+                            </div>
+                            <div>
+                              <span class="account-info-item">Username:</span>
+                              <span class="account-info">{user.username}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="profile-section">
-                  <div className="info-box">
-                    <h2>Contact info</h2>
-                    <div className="contact-details">
-                      <p>Phone: {user.phoneNumber}</p>
-                      <p>Email: {user.emailAddress}</p>
-                      <button onClick={handleContactInfo} className="login-chat-logout-green" >Edit</button>
-                      {showContactInfoEdit && (
-                        <ContactInfoEdit
-                          onConfirm={handleContactInfoEdit}
-                          onCancel={handleCancelContactInfoEdit}
-                        />
-                      )}
+                  <div className="profile-section">
+                    <div className="info-box">
+                      <div className="info-header">
+                        <h2>Contact info</h2>
+                        <button onClick={handleContactInfo} className="edit-profile-button" >
+                          <FontAwesomeIcon icon={faPencilAlt} />
+                          </button>
+                        {showContactInfoEdit && (
+                          <ContactInfoEdit
+                            onConfirm={handleContactInfoEdit}
+                            onCancel={handleCancelContactInfoEdit}
+                          />
+                        )}
+                      </div>
+                      <div className="profile-details">
+                        <div className="profile-info">
+                          <div class="tab-list account-info-list">
+                            <div>
+                              <span class="account-info-item">Phone:</span>
+                              <span class="account-info">{user.phoneNumber}</span>
+                            </div>
+                            <div>
+                              <span class="account-info-item">Email:</span>
+                              <span class="account-info">{user.emailAddress}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="profile-section">
-                  <div className="info-box">
-                    <h2>Account settings</h2>
-                    <div className="account-settings">
-                      <p>Default Budget: {user.defaultBudget}</p>
-                      <button onClick={handleAccountSettings} className="login-chat-logout-green" >Edit</button>
-                      {showAccountSettingsEdit && (
-                        <AccountSettingsEdit
-                          onConfirm={handleAccountSettingsEdit}
-                          onCancel={handleCancelAccountSettingsEdit}
-                        />
-                      )}
+                  <div className="profile-section">
+                    <div className="info-box">
+                      <div className="info-header">
+                        <h2>Account settings</h2>
+                        <div className="account-settings">
+                          <button onClick={handleAccountSettings} className="edit-profile-button" >
+                            <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+                          {showAccountSettingsEdit && (
+                            <AccountSettingsEdit
+                              onConfirm={handleAccountSettingsEdit}
+                              onCancel={handleCancelAccountSettingsEdit}
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <div className="profile-details">
+                        <div className="profile-info">
+                          <div class="tab-list account-info-list">
+                            <div>
+                              <span class="account-info-item">Default Budget::</span>
+                              <span class="account-info">{user.defaultBudget}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <div className="profile-section">
+                    <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
+                    {showResetPasswordEdit && (
+                      <ResetPasswordEdit
+                        onConfirm={handleResetPasswordEdit}
+                        onCancel={handleCancelResetPasswordEdit}
+                      />
+                    )}
+                  </div>
                 </div>
-                <div className="profile-section">
-                  <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
-                  {showResetPasswordEdit && (
-                    <ResetPasswordEdit
-                      onConfirm={handleResetPasswordEdit}
-                      onCancel={handleCancelResetPasswordEdit}
-                    />
-                  )}
-                </div>
-              </div>
-            ) : (
-              <h2>Loading...</h2>
-            )}
+              ) : (
+                <h2>Loading...</h2>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

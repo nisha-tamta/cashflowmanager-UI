@@ -73,40 +73,44 @@ const ReportPage = () => {
   return (
     <div className="homescreen-container">
       <NavBar />
-      <h1>Dashboard</h1>
-      <div className="content-profile-container">
+      <div className="content-container">
         <div className="content-header">
-          <div className="buttons-container">
-            <button
-              onClick={handleSetBudget}
-              className="add-expense-button"
+          <h1>Dashboard</h1>
+        </div>
+        <div className="content-profile-container">
+          <div className="content-header">
+            <div className="buttons-container">
+              <button
+                onClick={handleSetBudget}
+                className="add-expense-button"
+              >
+                Set Budget
+              </button>
+            </div>
+          </div>
+          <div className="tab-container">
+            <div
+              className={`tab-item ${activeTab === "thisMonth" ? "active" : ""
+                }`}
+              onClick={() => handleTabChange("thisMonth")}
             >
-              Set Budget
-            </button>
+              This Month
+            </div>
+            <div
+              className={`tab-item ${activeTab === "allExpenses" ? "active" : ""
+                }`}
+              onClick={() => handleTabChange("allExpenses")}
+            >
+            </div>
           </div>
-        </div>
-        <div className="tab-container">
-          <div
-            className={`tab-item ${activeTab === "thisMonth" ? "active" : ""
-              }`}
-            onClick={() => handleTabChange("thisMonth")}
-          >
-            This Month
-          </div>
-          <div
-            className={`tab-item ${activeTab === "allExpenses" ? "active" : ""
-              }`}
-            onClick={() => handleTabChange("allExpenses")}
-          >
-          </div>
-        </div>
 
-        <div className="expense-list-container">
-          {activeTab === "thisMonth" ? (
-            <ExpenseBarGraph expenses={expenses} />
-          ) : (
-            <ExpenseList expenses={allExpenses} />
-          )}
+          <div className="expense-list-container">
+            {activeTab === "thisMonth" ? (
+              <ExpenseBarGraph expenses={expenses} />
+            ) : (
+              <ExpenseList expenses={allExpenses} />
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -14,7 +14,7 @@ const DashboardPage = () => {
   return (
     <div className="homescreen-container">
     <NavBar />
-    <div className="content-container">
+    <div className="content-profile-container">
       <div className="content-header">
         <h1>Dashboards</h1>
       </div>
