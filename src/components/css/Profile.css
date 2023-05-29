@@ -172,12 +172,15 @@
 }
 
 .item-label {
-  font-weight: bold;
+  font-family: Nunito, Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .item-value {
-  flex-grow: 1;
-  margin: 0 16px;
+  font-family: Nunito, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 .item-action button {
@@ -235,36 +238,36 @@
 }
 
 .profile-label {
-  font-family: 'Nunito', sans-serif;  
+  font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   color: rgb(32, 33, 36);
 }
 
-.name{
-  font-family: 'Nunito', sans-serif;  
+.name {
+  font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: rgb(32, 33, 36);
 }
 
-.tab-list account-info-list{
+.tab-list account-info-list {
   line-height: 1.428571429;
   font-size: 12px;
-  font-family: "Nunito",Helvetica,Arial,sans-serif;
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
   color: #002D6B;
 }
 
-.account-info-list > div:not(:last-child) {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+.account-info-list>div:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 0.5em;
   margin-bottom: 0.5em;
 }
 
-.account-info-item{
-  font-family: "Nunito",Helvetica,Arial,sans-serif;
+.account-info-item {
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
   color: #002D6B;
   font-size: 1rem;
   line-height: 2.4rem;
@@ -275,8 +278,8 @@
   vertical-align: top;
 }
 
-.account-info{
-  font-family: "Nunito",Helvetica,Arial,sans-serif;
+.account-info {
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
   color: #002D6B;
   font-size: 1rem;
   line-height: 2.4rem;
@@ -426,3 +429,36 @@
   /* Remove default outline on focus */
 }
 
+.confirmation-overlay-profile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.confirmation-dialog-profile {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.confirmation-dialog-profile h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.confirmation-buttons-profile button {
+  margin-right: 10px;
+}
+
+.create-chat-body-profile {
+  align-items: center;
+}

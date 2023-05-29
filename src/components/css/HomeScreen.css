@@ -4,44 +4,52 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100vw;  
+  width: 100vw;
   height: 100%;
-  font-family: Arial, sans-serif; /* Using a clean font */
+  font-family: Arial, sans-serif;
+  /* Using a clean font */
 }
 
 .content-container {
   padding: 10px;
-  margin: auto auto; /* Add some top and bottom margins */
+  margin: auto auto;
+  /* Add some top and bottom margins */
 
-  width: 100%; /* Full width of the container */
+  width: 100%;
+  /* Full width of the container */
   max-width: 1200px;
 }
 
 .content-profile-container {
   margin: 100px auto;
-      width: calc(100% - 24rem);
-    padding: 4rem 6rem;
-    position: relative;
-    margin-bottom: 1.5rem;
-    width: calc(100% - 29rem);
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.18);
-    border-radius: 2.5rem;
-    background-color: #fff; /* Softer shadow */
+  width: calc(100% - 24rem);
+  padding: 4rem 6rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+  width: calc(100% - 29rem);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.18);
+  border-radius: 2.5rem;
+  background-color: #fff;
+  /* Softer shadow */
 }
 
 
 .content-chat-container {
-  font-size: 18px; /* Larger font size */
-  color: #333; /* Dark gray color */
+  font-size: 16px;
+  /* Larger font size */
+  color: #333;
+  /* Dark gray color */
 }
 
 .content-header {
-  margin-bottom: 20px; /* Increasing margin slightly for more space */
+  margin-bottom: 20px;
+  /* Increasing margin slightly for more space */
   text-align: center;
 }
 
 .content-body {
   display: grid;
-  gap: 20px; /* Increasing gap slightly for more space */
+  gap: 20px;
+  /* Increasing gap slightly for more space */
   grid-template-columns: 1fr;
 }

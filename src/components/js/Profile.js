@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt} from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
 import "../css/NavBar.css";
 import "../css/Profile.css";
@@ -9,10 +9,8 @@ const Profile = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
-  const [resetStatus, setResetStatus] = useState(""); // State to store reset status
-  const [oldPassword, setOldPassword] = useState(""); // State to store old password
-  const [newPassword, setNewPassword] = useState(""); // State to store new password
-  const [showResetForm, setShowResetForm] = useState(false); // State to determine if reset form should be shown
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -45,37 +43,55 @@ const Profile = () => {
 
   const BasicInfoEdit = ({ onConfirm, onCancel }) => {
     return (
-      <div className="confirmation-overlay">
-        <div className="confirmation-dialog">
-          <h2>Edit Basic Information</h2>
-          {error && <div className="error-message">{error}</div>}
-          <div className="confirmation-buttons">
-            <div className="edit-profile-fields">
-              <h3>First Name</h3>
-              <input
-                type="text"
-                id="firstName"
-                value={user.firstName}
-                onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-              />
-              <h3>Last Name</h3>
-              <input
-                type="text"
-                id="lastName"
-                value={user.lastName}
-                onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-              />
-              <h3>Username</h3>
-              <input
-                type="text"
-                id="username"
-                value={user.username}
-                onChange={(e) => setUser({ ...user, username: e.target.value })}
-              />
+      <div className="confirmation-overlay-profile">
+        <div className="confirmation-dialog-profile">
+          <div className="create-chat-container">
+            <div className="create-chat-header">
+              <h2>Edit Basic Information</h2>
             </div>
-            <button className="save-edit-button" onClick={onConfirm}>Save</button>
-            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
-          </div>
+            <div className="create-chat-body-profile">
+              <div >
+                <form>
+                  {error && <div className="error-message">{error}</div>}
+                  <div className="create-chat-input-container">
+                    <label className="item-label" htmlFor="firstName">First Name</label>
+                    <input
+                      className="item-value"
+                      type="text"
+                      id="firstName"
+                      value={user.firstName}
+                      onChange={(e) => setUser({ ...user, firstName: e.target.value })}
+                    />
+                  </div>
+                  <div className="create-chat-input-container">
+                    <label className="item-label" htmlFor="firstName">Last Name</label>
+                    <input
+                      className="item-value"
+                      type="text"
+                      id="lastName"
+                      value={user.lastName}
+                      onChange={(e) => setUser({ ...user, lastName: e.target.value })}
+                    />
+                  </div>
+                  <div className="create-chat-input-container">
+                    <label className="item-label" htmlFor="firstName">Username</label>
+                    <input
+                      className="item-value"
+                      type="text"
+                      id="username"
+                      value={user.username}
+                      onChange={(e) => setUser({ ...user, username: e.target.value })}
+                    />
+                  </div>
+                  <div className="create-chat-button-containers">
+                    <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                    <span className="button-spacing"></span>
+                    <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                  </div>
+                </form >
+              </div >
+            </div >
+          </div >
         </div>
       </div>
     );
@@ -109,6 +125,7 @@ const Profile = () => {
 
   const handleCancelBasicInfoEdit = () => {
     setShowBasicInfoEdit(false);
+    window.location.href = '/profile';
   };
 
   // Below code for Edit Contact Info
@@ -121,29 +138,44 @@ const Profile = () => {
 
   const ContactInfoEdit = ({ onConfirm, onCancel }) => {
     return (
-      <div className="confirmation-overlay">
-        <div className="confirmation-dialog">
-          <h2>Edit Contact Information</h2>
-          {error && <div className="error-message">{error}</div>}
-          <div className="confirmation-buttons">
-            <div className="edit-contact-fields">
-              <h3>Phone number</h3>
-              <input
-                type="text"
-                id="phoneNumber"
-                value={user.phoneNumber}
-                onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
-              />
-              <h3>Email Address</h3>
-              <input
-                type="email"
-                id="emailAddress"
-                value={user.emailAddress}
-                onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
-              />
+      <div className="confirmation-overlay-profile">
+        <div className="confirmation-dialog-profile">
+          <div className="create-chat-container">
+            <div className="create-chat-header">
+              <h2>Edit Contact Information</h2>
             </div>
-            <button className="save-edit-button" onClick={onConfirm}>Save</button>
-            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
+            <div className="create-chat-body-profile">
+              <div >
+                <form>
+                  {error && <div className="error-message">{error}</div>}
+                  <div className="create-chat-input-container">
+                    <label className="item-label" htmlFor="firstName">Phone number</label>
+                    <input
+                      className="item-value"
+                      type="text"
+                      id="phoneNumber"
+                      value={user.phoneNumber}
+                      onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+                    />
+                  </div>
+                  <div className="create-chat-input-container">
+                    <label className="item-label" htmlFor="firstName">Email Address</label>
+                    <input
+                      className="item-value"
+                      type="email"
+                      id="emailAddress"
+                      value={user.emailAddress}
+                      onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
+                    />
+                  </div>
+                  <div className="create-chat-button-containers">
+                    <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                    <span className="button-spacing"></span>
+                    <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                  </div>
+                </form >
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -178,6 +210,7 @@ const Profile = () => {
 
   const handleCancelContactInfoEdit = () => {
     setShowContactInfoEdit(false);
+    window.location.href = '/profile';
   };
 
   // Below code for Account Settings
@@ -190,21 +223,34 @@ const Profile = () => {
 
   const AccountSettingsEdit = ({ onConfirm, onCancel }) => {
     return (
-      <div className="confirmation-overlay">
-        <div className="confirmation-dialog">
-          <h2>Edit Account Settings</h2>
-          {error && <div className="error-message">{error}</div>}
-          <div className="confirmation-buttons">
-            <div className="edit-account-settings-fields">
-              <h3>Default Budget</h3>
-              <input
-                type="number"
-                id="defaultBudget"
-                value={user.defaultBudget}
-                onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })} />
+      <div className="confirmation-overlay-profile">
+        <div className="confirmation-dialog-profile">
+          <div className="create-chat-container">
+            <div className="create-chat-header">
+              <h2>Edit Account Settings</h2>
             </div>
-            <button className="save-edit-button" onClick={onConfirm}>Save</button>
-            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
+            <div className="create-chat-body-profile">
+              <div >
+                <form>
+                  {error && <div className="error-message">{error}</div>}
+                  <div className="create-chat-input-container">
+                    <label className="item-label" htmlFor="firstName">Default Budget</label>
+                    <input
+                      className="item-value"
+                      type="text"
+                      id="defaultBudget"
+                      value={user.defaultBudget}
+                      onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })}
+                    />
+                  </div>
+                  <div className="create-chat-button-containers">
+                    <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                    <span className="button-spacing"></span>
+                    <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                  </div>
+                </form >
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -239,6 +285,7 @@ const Profile = () => {
 
   const handleCancelAccountSettingsEdit = () => {
     setShowAccountSettingsEdit(false);
+    window.location.href = '/profile';
   };
 
   // Below code for Reset Password
@@ -251,11 +298,11 @@ const Profile = () => {
 
   const ResetPasswordEdit = ({ onConfirm, onCancel }) => {
     return (
-      <div className="confirmation-overlay">
-        <div className="confirmation-dialog">
+      <div className="confirmation-overlay-profile">
+        <div className="confirmation-dialog-profile">
           <h2>Reset Password</h2>
           {error && <div className="error-message">{error}</div>}
-          <div className="confirmation-buttons">
+          <div className="confirmation-buttons-profile">
             <div className="password-reset-form">
               <div>
                 <label>Old Password:</label>
@@ -274,8 +321,8 @@ const Profile = () => {
                 />
               </div>
             </div>
-            <button className="save-edit-button" onClick={onConfirm}>Save</button>
-            <button className="save-edit-button-green" onClick={onCancel}>Cancel</button>
+            <button className="login-chat-button" onClick={onConfirm}>Save</button>
+            <button className="cancel-button" onClick={onCancel}>Cancel</button>
           </div>
         </div>
       </div>
@@ -285,8 +332,7 @@ const Profile = () => {
   const handleResetPasswordEdit = async () => {
     const username = JSON.parse(localStorage.getItem("user")).username;
     try {
-      const userId = JSON.parse(localStorage.getItem("user")).id;
-      const response = await fetch("http://localhost:8080/api/user/resetPassword", {
+      await fetch("http://localhost:8080/api/user/resetPassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -297,8 +343,6 @@ const Profile = () => {
           newPassword: newPassword,
         }),
       });
-      setResetStatus("Success");
-      setShowResetForm(false);
     } catch (error) {
       console.error("Error fetching expenses:", error);
     }
@@ -307,6 +351,7 @@ const Profile = () => {
 
   const handleCancelResetPasswordEdit = () => {
     setShowResetPasswordEdit(false);
+    window.location.href = '/profile';
   };
 
   return (
@@ -339,14 +384,14 @@ const Profile = () => {
                       </div>
                       <div className="profile-details">
                         <div className="profile-info">
-                          <div class="tab-list account-info-list">
+                          <div className="tab-list account-info-list">
                             <div>
-                              <span class="account-info-item">Name:</span>
-                              <span class="account-info">{user.firstName} {user.lastName}</span>
+                              <span className="account-info-item">Name:</span>
+                              <span className="account-info">{user.firstName} {user.lastName}</span>
                             </div>
                             <div>
-                              <span class="account-info-item">Username:</span>
-                              <span class="account-info">{user.username}</span>
+                              <span className="account-info-item">Username:</span>
+                              <span className="account-info">{user.username}</span>
                             </div>
                           </div>
                         </div>
@@ -359,7 +404,7 @@ const Profile = () => {
                         <h2>Contact info</h2>
                         <button onClick={handleContactInfo} className="edit-profile-button" >
                           <FontAwesomeIcon icon={faPencilAlt} />
-                          </button>
+                        </button>
                         {showContactInfoEdit && (
                           <ContactInfoEdit
                             onConfirm={handleContactInfoEdit}
@@ -369,14 +414,14 @@ const Profile = () => {
                       </div>
                       <div className="profile-details">
                         <div className="profile-info">
-                          <div class="tab-list account-info-list">
+                          <div className="tab-list account-info-list">
                             <div>
-                              <span class="account-info-item">Phone:</span>
-                              <span class="account-info">{user.phoneNumber}</span>
+                              <span className="account-info-item">Phone:</span>
+                              <span className="account-info">{user.phoneNumber}</span>
                             </div>
                             <div>
-                              <span class="account-info-item">Email:</span>
-                              <span class="account-info">{user.emailAddress}</span>
+                              <span className="account-info-item">Email:</span>
+                              <span className="account-info">{user.emailAddress}</span>
                             </div>
                           </div>
                         </div>
@@ -390,7 +435,7 @@ const Profile = () => {
                         <div className="account-settings">
                           <button onClick={handleAccountSettings} className="edit-profile-button" >
                             <FontAwesomeIcon icon={faPencilAlt} />
-                            </button>
+                          </button>
                           {showAccountSettingsEdit && (
                             <AccountSettingsEdit
                               onConfirm={handleAccountSettingsEdit}
@@ -401,10 +446,10 @@ const Profile = () => {
                       </div>
                       <div className="profile-details">
                         <div className="profile-info">
-                          <div class="tab-list account-info-list">
+                          <div className="tab-list account-info-list">
                             <div>
-                              <span class="account-info-item">Default Budget::</span>
-                              <span class="account-info">{user.defaultBudget}</span>
+                              <span className="account-info-item">Default Budget::</span>
+                              <span className="account-info">{user.defaultBudget}</span>
                             </div>
                           </div>
                         </div>
