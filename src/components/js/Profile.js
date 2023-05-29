@@ -5,12 +5,169 @@ import NavBar from "./NavBar";
 import "../css/NavBar.css";
 import "../css/Profile.css";
 
-const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+const BasicInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) => {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormState(prevState => ({ ...prevState, [id]: value }));
+  };
 
+  return (
+    <div className="confirmation-overlay-profile">
+      <div className="confirmation-dialog-profile">
+        <div className="create-chat-container">
+          <div className="create-chat-header">
+            <h2>Edit Basic Information</h2>
+          </div>
+          <div className="create-chat-body-profile">
+            <div>
+              <form>
+                {error && <div className="error-message">{error}</div>}
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="firstName">First Name</label>
+                  <input
+                    className="item-value"
+                    type="text"
+                    id="firstName"
+                    value={formState.firstName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="lastName">Last Name</label>
+                  <input
+                    className="item-value"
+                    type="text"
+                    id="lastName"
+                    value={formState.lastName}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="username">Username</label>
+                  <input
+                    className="item-value"
+                    type="text"
+                    id="username"
+                    value={formState.username}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="create-chat-button-containers">
+                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <span className="button-spacing"></span>
+                  <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ContactInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) => {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormState(prevState => ({ ...prevState, [id]: value }));
+  };
+
+  return (
+    <div className="confirmation-overlay-profile">
+      <div className="confirmation-dialog-profile">
+        <div className="create-chat-container">
+          <div className="create-chat-header">
+            <h2>Edit Contact Information</h2>
+          </div>
+          <div className="create-chat-body-profile">
+            <div>
+              <form>
+                {error && <div className="error-message">{error}</div>}
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="firstName">Phone number</label>
+                  <input
+                    className="item-value"
+                    type="text"
+                    id="phoneNumber"
+                    value={formState.phoneNumber}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="firstName">Email Address</label>
+                  <input
+                    className="item-value"
+                    type="email"
+                    id="emailAddress"
+                    value={formState.emailAddress}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="create-chat-button-containers">
+                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <span className="button-spacing"></span>
+                  <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, error }) => {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormState(prevState => ({ ...prevState, [id]: value }));
+  };
+
+  return (
+    <div className="confirmation-overlay-profile">
+      <div className="confirmation-dialog-profile">
+        <div className="create-chat-container">
+          <div className="create-chat-header">
+            <h2>Edit Account Settings</h2>
+          </div>
+          <div className="create-chat-body-profile">
+            <div>
+              <form>
+                {error && <div className="error-message">{error}</div>}
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="firstName">First Name</label>
+                  <input
+                    className="item-value"
+                    type="number"
+                    id="defaultBudget"
+                    value={formState.defaultBudget}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="create-chat-button-containers">
+                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <span className="button-spacing"></span>
+                  <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Profile = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [formState, setFormState] = useState(user);
+  const [showBasicInfoEdit, setShowBasicInfoEdit] = useState(false);
+  const [showContactInfoEdit, setShowContactInfoEdit] = useState(false);
+  const [showAccountSettingsEdit, setShowAccountSettingsEdit] = useState(false);
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -35,66 +192,9 @@ const Profile = () => {
     }
   }, []);
 
-  const [showBasicInfoEdit, setShowBasicInfoEdit] = useState(false);
-
   const handleBasicInfo = () => {
+    setFormState(user);
     setShowBasicInfoEdit(true);
-  };
-
-  const BasicInfoEdit = ({ onConfirm, onCancel }) => {
-    return (
-      <div className="confirmation-overlay-profile">
-        <div className="confirmation-dialog-profile">
-          <div className="create-chat-container">
-            <div className="create-chat-header">
-              <h2>Edit Basic Information</h2>
-            </div>
-            <div className="create-chat-body-profile">
-              <div >
-                <form>
-                  {error && <div className="error-message">{error}</div>}
-                  <div className="create-chat-input-container">
-                    <label className="item-label" htmlFor="firstName">First Name</label>
-                    <input
-                      className="item-value"
-                      type="text"
-                      id="firstName"
-                      value={user.firstName}
-                      onChange={(e) => setUser({ ...user, firstName: e.target.value })}
-                    />
-                  </div>
-                  <div className="create-chat-input-container">
-                    <label className="item-label" htmlFor="firstName">Last Name</label>
-                    <input
-                      className="item-value"
-                      type="text"
-                      id="lastName"
-                      value={user.lastName}
-                      onChange={(e) => setUser({ ...user, lastName: e.target.value })}
-                    />
-                  </div>
-                  <div className="create-chat-input-container">
-                    <label className="item-label" htmlFor="firstName">Username</label>
-                    <input
-                      className="item-value"
-                      type="text"
-                      id="username"
-                      value={user.username}
-                      onChange={(e) => setUser({ ...user, username: e.target.value })}
-                    />
-                  </div>
-                  <div className="create-chat-button-containers">
-                    <button className="login-chat-button" onClick={onConfirm}>Save</button>
-                    <span className="button-spacing"></span>
-                    <button className="cancel-button" onClick={onCancel}>Cancel</button>
-                  </div>
-                </form >
-              </div >
-            </div >
-          </div >
-        </div>
-      </div>
-    );
   };
 
   const handleBasicInfoEdit = async () => {
@@ -106,7 +206,7 @@ const Profile = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(user),
+          body: JSON.stringify(formState),
         }
       );
       if (response.ok) {
@@ -120,66 +220,27 @@ const Profile = () => {
     } catch (error) {
       setError(`Error during saving user: ${error.message}`);
     }
+
+    setFormState({
+      firstName: "",
+      lastName: "",
+      username: "",
+    });
     setShowBasicInfoEdit(false);
-  }
+  };
 
   const handleCancelBasicInfoEdit = () => {
+    setFormState({
+      firstName: "",
+      lastName: "",
+      username: "",
+    });
     setShowBasicInfoEdit(false);
-    window.location.href = '/profile';
   };
-
-  // Below code for Edit Contact Info
-
-  const [showContactInfoEdit, setShowContactInfoEdit] = useState(false);
 
   const handleContactInfo = () => {
+    setFormState(user);
     setShowContactInfoEdit(true);
-  };
-
-  const ContactInfoEdit = ({ onConfirm, onCancel }) => {
-    return (
-      <div className="confirmation-overlay-profile">
-        <div className="confirmation-dialog-profile">
-          <div className="create-chat-container">
-            <div className="create-chat-header">
-              <h2>Edit Contact Information</h2>
-            </div>
-            <div className="create-chat-body-profile">
-              <div >
-                <form>
-                  {error && <div className="error-message">{error}</div>}
-                  <div className="create-chat-input-container">
-                    <label className="item-label" htmlFor="firstName">Phone number</label>
-                    <input
-                      className="item-value"
-                      type="text"
-                      id="phoneNumber"
-                      value={user.phoneNumber}
-                      onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
-                    />
-                  </div>
-                  <div className="create-chat-input-container">
-                    <label className="item-label" htmlFor="firstName">Email Address</label>
-                    <input
-                      className="item-value"
-                      type="email"
-                      id="emailAddress"
-                      value={user.emailAddress}
-                      onChange={(e) => setUser({ ...user, emailAddress: e.target.value })}
-                    />
-                  </div>
-                  <div className="create-chat-button-containers">
-                    <button className="login-chat-button" onClick={onConfirm}>Save</button>
-                    <span className="button-spacing"></span>
-                    <button className="cancel-button" onClick={onCancel}>Cancel</button>
-                  </div>
-                </form >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   const handleContactInfoEdit = async () => {
@@ -191,7 +252,7 @@ const Profile = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(user),
+          body: JSON.stringify(formState),
         }
       );
       if (response.ok) {
@@ -205,56 +266,25 @@ const Profile = () => {
     } catch (error) {
       setError(`Error during saving user: ${error.message}`);
     }
+    setFormState({
+      phoneNumber: "",
+      emailAddress: ""
+    });
     setShowContactInfoEdit(false);
   }
 
   const handleCancelContactInfoEdit = () => {
+    setFormState({
+      firstName: "",
+      lastName: "",
+      username: "",
+    });
     setShowContactInfoEdit(false);
-    window.location.href = '/profile';
   };
-
-  // Below code for Account Settings
-
-  const [showAccountSettingsEdit, setShowAccountSettingsEdit] = useState(false);
 
   const handleAccountSettings = () => {
+    setFormState(user);
     setShowAccountSettingsEdit(true);
-  };
-
-  const AccountSettingsEdit = ({ onConfirm, onCancel }) => {
-    return (
-      <div className="confirmation-overlay-profile">
-        <div className="confirmation-dialog-profile">
-          <div className="create-chat-container">
-            <div className="create-chat-header">
-              <h2>Edit Account Settings</h2>
-            </div>
-            <div className="create-chat-body-profile">
-              <div >
-                <form>
-                  {error && <div className="error-message">{error}</div>}
-                  <div className="create-chat-input-container">
-                    <label className="item-label" htmlFor="firstName">Default Budget</label>
-                    <input
-                      className="item-value"
-                      type="text"
-                      id="defaultBudget"
-                      value={user.defaultBudget}
-                      onChange={(e) => setUser({ ...user, defaultBudget: e.target.value })}
-                    />
-                  </div>
-                  <div className="create-chat-button-containers">
-                    <button className="login-chat-button" onClick={onConfirm}>Save</button>
-                    <span className="button-spacing"></span>
-                    <button className="cancel-button" onClick={onCancel}>Cancel</button>
-                  </div>
-                </form >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   const handleAccountSettingsEdit = async () => {
@@ -266,7 +296,7 @@ const Profile = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(user),
+          body: JSON.stringify(formState),
         }
       );
       if (response.ok) {
@@ -280,12 +310,17 @@ const Profile = () => {
     } catch (error) {
       setError(`Error during saving user: ${error.message}`);
     }
+    setFormState({
+      defaultBudget: ""
+    });
     setShowAccountSettingsEdit(false);
   }
 
   const handleCancelAccountSettingsEdit = () => {
+    setFormState({
+      defaultBudget: ""
+    });
     setShowAccountSettingsEdit(false);
-    window.location.href = '/profile';
   };
 
   // Below code for Reset Password
@@ -377,8 +412,11 @@ const Profile = () => {
                         </button>
                         {showBasicInfoEdit && (
                           <BasicInfoEdit
+                            formState={formState}
+                            setFormState={setFormState}
                             onConfirm={handleBasicInfoEdit}
                             onCancel={handleCancelBasicInfoEdit}
+                            error={error}
                           />
                         )}
                       </div>
@@ -407,8 +445,11 @@ const Profile = () => {
                         </button>
                         {showContactInfoEdit && (
                           <ContactInfoEdit
+                            formState={formState}
+                            setFormState={setFormState}
                             onConfirm={handleContactInfoEdit}
                             onCancel={handleCancelContactInfoEdit}
+                            error={error}
                           />
                         )}
                       </div>
@@ -438,8 +479,11 @@ const Profile = () => {
                           </button>
                           {showAccountSettingsEdit && (
                             <AccountSettingsEdit
+                              formState={formState}
+                              setFormState={setFormState}
                               onConfirm={handleAccountSettingsEdit}
                               onCancel={handleCancelAccountSettingsEdit}
+                              error={error}
                             />
                           )}
                         </div>
