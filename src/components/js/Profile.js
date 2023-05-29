@@ -135,7 +135,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
               <form>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="firstName">First Name</label>
+                  <label className="item-label" htmlFor="firstName">Default Budget</label>
                   <input
                     className="item-value"
                     type="number"
@@ -158,6 +158,48 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
   );
 };
 
+const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPassword, onConfirm, onCancel, error }) => {
+  return (
+    <div className="confirmation-overlay-profile">
+      <div className="confirmation-dialog-profile">
+        <div className="create-chat-container">
+          <div className="create-chat-header">
+            <h2>Reset Password</h2>
+          </div>
+          <div className="create-chat-body-profile">
+            <div>
+              <form>
+                {error && <div className="error-message">{error}</div>}
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="firstName">Old Password:</label>
+                  <input
+                    type="password"
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label className="item-label" htmlFor="firstName">New Password:</label>
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </div>
+                <div className="create-chat-button-containers">
+                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <span className="button-spacing"></span>
+                  <button className="cancel-button" onClick={onCancel}>Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div >
+    </div >
+  );
+};
+
 const Profile = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -168,6 +210,8 @@ const Profile = () => {
   const [showBasicInfoEdit, setShowBasicInfoEdit] = useState(false);
   const [showContactInfoEdit, setShowContactInfoEdit] = useState(false);
   const [showAccountSettingsEdit, setShowAccountSettingsEdit] = useState(false);
+
+  const [showResetPasswordEdit, setShowResetPasswordEdit] = useState(false);
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -323,45 +367,8 @@ const Profile = () => {
     setShowAccountSettingsEdit(false);
   };
 
-  // Below code for Reset Password
-
-  const [showResetPasswordEdit, setShowResetPasswordEdit] = useState(false);
-
   const handleResetPassword = () => {
     setShowResetPasswordEdit(true);
-  };
-
-  const ResetPasswordEdit = ({ onConfirm, onCancel }) => {
-    return (
-      <div className="confirmation-overlay-profile">
-        <div className="confirmation-dialog-profile">
-          <h2>Reset Password</h2>
-          {error && <div className="error-message">{error}</div>}
-          <div className="confirmation-buttons-profile">
-            <div className="password-reset-form">
-              <div>
-                <label>Old Password:</label>
-                <input
-                  type="password"
-                  value={oldPassword}
-                  onChange={(e) => setOldPassword(e.target.value)}
-                />
-              </div>
-              <div>
-                <label>New Password:</label>
-                <input
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </div>
-            </div>
-            <button className="login-chat-button" onClick={onConfirm}>Save</button>
-            <button className="cancel-button" onClick={onCancel}>Cancel</button>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   const handleResetPasswordEdit = async () => {
@@ -504,8 +511,13 @@ const Profile = () => {
                     <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
                     {showResetPasswordEdit && (
                       <ResetPasswordEdit
+                        oldPassword={oldPassword}
+                        newPassword={newPassword}
+                        setOldPassword={setOldPassword}
+                        setNewPassword={setNewPassword}
                         onConfirm={handleResetPasswordEdit}
                         onCancel={handleCancelResetPasswordEdit}
+                        error={error}
                       />
                     )}
                   </div>
