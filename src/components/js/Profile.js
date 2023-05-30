@@ -422,146 +422,148 @@ const Profile = () => {
   };
 
   return (
-    <div className="homescreen-container">
+    <div className="container">
       <NavBar />
-      <div className="content-container">
-        {notification.visible &&
-          <div className="notification-message alert-success">
-            {notification.message}
-            <span className="close-button" onClick={() => setNotification({ ...notification, visible: false })}>
-              <FontAwesomeIcon icon={faTimes} style={{ color: 'green' }} />
-            </span>
+      <div className="homescreen-container">
+        <div className="content-container">
+          {notification.visible &&
+            <div className="notification-message alert-success">
+              {notification.message}
+              <span className="close-button" onClick={() => setNotification({ ...notification, visible: false })}>
+                <FontAwesomeIcon icon={faTimes} style={{ color: 'green' }} />
+              </span>
+            </div>
+          }
+          <div className="content-header">
+            <h1>My Account</h1>
+            <h6>Info about you and your preferences across Expense Tracker</h6>
           </div>
-        }
-        <div className="content-header">
-          <h1>My Account</h1>
-          <h6>Info about you and your preferences across Expense Tracker</h6>
-        </div>
-        <div>
-          <div className="content-chat-container">
-            <div className="content-body">
-              {user ? (
-                <div className="profile-sections">
-                  <div className="profile-section">
-                    <div className="info-box">
-                      <div className="info-header">
-                        <h2>Basic info</h2>
-                        <button onClick={handleBasicInfo} className="edit-profile-button">
-                          <FontAwesomeIcon icon={faPencilAlt} />
-                        </button>
-                        {showBasicInfoEdit && (
-                          <BasicInfoEdit
-                            formState={formState}
-                            setFormState={setFormState}
-                            onConfirm={handleBasicInfoEdit}
-                            onCancel={handleCancelBasicInfoEdit}
-                            error={error}
-                          />
-                        )}
-                      </div>
-                      <div className="profile-details">
-                        <div className="profile-info">
-                          <div className="tab-list account-info-list">
-                            <div>
-                              <span className="account-info-item">Name:</span>
-                              <span className="account-info">{user.firstName} {user.lastName}</span>
-                            </div>
-                            <div>
-                              <span className="account-info-item">Username:</span>
-                              <span className="account-info">{user.username}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile-section">
-                    <div className="info-box">
-                      <div className="info-header">
-                        <h2>Contact info</h2>
-                        <button onClick={handleContactInfo} className="edit-profile-button" >
-                          <FontAwesomeIcon icon={faPencilAlt} />
-                        </button>
-                        {showContactInfoEdit && (
-                          <ContactInfoEdit
-                            formState={formState}
-                            setFormState={setFormState}
-                            onConfirm={handleContactInfoEdit}
-                            onCancel={handleCancelContactInfoEdit}
-                            error={error}
-                          />
-                        )}
-                      </div>
-                      <div className="profile-details">
-                        <div className="profile-info">
-                          <div className="tab-list account-info-list">
-                            <div>
-                              <span className="account-info-item">Phone:</span>
-                              <span className="account-info">{user.phoneNumber}</span>
-                            </div>
-                            <div>
-                              <span className="account-info-item">Email:</span>
-                              <span className="account-info">{user.emailAddress}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="profile-section">
-                    <div className="info-box">
-                      <div className="info-header">
-                        <h2>Account settings</h2>
-                        <div className="account-settings">
-                          <button onClick={handleAccountSettings} className="edit-profile-button" >
+          <div>
+            <div className="content-chat-container">
+              <div className="content-body">
+                {user ? (
+                  <div className="profile-sections">
+                    <div className="profile-section">
+                      <div className="info-box">
+                        <div className="info-header">
+                          <h2>Basic info</h2>
+                          <button onClick={handleBasicInfo} className="edit-profile-button">
                             <FontAwesomeIcon icon={faPencilAlt} />
                           </button>
-                          {showAccountSettingsEdit && (
-                            <AccountSettingsEdit
+                          {showBasicInfoEdit && (
+                            <BasicInfoEdit
                               formState={formState}
                               setFormState={setFormState}
-                              onConfirm={handleAccountSettingsEdit}
-                              onCancel={handleCancelAccountSettingsEdit}
+                              onConfirm={handleBasicInfoEdit}
+                              onCancel={handleCancelBasicInfoEdit}
                               error={error}
                             />
                           )}
                         </div>
-                      </div>
-                      <div className="profile-details">
-                        <div className="profile-info">
-                          <div className="tab-list account-info-list">
-                            <div>
-                              <span className="account-info-item">Default Budget::</span>
-                              <span className="account-info">{user.defaultBudget}</span>
+                        <div className="profile-details">
+                          <div className="profile-info">
+                            <div className="tab-list account-info-list">
+                              <div>
+                                <span className="account-info-item">Name:</span>
+                                <span className="account-info">{user.firstName} {user.lastName}</span>
+                              </div>
+                              <div>
+                                <span className="account-info-item">Username:</span>
+                                <span className="account-info">{user.username}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div className="profile-section">
+                      <div className="info-box">
+                        <div className="info-header">
+                          <h2>Contact info</h2>
+                          <button onClick={handleContactInfo} className="edit-profile-button" >
+                            <FontAwesomeIcon icon={faPencilAlt} />
+                          </button>
+                          {showContactInfoEdit && (
+                            <ContactInfoEdit
+                              formState={formState}
+                              setFormState={setFormState}
+                              onConfirm={handleContactInfoEdit}
+                              onCancel={handleCancelContactInfoEdit}
+                              error={error}
+                            />
+                          )}
+                        </div>
+                        <div className="profile-details">
+                          <div className="profile-info">
+                            <div className="tab-list account-info-list">
+                              <div>
+                                <span className="account-info-item">Phone:</span>
+                                <span className="account-info">{user.phoneNumber}</span>
+                              </div>
+                              <div>
+                                <span className="account-info-item">Email:</span>
+                                <span className="account-info">{user.emailAddress}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile-section">
+                      <div className="info-box">
+                        <div className="info-header">
+                          <h2>Account settings</h2>
+                          <div className="account-settings">
+                            <button onClick={handleAccountSettings} className="edit-profile-button" >
+                              <FontAwesomeIcon icon={faPencilAlt} />
+                            </button>
+                            {showAccountSettingsEdit && (
+                              <AccountSettingsEdit
+                                formState={formState}
+                                setFormState={setFormState}
+                                onConfirm={handleAccountSettingsEdit}
+                                onCancel={handleCancelAccountSettingsEdit}
+                                error={error}
+                              />
+                            )}
+                          </div>
+                        </div>
+                        <div className="profile-details">
+                          <div className="profile-info">
+                            <div className="tab-list account-info-list">
+                              <div>
+                                <span className="account-info-item">Default Budget::</span>
+                                <span className="account-info">{user.defaultBudget}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="profile-section">
+                      <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
+                      {showResetPasswordEdit && (
+                        <ResetPasswordEdit
+                          oldPassword={oldPassword}
+                          newPassword={newPassword}
+                          setOldPassword={setOldPassword}
+                          setNewPassword={setNewPassword}
+                          onConfirm={handleResetPasswordEdit}
+                          onCancel={handleCancelResetPasswordEdit}
+                          error={error}
+                        />
+                      )}
+                    </div>
                   </div>
-                  <div className="profile-section">
-                    <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
-                    {showResetPasswordEdit && (
-                      <ResetPasswordEdit
-                        oldPassword={oldPassword}
-                        newPassword={newPassword}
-                        setOldPassword={setOldPassword}
-                        setNewPassword={setNewPassword}
-                        onConfirm={handleResetPasswordEdit}
-                        onCancel={handleCancelResetPasswordEdit}
-                        error={error}
-                      />
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <h2>Loading...</h2>
-              )}
+                ) : (
+                  <h2>Loading...</h2>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </div >
       </div >
-    </div >
+    </div>
   );
 };
 

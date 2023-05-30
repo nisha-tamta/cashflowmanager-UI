@@ -23,14 +23,14 @@ const SetBudget = () => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
-          `http://localhost:8080/api/budget?userId=${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(budget),
-          }
+        `http://localhost:8080/api/budget?userId=${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(budget),
+        }
       );
 
       if (response.ok) {
@@ -59,8 +59,9 @@ const SetBudget = () => {
   ];
 
   return (
+    <div className="container">
+      <NavBar />
       <div className="homescreen-container">
-        <NavBar />
         <div className="content-profile-container">
           <div className="content-header">
             <h1>Set Budget</h1>
@@ -69,25 +70,25 @@ const SetBudget = () => {
                 <label>
                   Month:
                   <select
-                      name="month"
-                      value={budget.month}
-                      onChange={handleChange}
+                    name="month"
+                    value={budget.month}
+                    onChange={handleChange}
                   >
                     <option value="">Select</option>
                     {nextThreeMonths.map((month) => (
-                        <option key={month.id} value={month.name}>
-                          {month.name}
-                        </option>
+                      <option key={month.id} value={month.name}>
+                        {month.name}
+                      </option>
                     ))}
                   </select>
                 </label>
                 <label>
                   Amount:
                   <input
-                      type="number"
-                      name="amount"
-                      value={budget.amount}
-                      onChange={handleChange}
+                    type="number"
+                    name="amount"
+                    value={budget.amount}
+                    onChange={handleChange}
                   />
                 </label>
                 <div className="add-expense-buttons">
@@ -101,6 +102,7 @@ const SetBudget = () => {
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

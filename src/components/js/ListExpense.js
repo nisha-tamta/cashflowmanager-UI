@@ -36,14 +36,16 @@ const ListExpense = () => {
     }, []);
 
     return (
-        <div className="homescreen-container">
+        <div className="container">
             <NavBar />
-            <div className="content-profile-container">
-                <div className="content-header">
-                    <h1>Expenses List</h1>
-                </div>
-                <div className="content-body">
-                    <ExpenseList expenses={expenses} />
+            <div className="homescreen-container">
+                <div className="content-profile-container">
+                    <div className="content-header">
+                        <h1>Expenses List</h1>
+                    </div>
+                    <div className="content-body">
+                        <ExpenseList expenses={expenses} />
+                    </div>
                 </div>
             </div>
         </div>

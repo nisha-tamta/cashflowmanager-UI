@@ -57,31 +57,30 @@
 
 .tab-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
 .tab-item {
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 10px 155.8px;
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  background-color: #f7ea8e;
+  background-color: #f6f5f0;
   border: none;
-  border-radius: 5px 5px 0 0;
   transition: all 0.3s ease;
 }
 
 .tab-item:hover {
-  background-color: #f7ea8e;
+  background-color: #b4e2d6;
 }
 
 .tab-item.active {
   color: #000;
-  background-color: #f7ea8e;
-  border-bottom: 8px solid #9b9461;
-  /* Add green underline */
+  background-color: #b4e2d6;
+  border-bottom: 8px solid #000000;
+  transform: scale(1.2);
 }
 
 
@@ -94,8 +93,10 @@
 .expense-list-container {
   margin: 0 auto;
   box-shadow: 0px 0px 10px #666;
-  width: 50vh;
+  width: 1160px;
   height: 50vh;
+  padding: 20px;
+  border: 5px solid black;
 }
 
 h1 {

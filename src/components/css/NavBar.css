@@ -1,22 +1,25 @@
-.container {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  /* Set the width of the navbar and the remaining space for the content */
-  height: 100vh;
-  /* Set the height of the container to take the full height of the viewport */
+.container{
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
 }
-
 .navbar-container {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   left: 0;
   top: 0;
-  width: 180px;
+  width: 125px;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* Set the flex direction to column for vertical layout */
   justify-content: flex-start;
-  /* Align items to the top of the container */
   align-items: flex-start;
-  /* Align items to the start of the container */
   background-color: #ffffff;
   padding: 16px;
   box-shadow: 0px 0px 10px #666;
@@ -25,11 +28,8 @@
 
 .navbar-list {
   list-style-type: none;
-  /* Remove bullet points from list items */
   padding: 0;
-  /* Remove default padding from list */
   margin: 0;
-  /* Remove default margin from list */
   font: 400 14px/20px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
   position: relative;
   letter-spacing: .01428571em;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../css/ExpenseList.css";
-import ReportPage from "./ReportPage";
 
 const ExpenseList = ({ expenses }) => {
   const navigate = useNavigate();
@@ -117,33 +116,27 @@ const ExpenseList = ({ expenses }) => {
   return (
     <div>
       {error && <div className="error-message">{error}</div>}
-      <div style={{ marginBottom: "16px" }}>
-        <label>
-          Category like{" "}
-          <input
-            type="text"
-            value={filterCategory}
-            onChange={handleFilterCategoryChange}
-          />
-        </label>
-      </div>
-      <div style={{ marginBottom: "16px" }}>
-        <label>
-          Amount{" "}
-          <select
-            value={filterAmountType}
-            onChange={handleFilterAmountTypeChange}
-          >
-            <option value="">-- Select filter type --</option>
-            <option value="greaterThan">Greater Than</option>
-            <option value="lessThan">Less Than</option>
-          </select>{" "}
-          <input
-            type="number"
-            value={filterAmount}
-            onChange={handleFilterAmountChange}
-          />
-        </label>
+      <div>
+        <label className="item-label-expense" >Category like{" "}</label>
+        <input
+          className="item-value-expense"
+          type="text"
+          value={filterCategory}
+          onChange={handleFilterCategoryChange}
+        />
+        <span className="label-spacing"></span>
+        <label className="item-label-expense" >and Amount{" "}</label>
+        <select className="item-value-expense" value={filterAmountType} onChange={handleFilterAmountTypeChange} >
+          <option className="item-value-expense" value="">-- Select filter type --</option>
+          <option className="item-value-expense" value="greaterThan">Greater Than</option>
+          <option className="item-value-expense" value="lessThan">Less Than</option>
+        </select>{" "}
+        <input
+          className="item-value-expense"
+          type="number"
+          value={filterAmount}
+          onChange={handleFilterAmountChange}
+        />
       </div>
       <table style={{ border: "1px solid black", borderCollapse: "collapse" }}>
         <thead>

@@ -62,62 +62,64 @@ const AddExpensePage = () => {
   };
 
   return (
-    <div className="homescreen-container">
+    <div className="container">
       <NavBar />
-      <div className="content-profile-container">
-        <div className="content-header">
-          <h1>Add Expense</h1>
-          {error && <div className="error-message">{error}</div>}
-          <div className="add-expense-content">
-            <form onSubmit={handleSubmit}>
-              <label>
-                Category:
-                <select
-                  name="category"
-                  value={expenseData.category}
-                  onChange={handleChange}
-                >
-                  <option value="">Select Category</option>
-                  <option value={ExpenseCategory.FOOD}>Food</option>
-                  <option value={ExpenseCategory.RENT}>Rent</option>
-                  <option value={ExpenseCategory.TRAVEL}>Travel</option>
-                  <option value={ExpenseCategory.ENTERTAINMENT}>Entertainment</option>
-                </select>
-              </label>
-              <label>
-                Description:
-                <input
-                  type="text"
-                  name="description"
-                  value={expenseData.description}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Amount:
-                <input
-                  type="number"
-                  name="amount"
-                  value={expenseData.amount}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Date:
-                <input
-                  type="date"
-                  name="date"
-                  value={expenseData.date}
-                  onChange={handleChange}
-                />
-              </label>
-              <div className="add-expense-buttons">
-                <button type="submit" className="reset-password-form-button">Add Expense</button>
-                <button type="button" className="reset-password-form-button" onClick={handleCancel}>
-                  Cancel
-                </button>
-              </div>
-            </form>
+      <div className="homescreen-container">
+        <div className="content-profile-container">
+          <div className="content-header">
+            <h1>Add Expense</h1>
+            {error && <div className="error-message">{error}</div>}
+            <div className="add-expense-content">
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Category:
+                  <select
+                    name="category"
+                    value={expenseData.category}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Category</option>
+                    <option value={ExpenseCategory.FOOD}>Food</option>
+                    <option value={ExpenseCategory.RENT}>Rent</option>
+                    <option value={ExpenseCategory.TRAVEL}>Travel</option>
+                    <option value={ExpenseCategory.ENTERTAINMENT}>Entertainment</option>
+                  </select>
+                </label>
+                <label>
+                  Description:
+                  <input
+                    type="text"
+                    name="description"
+                    value={expenseData.description}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label>
+                  Amount:
+                  <input
+                    type="number"
+                    name="amount"
+                    value={expenseData.amount}
+                    onChange={handleChange}
+                  />
+                </label>
+                <label>
+                  Date:
+                  <input
+                    type="date"
+                    name="date"
+                    value={expenseData.date}
+                    onChange={handleChange}
+                  />
+                </label>
+                <div className="add-expense-buttons">
+                  <button type="submit" className="reset-password-form-button">Add Expense</button>
+                  <button type="button" className="reset-password-form-button" onClick={handleCancel}>
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
