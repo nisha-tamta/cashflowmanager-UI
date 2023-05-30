@@ -462,3 +462,27 @@
 .create-chat-body-profile {
   align-items: center;
 }
+
+.alert-success {
+  color: white;
+  background-color: rgba(50, 205, 50, 0.8);
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  z-index: 1;
+  transition: top 0.5s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.close-button {
+  margin-left: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+}

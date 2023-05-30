@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
 import "../css/NavBar.css";
 import "../css/Profile.css";
@@ -20,7 +20,7 @@ const BasicInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) 
           </div>
           <div className="create-chat-body-profile">
             <div>
-              <form>
+              <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
                   <label className="item-label" htmlFor="firstName">First Name</label>
@@ -53,7 +53,7 @@ const BasicInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) 
                   />
                 </div>
                 <div className="create-chat-button-containers">
-                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <button type="submit" className="login-chat-button" onClick={onConfirm}>Save</button>
                   <span className="button-spacing"></span>
                   <button className="cancel-button" onClick={onCancel}>Cancel</button>
                 </div>
@@ -81,7 +81,7 @@ const ContactInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }
           </div>
           <div className="create-chat-body-profile">
             <div>
-              <form>
+              <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
                   <label className="item-label" htmlFor="firstName">Phone number</label>
@@ -104,7 +104,7 @@ const ContactInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }
                   />
                 </div>
                 <div className="create-chat-button-containers">
-                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <button type="submit" className="login-chat-button" onClick={onConfirm}>Save</button>
                   <span className="button-spacing"></span>
                   <button className="cancel-button" onClick={onCancel}>Cancel</button>
                 </div>
@@ -132,7 +132,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
           </div>
           <div className="create-chat-body-profile">
             <div>
-              <form>
+              <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
                   <label className="item-label" htmlFor="firstName">Default Budget</label>
@@ -168,7 +168,7 @@ const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPas
           </div>
           <div className="create-chat-body-profile">
             <div>
-              <form>
+              <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
                   <label className="item-label" htmlFor="firstName">Old Password:</label>
@@ -187,7 +187,7 @@ const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPas
                   />
                 </div>
                 <div className="create-chat-button-containers">
-                  <button className="login-chat-button" onClick={onConfirm}>Save</button>
+                  <button type="submit" className="login-chat-button" onClick={onConfirm}>Save</button>
                   <span className="button-spacing"></span>
                   <button className="cancel-button" onClick={onCancel}>Cancel</button>
                 </div>
@@ -212,6 +212,7 @@ const Profile = () => {
   const [showAccountSettingsEdit, setShowAccountSettingsEdit] = useState(false);
 
   const [showResetPasswordEdit, setShowResetPasswordEdit] = useState(false);
+  const [notification, setNotification] = useState({ message: "", visible: false });
 
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -241,7 +242,8 @@ const Profile = () => {
     setShowBasicInfoEdit(true);
   };
 
-  const handleBasicInfoEdit = async () => {
+  const handleBasicInfoEdit = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(
         `http://localhost:8080/api/user/create`,
@@ -257,20 +259,21 @@ const Profile = () => {
         const data = await response.json();
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
+        setFormState({
+          firstName: "",
+          lastName: "",
+          username: "",
+        });
+        setError(null);
+        setShowBasicInfoEdit(false);
       } else {
-        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
-        setError(errorMessage);
+        return response.text().then(errorText => {
+          setError(errorText || "Error during editing user");
+        });
       }
     } catch (error) {
-      setError(`Error during saving user: ${error.message}`);
+      setError(error.message);
     }
-
-    setFormState({
-      firstName: "",
-      lastName: "",
-      username: "",
-    });
-    setShowBasicInfoEdit(false);
   };
 
   const handleCancelBasicInfoEdit = () => {
@@ -279,6 +282,7 @@ const Profile = () => {
       lastName: "",
       username: "",
     });
+    setError(null);
     setShowBasicInfoEdit(false);
   };
 
@@ -287,7 +291,8 @@ const Profile = () => {
     setShowContactInfoEdit(true);
   };
 
-  const handleContactInfoEdit = async () => {
+  const handleContactInfoEdit = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(
         `http://localhost:8080/api/user/create`,
@@ -303,18 +308,20 @@ const Profile = () => {
         const data = await response.json();
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
+        setFormState({
+          phoneNumber: "",
+          emailAddress: ""
+        });
+        setError(null);
+        setShowContactInfoEdit(false);
       } else {
-        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
-        setError(errorMessage);
+        return response.text().then(errorText => {
+          setError(errorText || "Error during editing user");
+        });
       }
     } catch (error) {
-      setError(`Error during saving user: ${error.message}`);
+      setError(error.message);
     }
-    setFormState({
-      phoneNumber: "",
-      emailAddress: ""
-    });
-    setShowContactInfoEdit(false);
   }
 
   const handleCancelContactInfoEdit = () => {
@@ -323,6 +330,7 @@ const Profile = () => {
       lastName: "",
       username: "",
     });
+    setError(null);
     setShowContactInfoEdit(false);
   };
 
@@ -331,7 +339,8 @@ const Profile = () => {
     setShowAccountSettingsEdit(true);
   };
 
-  const handleAccountSettingsEdit = async () => {
+  const handleAccountSettingsEdit = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch(
         `http://localhost:8080/api/user/create`,
@@ -347,34 +356,40 @@ const Profile = () => {
         const data = await response.json();
         setUser(data);
         localStorage.setItem("user", JSON.stringify(data));
+        setFormState({
+          defaultBudget: ""
+        });
+        setError(null);
+        setShowAccountSettingsEdit(false);
       } else {
-        const errorMessage = `Failed to save user: ${response.status} - ${response.statusText}`;
-        setError(errorMessage);
+        return response.text().then(errorText => {
+          setError(errorText || "Error during editing user");
+        });
       }
     } catch (error) {
-      setError(`Error during saving user: ${error.message}`);
+      setError(error.message);
     }
-    setFormState({
-      defaultBudget: ""
-    });
-    setShowAccountSettingsEdit(false);
   }
 
   const handleCancelAccountSettingsEdit = () => {
     setFormState({
       defaultBudget: ""
     });
+    setError(null);
     setShowAccountSettingsEdit(false);
   };
 
   const handleResetPassword = () => {
+    setOldPassword("");
+    setNewPassword("");
     setShowResetPasswordEdit(true);
   };
 
-  const handleResetPasswordEdit = async () => {
+  const handleResetPasswordEdit = async (e) => {
+    e.preventDefault();
     const username = JSON.parse(localStorage.getItem("user")).username;
     try {
-      await fetch("http://localhost:8080/api/user/resetPassword", {
+      const response = await fetch("http://localhost:8080/api/user/resetPassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -385,28 +400,45 @@ const Profile = () => {
           newPassword: newPassword,
         }),
       });
+      if (response.ok) {
+        setError(null);
+        setOldPassword("");
+        setNewPassword("");
+        setShowResetPasswordEdit(false);
+        setNotification({ message: 'Password reset successful!', visible: true });
+      } else {
+        return response.text().then(errorText => {
+          setError(errorText || "Error during reset password");
+        });
+      }
     } catch (error) {
-      console.error("Error fetching expenses:", error);
+      setError(error.message);
     }
-    setShowResetPasswordEdit(false);
   };
 
   const handleCancelResetPasswordEdit = () => {
+    setError(null);
     setShowResetPasswordEdit(false);
-    window.location.href = '/profile';
   };
 
   return (
     <div className="homescreen-container">
       <NavBar />
       <div className="content-container">
+        {notification.visible &&
+          <div className="notification-message alert-success">
+            {notification.message}
+            <span className="close-button" onClick={() => setNotification({ ...notification, visible: false })}>
+              <FontAwesomeIcon icon={faTimes} style={{ color: 'green' }} />
+            </span>
+          </div>
+        }
         <div className="content-header">
           <h1>My Account</h1>
           <h6>Info about you and your preferences across Expense Tracker</h6>
         </div>
         <div>
           <div className="content-chat-container">
-            {error && <div className="error-message">{error}</div>}
             <div className="content-body">
               {user ? (
                 <div className="profile-sections">
