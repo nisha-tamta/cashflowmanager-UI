@@ -138,7 +138,7 @@ const ExpenseList = ({ expenses }) => {
           onChange={handleFilterAmountChange}
         />
       </div>
-      <table style={{ border: "1px solid black", borderCollapse: "collapse" }}>
+      <table className="table-expense">
         <thead>
           <tr style={{ border: "1px solid black" }}>
             <th
@@ -195,22 +195,20 @@ const ExpenseList = ({ expenses }) => {
                   expense.amount
                 )}
               </td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>
                 {selectedExpenseId === expense.id ? (
                   <>
-                    <button onClick={() => handleSaveExpense(expense.id)}>
+                    <button className="button-expense" onClick={() => handleSaveExpense(expense.id)}>
                       Save
                     </button>
-                    <button onClick={() => handleCancelEditExpense()}>
+                    <button className="button-expense-cancel" onClick={() => handleCancelEditExpense()}>
                       Cancel
                     </button>
                   </>
                 ) : (
-                  <button onClick={() => handleEditExpense(expense.id)}>
+                  <button className="button-expense" onClick={() => handleEditExpense(expense.id)}>
                     Edit
                   </button>
                 )}
-              </td>
             </tr>
           ))}
         </tbody>
