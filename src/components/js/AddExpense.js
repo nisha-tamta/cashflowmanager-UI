@@ -53,7 +53,7 @@ const AddExpensePage = () => {
         setError(errorData.message);
       }
     } catch (error) {
-      setError("Failed to login. Please try again later.");
+      setError(error.message);
     }
   };
 
@@ -68,50 +68,65 @@ const AddExpensePage = () => {
         <div className="content-profile-container">
           <div className="content-header">
             <h1>Add Expense</h1>
+          </div>
+          <div className="add-expense-content">
+
             {error && <div className="error-message">{error}</div>}
-            <div className="add-expense-content">
+            <div >
               <form onSubmit={handleSubmit}>
-                <label>
-                  Category:
-                  <select
-                    name="category"
-                    value={expenseData.category}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select Category</option>
-                    <option value={ExpenseCategory.FOOD}>Food</option>
-                    <option value={ExpenseCategory.RENT}>Rent</option>
-                    <option value={ExpenseCategory.TRAVEL}>Travel</option>
-                    <option value={ExpenseCategory.ENTERTAINMENT}>Entertainment</option>
-                  </select>
-                </label>
-                <label>
-                  Description:
-                  <input
-                    type="text"
-                    name="description"
-                    value={expenseData.description}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Amount:
-                  <input
-                    type="number"
-                    name="amount"
-                    value={expenseData.amount}
-                    onChange={handleChange}
-                  />
-                </label>
-                <label>
-                  Date:
-                  <input
-                    type="date"
-                    name="date"
-                    value={expenseData.date}
-                    onChange={handleChange}
-                  />
-                </label>
+                <div>
+                  <label className="item-label-expense">
+                    Category:{" "}
+                    <select
+                      className="item-value-expense"
+                      name="category"
+                      value={expenseData.category}
+                      onChange={handleChange}
+                    >
+                      <option className="item-value-expense" value="">Select Category</option>
+                      <option className="item-value-expense" value={ExpenseCategory.FOOD}>Food</option>
+                      <option className="item-value-expense" value={ExpenseCategory.RENT}>Rent</option>
+                      <option className="item-value-expense" value={ExpenseCategory.TRAVEL}>Travel</option>
+                      <option className="item-value-expense" value={ExpenseCategory.ENTERTAINMENT}>Entertainment</option>
+                    </select>
+                  </label>
+                </div>
+                <div>
+                  <label className="item-label-expense">
+                    Description:{" "}
+                    <input
+                      className="item-value-expense"
+                      type="text"
+                      name="description"
+                      value={expenseData.description}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label className="item-label-expense">
+                    Amount:{" "}
+                    <input
+                      className="item-value-expense"
+                      type="number"
+                      name="amount"
+                      value={expenseData.amount}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label className="item-label-expense">
+                    Date:{" "}
+                    <input
+                      className="item-value-expense"
+                      type="date"
+                      name="date"
+                      value={expenseData.date}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
                 <div className="add-expense-buttons">
                   <button type="submit" className="reset-password-form-button">Add Expense</button>
                   <button type="button" className="reset-password-form-button" onClick={handleCancel}>
