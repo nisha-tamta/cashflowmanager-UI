@@ -20,6 +20,13 @@
   max-width: 1200px;
 }
 
+.content-about-container {
+  padding: 10px;
+  margin: auto auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
 .content-profile-container {
   margin: 100px auto;
   width: calc(100% - 24rem);
@@ -52,4 +59,20 @@
   gap: 20px;
   /* Increasing gap slightly for more space */
   grid-template-columns: 1fr;
+}
+
+.login-logo-about {
+  width: 80px;
+  /* Adjust size as needed */
+  height: 80px;
+  /* Adjust size as needed */
+  object-fit: cover;
+  border-radius: 50%;
+  /* Add additional styles as needed */
+}
+
+.login-logo-about-image {
+
+  object-fit: cover;
+  /* Add additional styles as needed */
 }
