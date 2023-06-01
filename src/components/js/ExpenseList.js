@@ -84,6 +84,36 @@ const ExpenseList = ({ expenses }) => {
     setEditedExpenseValue("");
   };
 
+  const handleDeleteExpense = async (expenseId) => {
+    // You might want to ask the user to confirm the deletion
+    if (!window.confirm('Are you sure you want to delete this expense?')) {
+      return;
+    }
+  
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/expenses/${expenseId}?userId=${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      if (response.ok) {
+        const updatedExpenses = expenses.filter(expense => expense.id !== expenseId);
+        expenses(updatedExpenses);
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   const sortedExpenses = [...expenses].sort((a, b) => {
     const multiplier = sortDirection === "asc" ? 1 : -1;
     switch (sortColumn) {
@@ -195,20 +225,27 @@ const ExpenseList = ({ expenses }) => {
                   expense.amount
                 )}
               </td>
-                {selectedExpenseId === expense.id ? (
-                  <>
-                    <button className="button-expense" onClick={() => handleSaveExpense(expense.id)}>
-                      Save
-                    </button>
-                    <button className="button-expense-cancel" onClick={() => handleCancelEditExpense()}>
-                      Cancel
-                    </button>
-                  </>
-                ) : (
-                  <button className="button-expense" onClick={() => handleEditExpense(expense.id)}>
+              {selectedExpenseId === expense.id ? (
+                <>
+                  <button className="button-expense-edit-save" onClick={() => handleSaveExpense(expense.id)}>
+                    Save
+                  </button>
+                  <span className="button-spacing"></span>
+                  <button className="button-expense-edit-cancel" onClick={() => handleCancelEditExpense()}>
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button className="button-edit-expense" onClick={() => handleEditExpense(expense.id)}>
                     Edit
                   </button>
-                )}
+                  <span className="button-spacing"></span>
+                  <button className="button-delete-expense" onClick={() => handleDeleteExpense(expense.id)}>
+                    Delete
+                  </button>
+                </>
+              )}
             </tr>
           ))}
         </tbody>

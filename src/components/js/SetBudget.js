@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import "../css/AddExpense.css";
 
 const SetBudget = () => {
@@ -10,6 +12,7 @@ const SetBudget = () => {
     month: "",
     amount: ""
   });
+  const [notification, setNotification] = useState({ message: "", visible: false });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -19,7 +22,8 @@ const SetBudget = () => {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
@@ -35,8 +39,11 @@ const SetBudget = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setBudget(JSON.stringify(data));
-        navigate("/dashboard");
+        setBudget({
+          month: "",
+          amount: ""
+        });
+        setNotification({ message: 'Budget set!', visible: true });
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -63,6 +70,14 @@ const SetBudget = () => {
       <NavBar />
       <div className="homescreen-container">
         <div className="content-profile-container">
+          {notification.visible &&
+            <div className="notification-message alert-success">
+              {notification.message}
+              <span className="close-button" onClick={() => setNotification({ ...notification, visible: false })}>
+                <FontAwesomeIcon icon={faTimes} style={{ color: 'green' }} />
+              </span>
+            </div>
+          }
           <div className="content-header">
             <h1>Set Budget</h1>
             <div className="add-expense-content">

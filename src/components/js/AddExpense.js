@@ -70,7 +70,6 @@ const AddExpensePage = () => {
             <h1>Add Expense</h1>
           </div>
           <div className="add-expense-content">
-
             {error && <div className="error-message">{error}</div>}
             <div >
               <form onSubmit={handleSubmit}>

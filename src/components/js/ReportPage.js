@@ -74,7 +74,7 @@ const ReportPage = () => {
     <div className="container">
       <NavBar />
       <div className="homescreen-container">
-        <div className="content-container">
+        <div className="content-chat-container">
           <div className="content-header">
             <h1>Dashboard</h1>
           </div>

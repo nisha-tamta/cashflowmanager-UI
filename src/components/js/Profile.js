@@ -421,6 +421,35 @@ const Profile = () => {
     setShowResetPasswordEdit(false);
   };
 
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleLogout = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleLogoutConfirmation = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
+  const handleCancelLogout = () => {
+    setShowConfirmation(false);
+  };
+
+  const LogoutConfirmation = ({ onConfirm, onCancel }) => {
+    return (
+      <div className="confirmation-overlay">
+        <div className="confirmation-dialog">
+          <h2>Are you sure you want to logout?</h2>
+          <div className="confirmation-buttons">
+            <button className="login-chat-logout" onClick={onConfirm}>Logout</button>
+            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="container">
       <NavBar />
@@ -440,6 +469,15 @@ const Profile = () => {
           </div>
           <div>
             <div className="content-chat-container">
+            <div className="logout-nav">
+                  <button onClick={handleLogout} className="login-chat-logout" >Logout</button>
+                  {showConfirmation && (
+                    <LogoutConfirmation
+                      onConfirm={handleLogoutConfirmation}
+                      onCancel={handleCancelLogout}
+                    />
+                  )}
+                </div>
               <div className="content-body">
                 {user ? (
                   <div className="profile-sections">
@@ -560,6 +598,7 @@ const Profile = () => {
                 )}
               </div>
             </div>
+            
           </div>
         </div >
       </div >
