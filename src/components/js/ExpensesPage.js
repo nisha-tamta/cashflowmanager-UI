@@ -74,6 +74,12 @@ const ExpensesPage = () => {
     setFilteredExpenses(filteredExpenses);
   };
 
+  const handleDeleteExpense = (id) => {
+    setExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
+    setAllExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
+    setFilteredExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
+  };  
+
   return (
     <div className="container">
       <NavBar />
@@ -111,9 +117,9 @@ const ExpensesPage = () => {
 
             <div className="expense-list-container">
               {activeTab === "thisMonth" ? (
-                <ExpenseList expenses={expenses} />
+                <ExpenseList expenses={expenses} onDeleteExpense={handleDeleteExpense} />
               ) : activeTab === "allExpenses" ? (
-                <ExpenseList expenses={allExpenses} />
+                <ExpenseList expenses={allExpenses} onDeleteExpense={handleDeleteExpense} />
               ) : (
                 activeTab === "betweenDates" && (
                   <div>
@@ -138,7 +144,7 @@ const ExpensesPage = () => {
                       <span className="label-spacing"></span>
                       <button className="submit-button" onClick={handleFilterExpenses}>Submit</button>
                     </div>
-                    <ExpenseList expenses={filteredExpenses} />
+                    <ExpenseList expenses={filteredExpenses} onDeleteExpense={handleDeleteExpense} />
                   </div>
                 )
               )}

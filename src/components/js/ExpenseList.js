@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/ExpenseList.css";
 
-const ExpenseList = ({ expenses }) => {
+const ExpenseList = ({ expenses, onDeleteExpense }) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
@@ -76,7 +76,8 @@ const ExpenseList = ({ expenses }) => {
     // and clear the selectedExpenseId and editedExpenseValue state variables
     setSelectedExpenseId(null);
     setEditedExpenseValue("");
-    expenses(updatedExpenses);
+    expenses = updatedExpenses;
+    navigate("/expenses");
   };
 
   const handleCancelEditExpense = () => {
@@ -103,8 +104,8 @@ const ExpenseList = ({ expenses }) => {
       );
   
       if (response.ok) {
-        const updatedExpenses = expenses.filter(expense => expense.id !== expenseId);
-        expenses(updatedExpenses);
+        onDeleteExpense(expenseId);
+        navigate("/expenses");
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -147,7 +148,7 @@ const ExpenseList = ({ expenses }) => {
     <div>
       {error && <div className="error-message">{error}</div>}
       <div>
-        <label className="item-label-expense" >Category like{" "}</label>
+        <label className="item-label-expense" >Category{" "}</label>
         <input
           className="item-value-expense"
           type="text"
@@ -155,7 +156,7 @@ const ExpenseList = ({ expenses }) => {
           onChange={handleFilterCategoryChange}
         />
         <span className="label-spacing"></span>
-        <label className="item-label-expense" >and Amount{" "}</label>
+        <label className="item-label-expense" >Amount{" "}</label>
         <select className="item-value-expense" value={filterAmountType} onChange={handleFilterAmountTypeChange} >
           <option className="item-value-expense" value="">-- Select filter type --</option>
           <option className="item-value-expense" value="greaterThan">Greater Than</option>
@@ -203,16 +204,16 @@ const ExpenseList = ({ expenses }) => {
         <tbody>
           {filteredExpenses.map((expense) => (
             <tr key={expense.id} style={{ border: "1px solid black" }}>
-              <td style={{ border: "1px solid black", padding: "8px" }}>
+              <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {new Date(expense.date).toLocaleDateString()}
               </td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>
+              <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {expense.category}
               </td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>
+              <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {expense.description}
               </td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>
+              <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {selectedExpenseId === expense.id ? (
                   <input
                     type="number"

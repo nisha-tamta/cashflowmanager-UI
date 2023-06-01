@@ -128,3 +128,11 @@
 .label-spacing {
   margin-left: 0.8rem;
 }
+
+/* Add this to your CSS file */
+.table-cell {
+  width: 200px; /* Adjust this value to fit your needs */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
