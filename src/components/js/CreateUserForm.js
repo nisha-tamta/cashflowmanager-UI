@@ -125,17 +125,6 @@ const CreateUserForm = () => {
                   />
                 </div>
                 <div className="create-chat-input-container">
-                  <label htmlFor="defaultBudget">Default budget</label>
-                  <input
-                    className="create-chat-input"
-                    type="number"
-                    id="defaultBudget"
-                    name="defaultBudget"
-                    value={user.defaultBudget}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="create-chat-input-container">
                   <label htmlFor="password">Password</label>
                   <input
                     className="create-chat-input"

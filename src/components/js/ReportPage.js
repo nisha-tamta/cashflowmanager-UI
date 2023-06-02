@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
 import ExpenseBarGraph from "./ExpenseBarGraph";
 import ExpenseList from "./ExpenseList";
@@ -13,6 +15,9 @@ const ReportPage = () => {
   const [expenses, setExpenses] = useState([]);
   const [allExpenses, setAllExpenses] = useState([]);
   const [activeTab, setActiveTab] = useState("thisMonth");
+  const location = useLocation();
+  const notificationMessage = location.state?.message;
+  const [isNotificationVisible, setIsNotificationVisible] = useState(true);
 
   useEffect(() => {
     const fetchExpensesCurrentMonth = async () => {
@@ -70,10 +75,22 @@ const ReportPage = () => {
     setActiveTab(tab);
   };
 
+  const handleClearMessage = () => {
+    setIsNotificationVisible(false);
+  };
+
   return (
     <div className="container">
       <NavBar />
       <div className="homescreen-container">
+        {notificationMessage && isNotificationVisible &&
+          <div className="notification-message alert-success">
+            {notificationMessage}
+            <button onClick={handleClearMessage} className="close-button">
+              <FontAwesomeIcon icon={faTimes} style={{ color: 'green' }} />
+            </button>
+          </div>
+        }
         <div className="content-chat-container">
           <div className="content-header">
             <h1>Dashboard</h1>

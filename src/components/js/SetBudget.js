@@ -38,12 +38,12 @@ const SetBudget = () => {
       );
 
       if (response.ok) {
-        const data = await response.json();
         setBudget({
           month: "",
           amount: ""
         });
         setNotification({ message: 'Budget set!', visible: true });
+        navigate("/dashboard", { state: { message: 'Budget set!' } });
       } else {
         const errorData = await response.json();
         setError(errorData.message);

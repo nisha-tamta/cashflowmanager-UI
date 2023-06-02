@@ -5,11 +5,9 @@ import CreateUserForm from "./components/js/CreateUserForm";
 import MainScreen from "./components/js/MainScreen";
 import Protected from "./components/js/Protected";
 import AboutPage from "./components/js/AboutPage";
-import DashboardPage from "./components/js/DashboardPage";
 import ExpensesPage from "./components/js/ExpensesPage";
 import ReportPage from "./components/js/ReportPage";
 import Profile from "./components/js/Profile";
-import ListExpense from "./components/js/ListExpense";
 import AddExpense from "./components/js/AddExpense";
 import SetBudget from "./components/js/SetBudget";
 
@@ -52,14 +50,6 @@ const App = () => {
             </Protected>
           }
         />
-        <Route
-          path="/dashboard"
-          element={
-            <Protected isLoggedIn={localStorage.getItem("user")}>
-              <DashboardPage />
-            </Protected>
-          }
-        />
          <Route
           path="/expenses"
           element={
@@ -81,14 +71,6 @@ const App = () => {
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
               <Profile />
-            </Protected>
-          }
-        />
-         <Route
-          path="/expenses/list"
-          element={
-            <Protected isLoggedIn={localStorage.getItem("user")}>
-              <ListExpense />
             </Protected>
           }
         />
