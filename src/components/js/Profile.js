@@ -23,7 +23,7 @@ const BasicInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) 
               <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="firstName">First Name</label>
+                  <label1 className="item-label" htmlFor="firstName">First Name</label1>
                   <input
                     className="item-value"
                     type="text"
@@ -33,7 +33,7 @@ const BasicInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) 
                   />
                 </div>
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="lastName">Last Name</label>
+                  <label1 className="item-label" htmlFor="lastName">Last Name</label1>
                   <input
                     className="item-value"
                     type="text"
@@ -43,7 +43,7 @@ const BasicInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }) 
                   />
                 </div>
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="username">Username</label>
+                  <label1 className="item-label" htmlFor="username">Username</label1>
                   <input
                     className="item-value"
                     type="text"
@@ -84,7 +84,7 @@ const ContactInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }
               <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="firstName">Phone number</label>
+                  <label1 className="item-label" htmlFor="firstName">Phone number</label1>
                   <input
                     className="item-value"
                     type="text"
@@ -94,7 +94,7 @@ const ContactInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }
                   />
                 </div>
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="firstName">Email Address</label>
+                  <label1 className="item-label" htmlFor="firstName">Email Address</label1>
                   <input
                     className="item-value"
                     type="email"
@@ -135,7 +135,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
               <form onSubmit={onConfirm}>
                 {error && <div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
-                  <label className="item-label" htmlFor="firstName">Default Budget</label>
+                  <label1 className="item-label" htmlFor="firstName">Default Budget</label1>
                   <input
                     className="item-value"
                     type="number"
@@ -158,7 +158,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
   );
 };
 
-const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPassword, onConfirm, onCancel, error }) => {
+const ResetPasswordEdit = ({ oldPassword, newPassword, confirmPassword, setOldPassword, setNewPassword, setConfirmPassword, onConfirm, onCancel, error }) => {
   return (
     <div className="confirmation-overlay-profile">
       <div className="confirmation-dialog-profile">
@@ -173,6 +173,7 @@ const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPas
                 <div className="create-chat-input-container">
                   <label className="item-label" htmlFor="firstName">Old Password:</label>
                   <input
+                    className="item-value"
                     type="password"
                     value={oldPassword}
                     onChange={(e) => setOldPassword(e.target.value)}
@@ -181,9 +182,19 @@ const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPas
                 <div className="create-chat-input-container">
                   <label className="item-label" htmlFor="firstName">New Password:</label>
                   <input
+                    className="item-value"
                     type="password"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label2 className="item-label" htmlFor="firstName">Confirm New Password:</label2>
+                  <input
+                    className="item-value"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={e => setConfirmPassword(e.target.value)}
                   />
                 </div>
                 <div className="create-chat-button-containers">
@@ -203,6 +214,7 @@ const ResetPasswordEdit = ({ oldPassword, newPassword, setOldPassword, setNewPas
 const Profile = () => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
@@ -387,6 +399,10 @@ const Profile = () => {
 
   const handleResetPasswordEdit = async (e) => {
     e.preventDefault();
+    if (newPassword !== confirmPassword) {
+      setError("New password and confirm password must be the same");
+      return;
+    }
     const username = JSON.parse(localStorage.getItem("user")).username;
     try {
       const response = await fetch("http://localhost:8080/api/user/resetPassword", {
@@ -582,8 +598,10 @@ const Profile = () => {
                         <ResetPasswordEdit
                           oldPassword={oldPassword}
                           newPassword={newPassword}
+                          confirmPassword={confirmPassword}
                           setOldPassword={setOldPassword}
                           setNewPassword={setNewPassword}
+                          setConfirmPassword={setConfirmPassword}
                           onConfirm={handleResetPasswordEdit}
                           onCancel={handleCancelResetPasswordEdit}
                           error={error}

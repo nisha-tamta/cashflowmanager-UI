@@ -82,6 +82,22 @@
     padding-top: 4px;
 }
 
+.create-chat-input-container label2 {
+    display: flex;
+    align-items: center;
+    flex-basis: 196px;
+    margin-right: 12px;
+    padding-top: 4px;
+}
+
+.create-chat-input-container label1 {
+    display: flex;
+    align-items: center;
+    flex-basis: 90px;
+    margin-right: 35px;
+    padding-top: 4px;
+}
+
 .create-chat-input {
     font-family: Nunito, Helvetica, Arial, sans-serif;
     font-size: 16px;
