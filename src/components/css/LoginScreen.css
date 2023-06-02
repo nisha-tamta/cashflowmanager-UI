@@ -32,7 +32,7 @@
   /* set height to 100vh to cover entire viewport height */
   width: 100vw;
   /* set width to 100vw to cover entire viewport width */
-  max-width: 400px;
+  max-width: 350px;
   /* Set max width of the login container */
   max-height: 400px;
   /* Set max width of the login container */
@@ -148,13 +148,13 @@
 
 .login-logo-container {
   text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 25px;
 }
 
 .login-logo {
-  width: 50px;
+  width: 100px;
   /* Adjust size as needed */
-  height: 50px;
+  height: 100px;
   /* Adjust size as needed */
   object-fit: cover;
   border-radius: 50%;

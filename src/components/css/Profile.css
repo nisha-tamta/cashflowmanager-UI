@@ -178,9 +178,15 @@
 }
 
 .item-value {
-  font-family: Nunito, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+    font-family: Nunito, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400px;
+    width: 50%;
+    max-width: 400px;
+    border: none;
+    border-bottom: 0.5px solid #ccc;
+    padding: 3px;
+    border-radius: 0px;
 }
 
 .item-action button {
@@ -485,4 +491,31 @@
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
+}
+
+.logout-button {
+  background-color: #880505;
+  /* Set background color of the button */
+  color: #ffffff;
+  /* Set text color of the button */
+  padding: 12px 24px;
+  /* Set padding for the button */
+  border: none;
+  /* Remove border from the button */
+  border-radius: 4px;
+  /* Add border radius to the button */
+  cursor: pointer;
+  /* Add cursor pointer on hover */
+  font-size: 16px;
+  /* Set font size for the button */
+  font-weight: bold;
+  /* Set font weight for the button */
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+
+}
+
+.logout-button:hover {
+  background-color: #bc3f3f;
+  /* Change background color of the button on hover */
 }

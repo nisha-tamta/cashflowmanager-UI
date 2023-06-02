@@ -440,10 +440,17 @@ const Profile = () => {
     return (
       <div className="confirmation-overlay">
         <div className="confirmation-dialog">
-          <h2>Are you sure you want to logout?</h2>
+          <div className="create-chat-header">
+            <div className="create-chat-header">
+              <h2>Are you sure you want to logout?</h2>
+            </div>
+          </div>
           <div className="confirmation-buttons">
-            <button className="login-chat-logout" onClick={onConfirm}>Logout</button>
-            <button className="login-chat-logout-green" onClick={onCancel}>Cancel</button>
+            <div className="create-chat-button-containers">
+              <button className="logout-button" onClick={onConfirm}>Logout</button>
+              <span className="button-spacing"></span>
+              <button type="submit" className="login-chat-button" onClick={onCancel}>Cancel</button>
+            </div>
           </div>
         </div>
       </div>

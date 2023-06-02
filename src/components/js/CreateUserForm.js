@@ -5,6 +5,7 @@ import "../css/CreateUserForm.css";
 const CreateUserForm = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [user, setUser] = useState({
     firstName: "",
@@ -21,7 +22,15 @@ const CreateUserForm = () => {
     setUser({ ...user, [name]: value });
   };
 
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  }
+
   const handleSubmit = () => {
+    if (user.password !== confirmPassword) {  // Checking if passwords match
+      setError("Passwords do not match");
+      return;
+    }
     fetch("http://localhost:8080/api/user/create", {
       method: "PUT",
       headers: {
@@ -68,7 +77,7 @@ const CreateUserForm = () => {
           <div className="create-chat-body">
             <div >
               <form>
-              {error && <div className="error-message">{error}</div>}
+                {<div className="error-message">{error}</div>}
                 <div className="create-chat-input-container">
                   <label htmlFor="firstName">First Name</label>
                   <input
@@ -133,6 +142,16 @@ const CreateUserForm = () => {
                     name="password"
                     value={user.password}
                     onChange={handleChange}
+                  />
+                </div>
+                <div className="create-chat-input-container">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    className="create-chat-input"
+                    type="password"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={handleConfirmPasswordChange}
                   />
                 </div>
               </form >
