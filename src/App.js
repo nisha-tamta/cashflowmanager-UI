@@ -6,7 +6,7 @@ import MainScreen from "./components/js/MainScreen";
 import Protected from "./components/js/Protected";
 import AboutPage from "./components/js/AboutPage";
 import ExpensesPage from "./components/js/ExpensesPage";
-import ReportPage from "./components/js/ReportPage";
+import DashboardPage from "./components/js/DashboardPage";
 import Profile from "./components/js/Profile";
 import AddExpense from "./components/js/AddExpense";
 import SetBudget from "./components/js/SetBudget";
@@ -26,7 +26,7 @@ const App = () => {
           exact
           path="/"
           element={
-            localStorage.getItem("user") ? <ReportPage /> : <MainScreen />
+            localStorage.getItem("user") ? <DashboardPage /> : <MainScreen />
           }
         />
         <Route
@@ -38,7 +38,7 @@ const App = () => {
           path="/dashboard"
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
-              <ReportPage />
+              <DashboardPage />
             </Protected>
           }
         />
@@ -62,7 +62,7 @@ const App = () => {
           path="/dashboard"
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
-              <ReportPage />
+              <DashboardPage />
             </Protected>
           }
         />

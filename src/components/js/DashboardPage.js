@@ -7,9 +7,9 @@ import ExpenseBarGraph from "./ExpenseBarGraph";
 import ExpenseList from "./ExpenseList";
 import "../css/HomeScreen.css";
 import "../css/NavBar.css";
-import "../css/ReportPage.css";
+import "../css/DashboardPage.css";
 
-const ReportPage = () => {
+const DashboardPage = () => {
   const [allReports, setAllReports] = useState([]);
   const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
@@ -136,4 +136,4 @@ const ReportPage = () => {
   );
 };
 
-export default ReportPage;
+export default DashboardPage;
