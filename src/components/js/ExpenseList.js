@@ -11,7 +11,12 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
   const [sortColumn, setSortColumn] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
   const [selectedExpenseId, setSelectedExpenseId] = useState(null);
-  const [editedExpenseValue, setEditedExpenseValue] = useState("");
+  const [editedExpenseValue, setEditedExpenseValue] = useState({
+    date: "",
+    category: "",
+    description: "",
+    amount: ""
+  });
 
   const handleFilterCategoryChange = (e) => {
     setFilterCategory(e.target.value);
@@ -36,21 +41,26 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
 
   const handleEditExpense = (expenseId) => {
     setSelectedExpenseId(expenseId);
-    setEditedExpenseValue(expenses.find((expense) => expense.id === expenseId).amount);
+    setEditedExpenseValue({
+      date: expenses.find((expense) => expense.id === expenseId).date,
+      category: expenses.find((expense) => expense.id === expenseId).category,
+      description: expenses.find((expense) => expense.id === expenseId).description,
+      amount: expenses.find((expense) => expense.id === expenseId).amount,
+    });
   };
 
   const handleSaveExpense = async (expenseId) => {
     // Create a new array with the updated expense
     const updatedExpenses = expenses.map((expense) => {
       if (expense.id === expenseId) {
-        return { ...expense, amount: editedExpenseValue };
+        return { ...expense, ...editedExpenseValue };
       }
       return expense;
     });
-  
+
     // Find the updated expense to send to the server
     const updatedExpense = updatedExpenses.find((expense) => expense.id === expenseId);
-  
+
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
@@ -63,7 +73,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
           body: JSON.stringify(updatedExpense),
         }
       );
-  
+
       if (response.ok) {
         navigate("/expenses");
       } else {
@@ -73,14 +83,14 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     } catch (error) {
       setError("Failed to update the expense. Please try again later.");
     }
-  
+
     // Clear the selectedExpenseId and editedExpenseValue state variables
     setSelectedExpenseId(null);
     setEditedExpenseValue("");
-    
+
     // Update the expenses state with the new array of expenses
     onEditExpense(updatedExpense);
-  };  
+  };
 
   const handleCancelEditExpense = () => {
     setSelectedExpenseId(null);
@@ -92,7 +102,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     if (!window.confirm('Are you sure you want to delete this expense?')) {
       return;
     }
-  
+
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
@@ -104,7 +114,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
           },
         }
       );
-  
+
       if (response.ok) {
         onDeleteExpense(expenseId);
       } else {
@@ -206,22 +216,60 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
           {filteredExpenses.map((expense) => (
             <tr key={expense.id} style={{ border: "1px solid black" }}>
               <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
-                {new Date(expense.date).toLocaleDateString()}
+                {selectedExpenseId === expense.id ? (
+                  <input
+                    className="item-value-expense-edit"
+                    type="date"
+                    value={editedExpenseValue.date}
+                    onChange={(e) =>
+                      setEditedExpenseValue({ ...editedExpenseValue, date: e.target.value })
+                    }
+                  />
+                ) : (
+                  new Date(expense.date).toLocaleDateString()
+                )}
               </td>
               <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
-                {expense.category}
-              </td>
-              <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
-                {expense.description}
+                {selectedExpenseId === expense.id ? (
+                  <select
+                    className="item-value-expense-edit"
+                    value={editedExpenseValue.category}
+                    onChange={(e) =>
+                      setEditedExpenseValue({ ...editedExpenseValue, category: e.target.value })
+                    }
+                  >
+                    <option className="item-value-expense-edit" value="Food">Food</option>
+                    <option className="item-value-expense-edit" value="Rent">Rent</option>
+                    <option className="item-value-expense-edit" value="Travel">Travel</option>
+                    <option className="item-value-expense-edit" value="Entertainment">Entertainment</option>
+                  </select>
+                ) : (
+                  expense.category
+                )}
               </td>
               <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {selectedExpenseId === expense.id ? (
                   <input
+                    className="item-value-expense-edit"
+                    type="text"
+                    value={editedExpenseValue.description}
+                    onChange={(e) =>
+                      setEditedExpenseValue({ ...editedExpenseValue, description: e.target.value })
+                    }
+                  />
+                ) : (
+                  expense.description
+                )}
+              </td>
+              <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
+                {selectedExpenseId === expense.id ? (
+                  <input
+                    className="item-value-expense-edit"
                     type="number"
-                    min="0"
-                    step="1"
-                    value={editedExpenseValue}
-                    onChange={(e) => setEditedExpenseValue(e.target.value)}
+                    value={editedExpenseValue.amount}
+                    onChange={(e) =>
+                      setEditedExpenseValue({ ...editedExpenseValue, amount: e.target.value })
+                    }
                   />
                 ) : (
                   expense.amount
