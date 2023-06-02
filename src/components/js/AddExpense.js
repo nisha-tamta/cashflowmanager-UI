@@ -36,7 +36,7 @@ const AddExpensePage = () => {
       const response = await fetch(
         `http://localhost:8080/api/expenses?userId=${userId}`,
         {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },

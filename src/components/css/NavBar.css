@@ -150,9 +150,10 @@
 }
 
 .logout-nav {
-  margin-top: auto;
-  /* Move the Logout button to the bottom of the navbar */
-
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
 }
 
 .login-chat-logout:hover {

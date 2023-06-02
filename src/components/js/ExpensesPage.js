@@ -78,6 +78,18 @@ const ExpensesPage = () => {
     setExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
     setAllExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
     setFilteredExpenses(prevExpenses => prevExpenses.filter(expense => expense.id !== id));
+  };
+
+  const onEditExpense = (updatedExpense) => {
+    setExpenses(prevExpenses => prevExpenses.map(expense => 
+      expense.id === updatedExpense.id ? updatedExpense : expense
+    ));
+    setAllExpenses(prevExpenses => prevExpenses.map(expense => 
+      expense.id === updatedExpense.id ? updatedExpense : expense
+    ));
+    setFilteredExpenses(prevExpenses => prevExpenses.map(expense => 
+      expense.id === updatedExpense.id ? updatedExpense : expense
+    ));
   };  
 
   return (
@@ -117,9 +129,9 @@ const ExpensesPage = () => {
 
             <div className="expense-list-container">
               {activeTab === "thisMonth" ? (
-                <ExpenseList expenses={expenses} onDeleteExpense={handleDeleteExpense} />
+                <ExpenseList expenses={expenses} onDeleteExpense={handleDeleteExpense} onEditExpense={onEditExpense} />
               ) : activeTab === "allExpenses" ? (
-                <ExpenseList expenses={allExpenses} onDeleteExpense={handleDeleteExpense} />
+                <ExpenseList expenses={allExpenses} onDeleteExpense={handleDeleteExpense} onEditExpense={onEditExpense} />
               ) : (
                 activeTab === "betweenDates" && (
                   <div>
@@ -144,7 +156,7 @@ const ExpensesPage = () => {
                       <span className="label-spacing"></span>
                       <button className="submit-button" onClick={handleFilterExpenses}>Submit</button>
                     </div>
-                    <ExpenseList expenses={filteredExpenses} onDeleteExpense={handleDeleteExpense} />
+                    <ExpenseList expenses={filteredExpenses} onDeleteExpense={handleDeleteExpense} onEditExpense={onEditExpense} />
                   </div>
                 )
               )}

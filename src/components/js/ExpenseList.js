@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/ExpenseList.css";
 
-const ExpenseList = ({ expenses, onDeleteExpense }) => {
+const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
@@ -40,28 +40,30 @@ const ExpenseList = ({ expenses, onDeleteExpense }) => {
   };
 
   const handleSaveExpense = async (expenseId) => {
-    // Update the amount of the selected expense in the expenses array
-    const updatedExpenses = expenses.find((expense) => {
+    // Create a new array with the updated expense
+    const updatedExpenses = expenses.map((expense) => {
       if (expense.id === expenseId) {
-        expense.amount = editedExpenseValue;
         return { ...expense, amount: editedExpenseValue };
       }
       return expense;
     });
-
+  
+    // Find the updated expense to send to the server
+    const updatedExpense = updatedExpenses.find((expense) => expense.id === expenseId);
+  
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
-        `http://localhost:8080/api/expenses?userId=${userId}`,
+        `http://localhost:8080/api/expenses/${expenseId}?userId=${userId}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(updatedExpenses),
+          body: JSON.stringify(updatedExpense),
         }
       );
-
+  
       if (response.ok) {
         navigate("/expenses");
       } else {
@@ -69,16 +71,16 @@ const ExpenseList = ({ expenses, onDeleteExpense }) => {
         setError(errorData.message);
       }
     } catch (error) {
-      setError("Failed to login. Please try again later.");
+      setError("Failed to update the expense. Please try again later.");
     }
-
-    // Update the expenses prop with the new array of expenses
-    // and clear the selectedExpenseId and editedExpenseValue state variables
+  
+    // Clear the selectedExpenseId and editedExpenseValue state variables
     setSelectedExpenseId(null);
     setEditedExpenseValue("");
-    expenses = updatedExpenses;
-    navigate("/expenses");
-  };
+    
+    // Update the expenses state with the new array of expenses
+    onEditExpense(updatedExpense);
+  };  
 
   const handleCancelEditExpense = () => {
     setSelectedExpenseId(null);
@@ -105,7 +107,6 @@ const ExpenseList = ({ expenses, onDeleteExpense }) => {
   
       if (response.ok) {
         onDeleteExpense(expenseId);
-        navigate("/expenses");
       } else {
         const errorData = await response.json();
         setError(errorData.message);

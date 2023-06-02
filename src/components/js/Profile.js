@@ -469,15 +469,6 @@ const Profile = () => {
           </div>
           <div>
             <div className="content-chat-container">
-            <div className="logout-nav">
-                  <button onClick={handleLogout} className="login-chat-logout" >Logout</button>
-                  {showConfirmation && (
-                    <LogoutConfirmation
-                      onConfirm={handleLogoutConfirmation}
-                      onCancel={handleCancelLogout}
-                    />
-                  )}
-                </div>
               <div className="content-body">
                 {user ? (
                   <div className="profile-sections">
@@ -578,7 +569,7 @@ const Profile = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="profile-section">
+                    <div>
                       <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
                       {showResetPasswordEdit && (
                         <ResetPasswordEdit
@@ -592,13 +583,21 @@ const Profile = () => {
                         />
                       )}
                     </div>
+                    <div className="logout-nav">
+                      <button onClick={handleLogout} className="login-chat-logout" >Logout</button>
+                      {showConfirmation && (
+                        <LogoutConfirmation
+                          onConfirm={handleLogoutConfirmation}
+                          onCancel={handleCancelLogout}
+                        />
+                      )}
+                    </div>
                   </div>
                 ) : (
                   <h2>Loading...</h2>
                 )}
               </div>
             </div>
-            
           </div>
         </div >
       </div >
