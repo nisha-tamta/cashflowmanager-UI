@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faPencilAlt, faSave,faSdCard  } from '@fortawesome/free-solid-svg-icons'
 import "../css/ExpenseList.css";
 
 const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
@@ -278,7 +280,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
               {selectedExpenseId === expense.id ? (
                 <>
                   <button className="button-expense-edit-save" onClick={() => handleSaveExpense(expense.id)}>
-                    Save
+                    <FontAwesomeIcon icon={faSave} />
                   </button>
                   <span className="button-spacing"></span>
                   <button className="button-expense-edit-cancel" onClick={() => handleCancelEditExpense()}>
@@ -288,11 +290,11 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
               ) : (
                 <>
                   <button className="button-edit-expense" onClick={() => handleEditExpense(expense.id)}>
-                    Edit
+                    <FontAwesomeIcon icon={faPencilAlt} />
                   </button>
                   <span className="button-spacing"></span>
                   <button className="button-delete-expense" onClick={() => handleDeleteExpense(expense.id)}>
-                    Delete
+                    <FontAwesomeIcon icon={faTrashAlt} />
                   </button>
                 </>
               )}

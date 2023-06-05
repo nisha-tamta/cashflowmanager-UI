@@ -36,9 +36,9 @@
 
 .button-edit-expense {
   font-size: 16px;
-  padding: 10px 20px;
-  background-color: #008CBA; /* Light Blue color */
-  color: white;
+  padding: 10px 10px;
+  background-color: transparent; /* Light Blue color */
+  color: #008CBA;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -46,8 +46,7 @@
 }
 
 .button-edit-expense:hover {
-  background-color: #007B9E; /* Darker Blue color on hover */
-  transform: scale(1.05); /* Slightly increase size on hover */
+  transform: scale(1.2); /* Slightly increase size on hover */
 }
 
 .button-edit-expense:focus {
@@ -76,7 +75,7 @@
 }
 
 .button-expense-edit-save {
-  font-size: 16px;
+  font-size: 18px;
   padding: 10px 20px;
   background-color: #4CAF50; /* Green color */
   color: white;
@@ -97,9 +96,8 @@
 
 .button-delete-expense {
   font-size: 16px;
-  padding: 10px 20px;
-  background-color: #ff6347; /* Tomato color */
-  color: white;
+  background-color: transparent; /* Tomato color */
+  color: #ff6347;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -107,8 +105,7 @@
 }
 
 .button-delete-expense:hover {
-  background-color: #ff4500; /* Orangered color on hover */
-  transform: scale(1.05); /* Slightly increase size on hover */
+  transform: scale(1.2); /* Slightly increase size on hover */
 }
 
 .button-delete-expense:focus {
