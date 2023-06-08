@@ -14,7 +14,8 @@ const CreateUserForm = () => {
     username: "",
     password: "",
     phoneNumber: "",
-    defaultBudget: ""
+    defaultBudget: "",
+    roleIdInt: 1
   });
 
   const handleChange = (e) => {
@@ -78,6 +79,19 @@ const CreateUserForm = () => {
             <div >
               <form>
                 {<div className="error-message">{error}</div>}
+                <div className="create-chat-input-container">
+                  <label >Role</label>
+                  <select
+                    className="create-chat-input"
+                    name="roleIdInt"
+                    value={user.roleIdInt}
+                    onChange={handleChange}
+                  >
+                    <option className="item-value-expense" value="1">Admin</option>
+                    <option className="item-value-expense" value="2">Manager</option>
+                    <option className="item-value-expense" value="3">Employee</option>
+                  </select>
+                </div>
                 <div className="create-chat-input-container">
                   <label htmlFor="firstName">First Name</label>
                   <input
