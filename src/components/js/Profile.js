@@ -584,7 +584,7 @@ const Profile = () => {
                           <div className="profile-info">
                             <div className="tab-list account-info-list">
                               <div>
-                                <span className="account-info-item">Default Budget::</span>
+                                <span className="account-info-item">Default Budget:</span>
                                 <span className="account-info">{user.defaultBudget}</span>
                               </div>
                             </div>
