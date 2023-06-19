@@ -22,8 +22,9 @@ const Navbar = () => {
   const handleAbout = () => {
     navigate("/about");
   };
-
-
+  const handleUserManagement = () => {
+    navigate("/userManagement");
+  };
 
   return (
     <nav className="navbar-container">
@@ -48,6 +49,9 @@ const Navbar = () => {
         </div>
         <div className={(isCurrentPath('/expenses') || isCurrentPath('/expenses/add')) ? 'login-chat-header active' : 'login-chat-header'}>
           <button className="navbar-item" onClick={handleExpenses}>Expenses</button>
+        </div>
+        <div className={(isCurrentPath('/userManagement') && JSON.parse(localStorage.getItem("user")).role.roleId === 1) ? 'login-chat-header active' : 'login-chat-header'}>
+          <button className="navbar-item" onClick={handleUserManagement}>User Management</button>
         </div>
         <div className={isCurrentPath('/about') ? 'login-chat-header active' : 'login-chat-header'}>
           <button className="navbar-item" onClick={handleAbout}>About</button>

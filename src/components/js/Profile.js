@@ -120,7 +120,15 @@ const ContactInfoEdit = ({ formState, setFormState, onConfirm, onCancel, error }
 const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, error }) => {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormState(prevState => ({ ...prevState, [id]: value }));
+    if (id === "role.roleId") {
+      // Update the formState.role.roleId value with the selected value
+      setFormState((prevState) => ({ ...prevState,
+        role: { ...prevState.role, roleId: parseInt(value) }
+      }));
+    } else {
+      // For other inputs, update the formState normally
+      setFormState(prevState => ({ ...prevState, [id]: value }));
+    }
   };
 
   return (
@@ -143,6 +151,19 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
                     value={formState.defaultBudget}
                     onChange={handleInputChange}
                   />
+                </div>
+                <div className="create-chat-input-container">
+                  <label1 className="item-label" htmlFor="firstName">Role</label1>
+                  <select
+                    className="item-value"
+                    id="role.roleId"
+                    value={String(formState.role.roleId)}
+                    onChange={handleInputChange}
+                  >
+                    <option className="item-value-expense" value="1">Admin</option>
+                    <option className="item-value-expense" value="2">Manager</option>
+                    <option className="item-value-expense" value="3">Employee</option>
+                  </select>
                 </div>
                 <div className="create-chat-button-containers">
                   <button className="login-chat-button" onClick={onConfirm}>Save</button>
@@ -586,6 +607,10 @@ const Profile = () => {
                               <div>
                                 <span className="account-info-item">Default Budget:</span>
                                 <span className="account-info">{user.defaultBudget}</span>
+                              </div>
+                              <div>
+                                <span className="account-info-item">Role:</span>
+                                <span className="account-info">{user.role.roleName}</span>
                               </div>
                             </div>
                           </div>

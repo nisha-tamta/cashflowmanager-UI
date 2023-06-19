@@ -10,6 +10,7 @@ import DashboardPage from "./components/js/DashboardPage";
 import Profile from "./components/js/Profile";
 import AddExpense from "./components/js/AddExpense";
 import SetBudget from "./components/js/SetBudget";
+import UserManagement from "./components/js/UserManagement";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,14 @@ const App = () => {
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
               <AboutPage />
+            </Protected>
+          }
+        />
+         <Route
+          path="/userManagement"
+          element={
+            <Protected isLoggedIn={localStorage.getItem("user")}>
+              <UserManagement />
             </Protected>
           }
         />

@@ -212,6 +212,9 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
               Amount {sortColumn === "amount" && sortDirection === "asc" && "▲"}
               {sortColumn === "amount" && sortDirection === "desc" && "▼"}
             </th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -278,7 +281,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
                 )}
               </td>
               {selectedExpenseId === expense.id ? (
-                <>
+                <> Actions
                   <button className="button-expense-edit-save" onClick={() => handleSaveExpense(expense.id)}>
                     <FontAwesomeIcon icon={faSave} />
                   </button>

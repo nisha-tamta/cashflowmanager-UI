@@ -1,0 +1,97 @@
+/* .container {
+    margin: 20px;
+  }
+  
+  .homescreen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content-container {
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 5px;
+    margin-right: 5px;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    color: #666;
+  }
+  
+  .form-field {
+    margin-bottom: 10px;
+  }
+  
+  .form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-field input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button[type="submit"] {
+    padding: 5px 10px;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  button[type="submit"],
+  button[type="button"] {
+    margin-right: 5px;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #ccc;
+  }
+   */
