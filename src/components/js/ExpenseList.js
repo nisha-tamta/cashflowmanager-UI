@@ -281,7 +281,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
                 )}
               </td>
               {selectedExpenseId === expense.id ? (
-                <> Actions
+                <>
                   <button className="button-expense-edit-save" onClick={() => handleSaveExpense(expense.id)}>
                     <FontAwesomeIcon icon={faSave} />
                   </button>
