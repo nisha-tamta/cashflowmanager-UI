@@ -18,14 +18,14 @@ const AboutPage = () => {
           </header>
           <section className="content-chat-container">
             <div className="info-box">
-              <h2>Welcome to Expense Tracker</h2>
+              <h2>Welcome to Expense Tracker Business</h2>
               <p>Expense Tracker is a user-friendly web-based application designed to simplify expense management. We understand the challenges of budgeting, tracking expenses, and achieving financial goals. Our platform offers comprehensive features, including expense tracking, budget setting, and spending analysis. With a modern and intuitive interface, we prioritize visual appeal and user-friendliness.</p>
 
-              <h2>Why Expense Tracker?</h2>
-              <p>Take control of your finances, make informed decisions, and work towards your financial goals with Expense Tracker. Start managing your expenses effortlessly today.</p>
+              <h2>Why Expense Tracker Business?</h2>
+              <p>Take control of your finances, make informed decisions, and work towards your financial goals with Expense Tracker Business. Start managing your expenses effortlessly today.</p>
 
               <h2>Join Us Today</h2>
-              <p>Experience the power of Expense Tracker today and take control of your financial future.</p>
+              <p>Experience the power of Expense Tracker Business today and take control of your financial future.</p>
             </div>
           </section>
         </div>

@@ -521,7 +521,7 @@ const Profile = () => {
           }
           <div className="content-header">
             <h1>My Account</h1>
-            <h6>Info about you and your preferences across Expense Tracker</h6>
+            <h6>Info about you and your preferences across Expense Tracker Business</h6>
           </div>
           <div>
             <div className="content-chat-container">
