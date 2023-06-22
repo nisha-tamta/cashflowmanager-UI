@@ -87,9 +87,8 @@ const CreateUserForm = () => {
                     value={user.roleIdInt}
                     onChange={handleChange}
                   >
-                    <option className="item-value-expense" value="1">Admin</option>
-                    <option className="item-value-expense" value="2">Manager</option>
-                    <option className="item-value-expense" value="3">Employee</option>
+                    <option className="item-value-expense" value="1">System Administrator</option>
+                    <option className="item-value-expense" value="2">User</option>
                   </select>
                 </div>
                 <div className="create-chat-input-container">

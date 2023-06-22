@@ -68,16 +68,16 @@ const AddExpensePage = () => {
         <div className="content-profile-container">
           <div className="content-header">
             <h1>Add Expense</h1>
-          </div>
-          <div className="add-expense-content">
-            {error && <div className="error-message">{error}</div>}
-            <div >
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <label className="item-label-expense">
-                    Category:{" "}
+            <div className="create-chat-body">
+              {error && <div className="error-message">{error}</div>}
+              <div >
+                <form onSubmit={handleSubmit}>
+                  <div className="create-chat-input-container">
+                    <label>
+                      Category:{" "}
+                    </label>
                     <select
-                      className="item-value-expense"
+                      className="create-chat-input"
                       name="category"
                       value={expenseData.category}
                       onChange={handleChange}
@@ -88,53 +88,55 @@ const AddExpensePage = () => {
                       <option className="item-value-expense" value={ExpenseCategory.TRAVEL}>Travel</option>
                       <option className="item-value-expense" value={ExpenseCategory.ENTERTAINMENT}>Entertainment</option>
                     </select>
-                  </label>
-                </div>
-                <div>
-                  <label className="item-label-expense">
-                    Description:{" "}
+                  </div>
+                  <div className="create-chat-input-container">
+                    <label>
+                      Description:{" "}
+                    </label>
                     <input
-                      className="item-value-expense"
+                      className="create-chat-input"
                       type="text"
                       name="description"
                       value={expenseData.description}
                       onChange={handleChange}
                     />
-                  </label>
-                </div>
-                <div>
-                  <label className="item-label-expense">
-                    Amount:{" "}
+                  </div>
+                  <div className="create-chat-input-container">
+                    <label>
+                      Amount:{" "}
+                    </label>
                     <input
-                      className="item-value-expense"
+                      className="create-chat-input"
                       type="number"
                       name="amount"
                       value={expenseData.amount}
                       onChange={handleChange}
                     />
-                  </label>
-                </div>
-                <div>
-                  <label className="item-label-expense">
-                    Date:{" "}
+                  </div>
+                  <div className="create-chat-input-container">
+                    <label >
+                      Date:{" "}
+                    </label>
                     <input
-                      className="item-value-expense"
+                      className="create-chat-input"
                       type="date"
                       name="date"
                       value={expenseData.date}
                       onChange={handleChange}
                     />
-                  </label>
-                </div>
-                <div className="add-expense-buttons">
-                  <button type="submit" className="reset-password-form-button">Add Expense</button>
-                  <button type="button" className="reset-password-form-button" onClick={handleCancel}>
-                    Cancel
-                  </button>
-                </div>
-              </form>
+                  </div>
+                  <div className="add-expense-buttons">
+                    <button type="submit" className="create-chat-button">Add Expense</button>
+                    <span className="button-spacing"></span>
+                    <button type="button" className="cancel-button" onClick={handleCancel}>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

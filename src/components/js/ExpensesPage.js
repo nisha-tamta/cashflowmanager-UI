@@ -101,7 +101,7 @@ const ExpensesPage = () => {
             <h1>Expenses</h1>
             <h6>Info about your expenses</h6>
           </div>
-          <button onClick={handleAddExpense} className="reset-password-button" > Add Expense </button>
+          <button onClick={handleAddExpense} className="add-expense-button" > Add Expense </button>
           <div className="content-chat-container">
             <div className="tab-container">
               <div

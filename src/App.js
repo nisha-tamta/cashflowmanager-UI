@@ -11,6 +11,7 @@ import Profile from "./components/js/Profile";
 import AddExpense from "./components/js/AddExpense";
 import SetBudget from "./components/js/SetBudget";
 import UserManagement from "./components/js/UserManagement";
+import UserManagementAdd from "./components/js/UserManagementAdd";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -56,6 +57,14 @@ const App = () => {
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
               <UserManagement />
+            </Protected>
+          }
+        />
+         <Route
+          path="/userManagement/add"
+          element={
+            <Protected isLoggedIn={localStorage.getItem("user")}>
+              <UserManagementAdd />
             </Protected>
           }
         />

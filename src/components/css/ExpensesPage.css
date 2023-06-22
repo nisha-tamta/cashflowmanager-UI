@@ -6,44 +6,29 @@
 
 .add-expense-button {
   position: fixed;
-  /* Set position to fixed for absolute positioning */
-  top: 16px;
-  /* Set distance from top */
-  right: 16px;
-  /* Set distance from right */
+  top: 30px;
+  right: 30px;
   color: #ffffff;
-  /* Set text color to white */
-  background-color: #ed905d;
-  /* Set background color to a soft red */
+  background-color: #3d85c6;
   padding: 12px 20px;
-  /* Add padding for spacing */
   border: none;
-  /* Remove border */
   border-radius: 5px;
-  /* Add border radius for rounded edges */
   cursor: pointer;
-  /* Add cursor pointer on hover */
   text-decoration: none;
-  /* Remove underline from link */
   font-size: 16px;
-  /* Set font size */
   font-weight: bold;
-  /* Set font weight to bold */
   transition: background-color 0.3s ease, transform 0.3s ease;
-  /* Add smooth transition effect for background color and transform */
 }
 
 .add-expense-button:hover {
   background-color: #f4da52;
-  /* Change background color on hover */
   transform: scale(1.05);
-  /* Add slight scale effect on hover */
 }
 
 .add-expense-button:focus {
   outline: none;
-  /* Remove default outline on focus */
 }
+
 
 /* ExpensesPage.css */
 

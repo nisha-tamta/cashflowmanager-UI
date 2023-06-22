@@ -146,14 +146,28 @@ const UserManagement = () => {
         }
     };
 
+    const handleAddAccount = () => {
+        navigate("/userManagement/add");
+    };
+
     return (
         <div className="container">
             <NavBar />
             <div className="homescreen-container">
-                <div className="content-container">
+                <div className="content-user-mngmnt-container">
                     <div className="content-header">
-                        <h1>User Management</h1>
-                        <h6>Info about the users</h6>
+                        <h1>Account Management</h1>
+                        <h6>Info about the Expense Tracker Business accounts</h6>
+                    </div>
+                    <div className="content-header">
+                        <div className="buttons-container">
+                            <button
+                                onClick={handleAddAccount}
+                                className="add-expense-button"
+                            >
+                                Add Account
+                            </button>
+                        </div>
                     </div>
                     {error && <div className="error-message">{error}</div>}
                     {/* User List */}
@@ -314,17 +328,23 @@ const UserManagement = () => {
                                         style={{ border: "1px solid black", padding: "8px" }}
                                     >
                                         {editUser && editUser.id === user.id ? (
-                                            <input
+                                            <select
                                                 className="item-value-expense-edit"
-                                                type="text"
-                                                value={editUser.role.roleName}
+                                                name="roleIdInt"
+                                                value={editUser.role.roleId}
                                                 onChange={(e) =>
                                                     setEditUser({
                                                         ...editUser,
-                                                        role: e.target.value
+                                                        role: {
+                                                            roleId: e.target.value,
+                                                            roleName: e.target.options[e.target.selectedIndex].text
+                                                        }
                                                     })
                                                 }
-                                            />
+                                            >
+                                                <option className="item-value-expense" value="1">System Administrator</option>
+                                                <option className="item-value-expense" value="2">User</option>
+                                            </select>
                                         ) : (
                                             user.role.roleName
                                         )}
@@ -371,44 +391,6 @@ const UserManagement = () => {
                             ))}
                         </tbody>
                     </table>
-                    {/* Create User Form */}
-                    <h3>Create User</h3>
-                    <form onSubmit={handleCreateUser}>
-                        <div>
-                            <label htmlFor="username">Username:</label>
-                            <input
-                                type="text"
-                                id="username"
-                                value={newUser.username}
-                                onChange={(e) =>
-                                    setNewUser({ ...newUser, username: e.target.value })
-                                }
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="name">Name:</label>
-                            <input
-                                type="text"
-                                id="name"
-                                value={newUser.name}
-                                onChange={(e) =>
-                                    setNewUser({ ...newUser, name: e.target.value })
-                                }
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="role">Role:</label>
-                            <input
-                                type="text"
-                                id="role"
-                                value={newUser.role}
-                                onChange={(e) =>
-                                    setNewUser({ ...newUser, role: e.target.value })
-                                }
-                            />
-                        </div>
-                        <button type="submit">Create</button>
-                    </form>
                 </div>
             </div>
         </div>

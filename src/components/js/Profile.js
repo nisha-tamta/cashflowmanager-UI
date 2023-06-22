@@ -152,19 +152,30 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
                     onChange={handleInputChange}
                   />
                 </div>
-                <div className="create-chat-input-container">
-                  <label1 className="item-label" htmlFor="firstName">Role</label1>
-                  <select
-                    className="item-value"
-                    id="role.roleId"
-                    value={String(formState.role.roleId)}
-                    onChange={handleInputChange}
-                  >
-                    <option className="item-value-expense" value="1">Admin</option>
-                    <option className="item-value-expense" value="2">Manager</option>
-                    <option className="item-value-expense" value="3">Employee</option>
-                  </select>
-                </div>
+                {JSON.parse(localStorage.getItem("user"))?.role.roleId === 1 ? (
+                  <div className="create-chat-input-container">
+                    <label1 className="item-label" htmlFor="firstName">Role</label1>
+                    <select
+                      className="item-value"
+                      id="role.roleId"
+                      value={String(formState.role.roleId)}
+                      onChange={handleInputChange}
+                    >
+                      <option className="item-value-expense" value="1">System Administrator</option>
+                      <option className="item-value-expense" value="2">User</option>
+                    </select> 
+                  </div>
+                ) : (
+                  <div className="create-chat-input-container">
+                    <label1 className="item-label" htmlFor="firstName">Role</label1>
+                    <input
+                      className="item-value"
+                      type="text"
+                      readOnly
+                      value={JSON.parse(localStorage.getItem("user"))?.role.roleName}
+                    />
+                  </div>
+                )}
                 <div className="create-chat-button-containers">
                   <button className="login-chat-button" onClick={onConfirm}>Save</button>
                   <span className="button-spacing"></span>
@@ -177,6 +188,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
       </div>
     </div>
   );
+    
 };
 
 const ResetPasswordEdit = ({ oldPassword, newPassword, confirmPassword, setOldPassword, setNewPassword, setConfirmPassword, onConfirm, onCancel, error }) => {
@@ -618,7 +630,7 @@ const Profile = () => {
                       </div>
                     </div>
                     <div>
-                      <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
+                      <button onClick={handleResetPassword} className="add-expense-button" >Reset Password</button>
                       {showResetPasswordEdit && (
                         <ResetPasswordEdit
                           oldPassword={oldPassword}
