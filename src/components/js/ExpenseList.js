@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPencilAlt, faSave, faSdCard } from '@fortawesome/free-solid-svg-icons'
@@ -13,6 +13,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
   const [sortColumn, setSortColumn] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
   const [selectedExpenseId, setSelectedExpenseId] = useState(null);
+  const [employees, setEmployees] = useState([]);
   const [editedExpenseValue, setEditedExpenseValue] = useState({
     date: "",
     category: "",
@@ -30,6 +31,27 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     SUBSCRIPTIONSANDFEES: "Subscriptions and Fees",
     TAXESANDINSURANCE: "Taxes and Insurance",
     OTHERS: "Others"
+  };
+
+  useEffect(() => {
+    // Fetch employees on component mount
+    getEmployees().then(setEmployees);
+  }, []);
+
+  const getEmployees = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/employee/all");
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        const errorText = await response.text();
+        throw new Error(errorText || "Error during getting Employees");
+      }
+    } catch (error) {
+      console.error("Error during getting Employees: ", error);
+      return [];
+    }
   };
 
   const handleFilterCategoryChange = (e) => {
@@ -55,11 +77,13 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
 
   const handleEditExpense = (expenseId) => {
     setSelectedExpenseId(expenseId);
+    const expense = expenses.find((expense) => expense.id === expenseId);
     setEditedExpenseValue({
-      date: expenses.find((expense) => expense.id === expenseId).date,
-      category: expenses.find((expense) => expense.id === expenseId).category,
-      description: expenses.find((expense) => expense.id === expenseId).description,
-      amount: expenses.find((expense) => expense.id === expenseId).amount,
+      date: expense.date,
+      category: expense.category,
+      description: expense.description,
+      amount: expense.amount,
+      employee: expense.employee
     });
   };
 
@@ -269,6 +293,28 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
                   expense.category
                 )}
               </td>
+              {/* {selectedExpenseId === expense.id ? (
+                expense.category === ExpenseCategory.PERSONNELCOSTS ? (
+                  <select
+                    className="item-value-expense-edit"
+                    value={editedExpenseValue.employee ? editedExpenseValue.employee.id : ""}
+                    onChange={(e) => {
+                      const selectedEmployee = employees.find((employee) => employee.id === parseInt(e.target.value));
+                      setEditedExpenseValue((prevValue) => ({
+                        ...prevValue,
+                        employee: selectedEmployee
+                      }));
+                    }}
+                  >
+                    <option value="">Select Employee</option>
+                    {employees.map((employee) => (
+                      <option key={employee.id} value={employee.id}>
+                        {employee.name}
+                      </option>
+                    ))}
+                  </select>
+                ) : null
+              ) : null} */}
               <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {selectedExpenseId === expense.id ? (
                   <input

@@ -81,8 +81,16 @@ const EmployeeAdd = () => {
                                             value={employee.departmentIdInt}
                                             onChange={handleChange}
                                         >
-                                            <option className="item-value-expense" value="1">Management</option>
-                                            <option className="item-value-expense" value="2">Operations</option>
+                                            <option className="item-value-expense" value="1" title="Responsible for financial management and accounting">Finance Department</option>
+                                            <option className="item-value-expense" value="2" title="Handles employee recruitment, benefits, and personnel management">Human Resources (HR) Department</option>
+                                            <option className="item-value-expense" value="3" title="Plans and executes marketing strategies and campaigns">Marketing Department</option>
+                                            <option className="item-value-expense" value="4" title="Manages day-to-day business operations">Operations Department</option>
+                                            <option className="item-value-expense" value="5" title="Focuses on generating sales and meeting revenue targets">Sales Department</option>
+                                            <option className="item-value-expense" value="6" title="Handles technology infrastructure and software development">IT Department</option>
+                                            <option className="item-value-expense" value="7" title="Manages administrative tasks and office operations">Administration Department</option>
+                                            <option className="item-value-expense" value="8" title="Handles legal matters and ensures compliance with laws and regulations">Legal Department</option>
+                                            <option className="item-value-expense" value="9" title="Engages in research and development activities to drive innovation">Research and Development (R&D) Department</option>
+                                            <option className="item-value-expense" value="10" title="Provides assistance and support to customers">Customer Support Department</option>
                                         </select>
                                     </div>
                                     <div className="create-chat-input-container">
