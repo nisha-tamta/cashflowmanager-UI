@@ -9,13 +9,7 @@ const UserManagement = () => {
     const navigate = useNavigate();
     const [error, setError] = useState("");
     const [users, setUsers] = useState([]);
-    const [newUser, setNewUser] = useState({
-        username: "",
-        name: "",
-        role: ""
-    });
     const [editUser, setEditUser] = useState(null);
-    const [deleteUser, setDeleteUser] = useState(null);
 
     useEffect(() => {
         // Fetch the list of users from the server
@@ -25,35 +19,6 @@ const UserManagement = () => {
         };
         fetchData();
     }, []);
-
-    const handleCreateUser = async () => {
-        try {
-            const response = await fetch("http://localhost:8080/api/user/create", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newUser)
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log("User created successfully: ", data);
-                navigate("/login");
-            } else {
-                const errorText = await response.text();
-                throw new Error(errorText || "Error during user creation");
-            }
-        } catch (error) {
-            console.error("Error during user creation: ", error);
-            setError(error.message);
-        }
-
-        // Reset the form and update the user list
-        setNewUser({ username: "", name: "", role: "" });
-        const updatedUsers = await getUsers();
-        setUsers(updatedUsers);
-    };
 
     const getUsers = async () => {
         try {
@@ -137,7 +102,6 @@ const UserManagement = () => {
         }
 
         // Clear the deleteUser state and update the user list
-        setDeleteUser(null);
         const updatedUsers = await getUsers();
         setUsers(updatedUsers);
         if (user.id === currentUser.id) {
@@ -290,7 +254,7 @@ const UserManagement = () => {
                                         {editUser && editUser.id === user.id ? (
                                             <input
                                                 className="item-value-expense-edit"
-                                                type="text"
+                                                type="number"
                                                 value={editUser.phoneNumber}
                                                 onChange={(e) =>
                                                     setEditUser({
@@ -310,7 +274,7 @@ const UserManagement = () => {
                                         {editUser && editUser.id === user.id ? (
                                             <input
                                                 className="item-value-expense-edit"
-                                                type="text"
+                                                type="number"
                                                 value={editUser.defaultBudget}
                                                 onChange={(e) =>
                                                     setEditUser({
@@ -342,7 +306,7 @@ const UserManagement = () => {
                                                     })
                                                 }
                                             >
-                                                <option className="item-value-expense" value="1">System Administrator</option>
+                                                <option className="item-value-expense" value="1">Administrator</option>
                                                 <option className="item-value-expense" value="2">User</option>
                                             </select>
                                         ) : (

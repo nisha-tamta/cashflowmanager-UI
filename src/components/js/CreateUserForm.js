@@ -87,7 +87,7 @@ const CreateUserForm = () => {
                     value={user.roleIdInt}
                     onChange={handleChange}
                   >
-                    <option className="item-value-expense" value="1">System Administrator</option>
+                    <option className="item-value-expense" value="1">Administrator</option>
                     <option className="item-value-expense" value="2">User</option>
                   </select>
                 </div>

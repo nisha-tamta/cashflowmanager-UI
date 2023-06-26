@@ -5,66 +5,53 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import "../css/AddExpense.css";
 
-const UserManagementAdd = () => {
+const EmployeeAdd = () => {
     const navigate = useNavigate();
     const [error, setError] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [user, setUser] = useState({
-        firstName: "",
-        lastName: "",
+    const [employee, setEmployee] = useState({
+        name: "",
         emailAddress: "",
-        username: "",
-        password: "",
         phoneNumber: "",
-        defaultBudget: "",
-        roleIdInt: 1
+        departmentIdInt: 1
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setUser({ ...user, [name]: value });
+        setEmployee({ ...employee, [name]: value });
     };
-
-    const handleConfirmPasswordChange = (e) => {
-        setConfirmPassword(e.target.value);
-    }
 
     const [notification, setNotification] = useState({ message: "", visible: false });
 
     const handleSubmit = () => {
-        if (user.password !== confirmPassword) {  // Checking if passwords match
-            setError("Passwords do not match");
-            return;
-        }
-        fetch("http://localhost:8080/api/user/create", {
+        fetch("http://localhost:8080/api/employee/create", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(employee),
         })
             .then((response) => {
                 if (response.ok) {
                     return response.json();
                 } else {
                     return response.text().then(errorText => {
-                        throw new Error(errorText || "Error during user creation");
+                        throw new Error(errorText || "Error during employee creation");
                     });
                 }
             })
             .then((data) => {
-                setNotification({ message: 'Account added!', visible: true });
-                navigate("/userManagement", { state: { message: 'Account added!' } });
+                setNotification({ message: 'Employee added!', visible: true });
+                navigate("/employees", { state: { message: 'Employee added!' } });
             })
             .catch((error) => {
-                console.error("Error during user creation: ", error);
+                console.error("Error during employee creation: ", error);
                 setError(error.message);
             });
     };
 
     const handleCancel = () => {
-        navigate("/userManagement");
+        navigate("/employees");
     };
 
     return (
@@ -81,53 +68,31 @@ const UserManagementAdd = () => {
                         </div>
                     }
                     <div className="content-header">
-                        <h1>Add Acccount</h1>
+                        <h1>Add Employee</h1>
                         <div className="create-chat-body">
                             <div >
                                 <form>
                                     {<div className="error-message">{error}</div>}
                                     <div className="create-chat-input-container">
-                                        <label >Role</label>
+                                        <label >Department</label>
                                         <select
                                             className="create-chat-input"
-                                            name="roleIdInt"
-                                            value={user.roleIdInt}
+                                            name="departmentIdInt"
+                                            value={employee.departmentIdInt}
                                             onChange={handleChange}
                                         >
-                                            <option className="item-value-expense" value="1">Administrator</option>
-                                            <option className="item-value-expense" value="2">User</option>
+                                            <option className="item-value-expense" value="1">Management</option>
+                                            <option className="item-value-expense" value="2">Operations</option>
                                         </select>
                                     </div>
                                     <div className="create-chat-input-container">
-                                        <label htmlFor="firstName">First Name</label>
+                                        <label htmlFor="name">Name</label>
                                         <input
                                             className="create-chat-input"
                                             type="text"
-                                            id="firstName"
-                                            name="firstName"
-                                            value={user.firstName}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div className="create-chat-input-container">
-                                        <label htmlFor="lastName">Last Name</label>
-                                        <input
-                                            className="create-chat-input"
-                                            type="text"
-                                            id="lastName"
-                                            name="lastName"
-                                            value={user.lastName}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div className="create-chat-input-container">
-                                        <label htmlFor="username">Username</label>
-                                        <input
-                                            className="create-chat-input"
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            value={user.username}
+                                            id="name"
+                                            name="name"
+                                            value={employee.name}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -138,7 +103,7 @@ const UserManagementAdd = () => {
                                             type="text"
                                             id="emailAddress"
                                             name="emailAddress"
-                                            value={user.emailAddress}
+                                            value={employee.emailAddress}
                                             onChange={handleChange}
                                         />
                                     </div>
@@ -149,35 +114,14 @@ const UserManagementAdd = () => {
                                             type="number"
                                             id="phoneNumber"
                                             name="phoneNumber"
-                                            value={user.phoneNumber}
+                                            value={employee.phoneNumber}
                                             onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div className="create-chat-input-container">
-                                        <label htmlFor="password">Password</label>
-                                        <input
-                                            className="create-chat-input"
-                                            type="password"
-                                            id="password"
-                                            name="password"
-                                            value={user.password}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
-                                    <div className="create-chat-input-container">
-                                        <label htmlFor="confirmPassword">Confirm Password</label>
-                                        <input
-                                            className="create-chat-input"
-                                            type="password"
-                                            id="confirmPassword"
-                                            value={confirmPassword}
-                                            onChange={handleConfirmPasswordChange}
                                         />
                                     </div>
                                 </form >
                                 <div className="create-chat-button-containers">
                                     <button onClick={handleSubmit} className="create-chat-button" >
-                                        Create User
+                                        Create Employee
                                     </button>
                                     <span className="button-spacing"></span>
                                     <button onClick={handleCancel} type="submit" className="cancel-button">
@@ -193,19 +137,4 @@ const UserManagementAdd = () => {
     );
 };
 
-const Month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-];
-
-export default UserManagementAdd;
+export default EmployeeAdd;

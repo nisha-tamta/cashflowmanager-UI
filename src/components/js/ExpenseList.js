@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faPencilAlt, faSave,faSdCard  } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faPencilAlt, faSave, faSdCard } from '@fortawesome/free-solid-svg-icons'
 import "../css/ExpenseList.css";
 
 const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
@@ -19,6 +19,18 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     description: "",
     amount: ""
   });
+
+  // Enum for categories
+  const ExpenseCategory = {
+    PERSONNELCOSTS: "Personnel Costs",
+    OPERATIONALCOSTS: "Operational Costs",
+    PROFESSIONALSERVICES: "Professional Services",
+    MARKETINGANDCOMMUNICATION: "Marketing and Communication",
+    TRAVELANDENTERTAINMENT: "Travel and Entertainment",
+    SUBSCRIPTIONSANDFEES: "Subscriptions and Fees",
+    TAXESANDINSURANCE: "Taxes and Insurance",
+    OTHERS: "Others"
+  };
 
   const handleFilterCategoryChange = (e) => {
     setFilterCategory(e.target.value);
@@ -243,10 +255,15 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
                       setEditedExpenseValue({ ...editedExpenseValue, category: e.target.value })
                     }
                   >
-                    <option className="item-value-expense-edit" value="Food">Food</option>
-                    <option className="item-value-expense-edit" value="Rent">Rent</option>
-                    <option className="item-value-expense-edit" value="Travel">Travel</option>
-                    <option className="item-value-expense-edit" value="Entertainment">Entertainment</option>
+                    <option className="item-value-expense" value="">Select Category</option>
+                    <option className="item-value-expense" value={ExpenseCategory.PERSONNELCOSTS} title="Expenses related to salaries, benefits, etc.">Personnel Costs</option>
+                    <option className="item-value-expense" value={ExpenseCategory.OPERATIONALCOSTS} title="Day-to-day business expenses like rent, utilities etc.">Operational Costs</option>
+                    <option className="item-value-expense" value={ExpenseCategory.PROFESSIONALSERVICES} title="Fees paid for services like legal, accounting, etc.">Professional Services</option>
+                    <option className="item-value-expense" value={ExpenseCategory.MARKETINGANDCOMMUNICATION} title="Expenses related to marketing, advertising, public relations, etc.">Marketing and Communication</option>
+                    <option className="item-value-expense" value={ExpenseCategory.TRAVELANDENTERTAINMENT} title="Expenses related to business trips, client meetings, entertainment, etc.">Travel and Entertainment</option>
+                    <option className="item-value-expense" value={ExpenseCategory.SUBSCRIPTIONSANDFEES} title="Expenses related to business subscriptions like software, memberships, etc.">Subscriptions and Fees</option>
+                    <option className="item-value-expense" value={ExpenseCategory.TAXESANDINSURANCE} title="Business taxes, licenses and insurance expenses.">Taxes and Insurance</option>
+                    <option className="item-value-expense" value={ExpenseCategory.OTHERS} title="Any other business-related expenses that don't fit into the other categories.">Others</option>
                   </select>
                 ) : (
                   expense.category

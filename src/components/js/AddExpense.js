@@ -1,25 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import "../css/AddExpense.css";
 
 // Enum for categories
 const ExpenseCategory = {
-  FOOD: "Food",
-  RENT: "Rent",
-  TRAVEL: "Travel",
-  ENTERTAINMENT: "Entertainment",
+  PERSONNELCOSTS: "Personnel Costs",
+  OPERATIONALCOSTS: "Operational Costs",
+  PROFESSIONALSERVICES: "Professional Services",
+  MARKETINGANDCOMMUNICATION: "Marketing and Communication",
+  TRAVELANDENTERTAINMENT: "Travel and Entertainment",
+  SUBSCRIPTIONSANDFEES: "Subscriptions and Fees",
+  TAXESANDINSURANCE: "Taxes and Insurance",
+  OTHERS: "Others"
 };
 
 const AddExpensePage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [employees, setEmployees] = useState([]);
   const [expenseData, setExpenseData] = useState({
     category: "",
     amount: "",
     date: "",
-    description: ""
+    description: "",
+    employee: ""
   });
+
+  useEffect(() => {
+    // Fetch employees on component mount
+    getEmployees().then(setEmployees);
+  }, []);
+
+  const getEmployees = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/employee/all");
+      if (response.ok) {
+        const data = await response.json();
+        return data;
+      } else {
+        const errorText = await response.text();
+        throw new Error(errorText || "Error during getting Employees");
+      }
+    } catch (error) {
+      console.error("Error during getting Employees: ", error);
+      return [];
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -32,6 +59,13 @@ const AddExpensePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userId = JSON.parse(localStorage.getItem("user")).id;
+    const adjustedExpenseData = { ...expenseData };
+    if (adjustedExpenseData.employee === "") {
+      adjustedExpenseData.employee = null;
+    } else {
+      adjustedExpenseData.employeeIdInt = expenseData.employee
+      adjustedExpenseData.employee = null;
+    }
     try {
       const response = await fetch(
         `http://localhost:8080/api/expenses?userId=${userId}`,
@@ -40,7 +74,7 @@ const AddExpensePage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(expenseData),
+          body: JSON.stringify(adjustedExpenseData),
         }
       );
 
@@ -83,12 +117,36 @@ const AddExpensePage = () => {
                       onChange={handleChange}
                     >
                       <option className="item-value-expense" value="">Select Category</option>
-                      <option className="item-value-expense" value={ExpenseCategory.FOOD}>Food</option>
-                      <option className="item-value-expense" value={ExpenseCategory.RENT}>Rent</option>
-                      <option className="item-value-expense" value={ExpenseCategory.TRAVEL}>Travel</option>
-                      <option className="item-value-expense" value={ExpenseCategory.ENTERTAINMENT}>Entertainment</option>
+                      <option className="item-value-expense" value={ExpenseCategory.PERSONNELCOSTS} title="Expenses related to salaries, benefits, etc.">Personnel Costs</option>
+                      <option className="item-value-expense" value={ExpenseCategory.OPERATIONALCOSTS} title="Day-to-day business expenses like rent, utilities etc.">Operational Costs</option>
+                      <option className="item-value-expense" value={ExpenseCategory.PROFESSIONALSERVICES} title="Fees paid for services like legal, accounting, etc.">Professional Services</option>
+                      <option className="item-value-expense" value={ExpenseCategory.MARKETINGANDCOMMUNICATION} title="Expenses related to marketing, advertising, public relations, etc.">Marketing and Communication</option>
+                      <option className="item-value-expense" value={ExpenseCategory.TRAVELANDENTERTAINMENT} title="Expenses related to business trips, client meetings, entertainment, etc.">Travel and Entertainment</option>
+                      <option className="item-value-expense" value={ExpenseCategory.SUBSCRIPTIONSANDFEES} title="Expenses related to business subscriptions like software, memberships, etc.">Subscriptions and Fees</option>
+                      <option className="item-value-expense" value={ExpenseCategory.TAXESANDINSURANCE} title="Business taxes, licenses and insurance expenses.">Taxes and Insurance</option>
+                      <option className="item-value-expense" value={ExpenseCategory.OTHERS} title="Any other business-related expenses that don't fit into the other categories.">Others</option>
                     </select>
                   </div>
+                  {expenseData.category === ExpenseCategory.PERSONNELCOSTS && (
+                    <div className="create-chat-input-container">
+                      <label>
+                        Employee:{" "}
+                      </label>
+                      <select
+                        className="create-chat-input"
+                        name="employee"
+                        value={expenseData.employee}
+                        onChange={handleChange}
+                      >
+                        <option value="">Select Employee</option>
+                        {employees.map((employee) => (
+                          <option key={employee.id} value={employee.id}>
+                            {employee.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                   <div className="create-chat-input-container">
                     <label>
                       Description:{" "}

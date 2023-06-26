@@ -161,7 +161,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
                       value={String(formState.role.roleId)}
                       onChange={handleInputChange}
                     >
-                      <option className="item-value-expense" value="1">System Administrator</option>
+                      <option className="item-value-expense" value="1">Administrator</option>
                       <option className="item-value-expense" value="2">User</option>
                     </select> 
                   </div>

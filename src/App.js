@@ -12,6 +12,8 @@ import AddExpense from "./components/js/AddExpense";
 import SetBudget from "./components/js/SetBudget";
 import UserManagement from "./components/js/UserManagement";
 import UserManagementAdd from "./components/js/UserManagementAdd";
+import Employees from "./components/js/Employees";
+import EmployeeAdd from "./components/js/EmployeeAdd";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -65,6 +67,22 @@ const App = () => {
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
               <UserManagementAdd />
+            </Protected>
+          }
+        />
+         <Route
+          path="/employees"
+          element={
+            <Protected isLoggedIn={localStorage.getItem("user")}>
+              <Employees />
+            </Protected>
+          }
+        />
+         <Route
+          path="/employees/add"
+          element={
+            <Protected isLoggedIn={localStorage.getItem("user")}>
+              <EmployeeAdd />
             </Protected>
           }
         />

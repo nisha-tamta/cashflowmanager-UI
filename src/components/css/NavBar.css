@@ -1,3 +1,28 @@
+
+.navbar-item {
+  color: #333333;
+  font-family: 'Times New Roman', Times, serif;
+  /* change the font-family */
+  font-size: 16px;
+  /* slightly bigger font size */
+  font-weight: 400;
+  /* less bold */
+  padding: 20px 15px;
+  /* more space around text */
+}
+
+.navbar-item:hover {
+  transform: scale(1.05);
+  /* a gentle zoom on hover */
+  transition: all 0.3s ease-in-out;
+  /* smooth transition */
+}
+
+.login-chat-header.active {
+  border-bottom: 3px solid #5d737e;
+  /* a more elegant active state */
+}
+
 .container {
   top: 0;
   left: 0;
@@ -8,6 +33,10 @@
 }
 
 .navbar-container {
+  background-color: #ffffff;
+  /* change the color for an elegant feel */
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  /* slightly more sophisticated shadow */
   background-color: #b4e2d6;
   top: 0;
   left: 0;
@@ -15,7 +44,7 @@
   z-index: 100;
   left: 0;
   top: 0;
-  width: 250px;
+  width: 300px;
   height: auto;
   min-height: 100%;
   display: flex;
@@ -46,7 +75,7 @@
   color: #333;
   font-family: Nunito, Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15.5px;
   padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -54,15 +83,14 @@
 }
 
 .navbar-item:hover {
-  background-color: white;
+/*   background-color: #b4e2d6; */
   width: 100%;
-  transform: scale(1);
+  transform: scale(1.04);
 }
 
 .login-chat-header.active {
   background-color: white;
-  transform: scale(1.2);
-  width: 110%;
+  width: 120%;
 }
 
 .navbar-item-logo {
@@ -71,7 +99,7 @@
   color: #333;
   font-family: Nunito, Helvetica, Arial, sans-serif;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15.5px;
   padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
