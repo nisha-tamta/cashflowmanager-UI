@@ -172,7 +172,7 @@ const ExpenseDetails = () => {
                   <div className="profile-sections">
                     <div className="profile-section">
                       <div>
-                        <div className="info-header">
+                        <div className="info-header-expense">
                           {editMode ? (
                             <div>
                               <h2 contentEditable={true} suppressContentEditableWarning={true} onBlur={handleInputChange}>
@@ -182,20 +182,11 @@ const ExpenseDetails = () => {
                           ) : (
                             <div>
                               <h2>{expense.description}</h2>
-                              <button className="button-edit-expense" onClick={() => handleEditExpense()}>
-                                <FontAwesomeIcon icon={faPencilAlt} />
-                              </button>
-                            </div>
-                          )}
-                          {editMode && (
-                            <div>
-                              <button className="button-expense-edit-save" onClick={() => handleSaveExpense()}>
-                                <FontAwesomeIcon icon={faSave} />
-                              </button>
-                              <span className="button-spacing"></span>
-                              <button className="button-expense-edit-cancel" onClick={() => handleCancelEditExpense()}>
-                                Cancel
-                              </button>
+                              {!editMode && (
+                                <button className="button-edit-expense" onClick={handleEditExpense}>
+                                  <FontAwesomeIcon icon={faPencilAlt} />
+                                </button>
+                              )}
                             </div>
                           )}
                         </div>
@@ -206,7 +197,7 @@ const ExpenseDetails = () => {
                                 <span className="account-info-item">Date:</span>
                                 {editMode ? (
                                   <input
-                                    className="create-chat-input"
+                                    className="create-chat-input-calendar"
                                     type="date"
                                     id="date"
                                     value={editedExpense.date}
@@ -243,7 +234,7 @@ const ExpenseDetails = () => {
                                     />
                                   ) : (
                                     <span className="account-info">{expense.employee.name}</span>
-                                  )}2
+                                  )}
                                 </div>
                               )}
                               <div>
@@ -265,8 +256,19 @@ const ExpenseDetails = () => {
                         </div>
                       </div>
                     </div>
+                    {editMode && (
+                      <div>
+                        <button className="button-expense-edit-save" onClick={handleSaveExpense}>
+                          <FontAwesomeIcon icon={faSave} />
+                        </button>
+                        <span className="button-spacing"></span>
+                        <button className="button-expense-edit-cancel" onClick={handleCancelEditExpense}>
+                          Cancel
+                        </button>
+                      </div>
+                    )}
                     <div>
-                      <button onClick={handleDeleteExpense} className="add-expense-button" >Delete Expense</button>
+                      <button onClick={handleDeleteExpense} className="add-expense-button">Delete Expense</button>
                       {showDeleteExpenseEdit &&
                         <DeleteExpenseEdit
                           onConfirm={handleDeleteExpenseEdit}

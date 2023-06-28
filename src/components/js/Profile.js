@@ -532,7 +532,7 @@ const Profile = () => {
                       <div className="info-box">
                         <div className="info-header">
                           <h2>Basic info</h2>
-                          <button onClick={handleBasicInfo} className="edit-profile-button">
+                          <button onClick={handleBasicInfo} className="button-edit-expense">
                             <FontAwesomeIcon icon={faPencilAlt} />
                           </button>
                           {showBasicInfoEdit && (
@@ -565,7 +565,7 @@ const Profile = () => {
                       <div className="info-box">
                         <div className="info-header">
                           <h2>Contact info</h2>
-                          <button onClick={handleContactInfo} className="edit-profile-button" >
+                          <button onClick={handleContactInfo} className="button-edit-expense" >
                             <FontAwesomeIcon icon={faPencilAlt} />
                           </button>
                           {showContactInfoEdit && (
@@ -599,7 +599,7 @@ const Profile = () => {
                         <div className="info-header">
                           <h2>Account settings</h2>
                           <div className="account-settings">
-                            <button onClick={handleAccountSettings} className="edit-profile-button" >
+                            <button onClick={handleAccountSettings} className="button-edit-expense" >
                               <FontAwesomeIcon icon={faPencilAlt} />
                             </button>
                             {showAccountSettingsEdit && (
