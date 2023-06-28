@@ -174,13 +174,15 @@ const ExpenseDetails = () => {
                       <div>
                         <div className="info-header-expense">
                           {editMode ? (
-                            <div>
-                              <h2 contentEditable={true} suppressContentEditableWarning={true} onBlur={handleInputChange}>
-                                {editedExpense.description}
-                              </h2>
-                            </div>
+                            <input
+                              className="info-header-expense"
+                              type="text"
+                              id="description"
+                              value={editedExpense.description}
+                              onChange={handleInputChange}
+                            />
                           ) : (
-                            <div>
+                            <div className="description-wrapper">
                               <h2>{expense.description}</h2>
                               {!editMode && (
                                 <button className="button-edit-expense" onClick={handleEditExpense}>
@@ -197,7 +199,7 @@ const ExpenseDetails = () => {
                                 <span className="account-info-item">Date:</span>
                                 {editMode ? (
                                   <input
-                                    className="create-chat-input-calendar"
+                                    className="create-chat-input"
                                     type="date"
                                     id="date"
                                     value={editedExpense.date}
@@ -249,6 +251,22 @@ const ExpenseDetails = () => {
                                   />
                                 ) : (
                                   <span className="account-info">{expense.amount}</span>
+                                )}
+                              </div>
+                              <div>
+                                <span className={editMode ? "account-info-item-blurred" : "account-info-item-blurred"}>Notes...</span>
+                                {editMode ? (
+                                  <textarea
+                                    className="note-display account-info-blurred"
+                                    id="notes"
+                                    rows="2"
+                                    value={editedExpense.notes}
+                                    onChange={handleInputChange}
+                                  />
+                                ) : (
+                                  <div className={editMode ? "account-info" : "note-display account-info-blurred"}>
+                                    {expense.notes}
+                                  </div>
                                 )}
                               </div>
                             </div>

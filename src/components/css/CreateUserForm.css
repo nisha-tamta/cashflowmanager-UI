@@ -116,6 +116,25 @@
     transform: scale(1.1);
 }
 
+.create-chat-input-blurred {
+    font-family: Nunito, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400px;
+    width: 50%;
+    max-width: 400px;
+    border: none;
+    border-bottom: 0.5px solid #ccc;
+    color: #ccc;
+    padding: 3px;
+    border-radius: 0px;
+}
+
+.create-chat-input-blurred:focus {
+    outline: none;
+    box-shadow: none;
+    transform: scale(1.1);
+}
+
 .create-chat-button-container {
     text-align: center;
     /* Center align the button container */

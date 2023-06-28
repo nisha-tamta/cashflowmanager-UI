@@ -183,6 +183,18 @@ const AddExpensePage = () => {
                       onChange={handleChange}
                     />
                   </div>
+                  <div className="create-chat-input-container">
+                    <label>
+                      Notes:{" "}
+                    </label>
+                    <input
+                      className="create-chat-input"
+                      type="textarea"
+                      name="notes"
+                      value={expenseData.notes}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="add-expense-buttons">
                     <button type="submit" className="create-chat-button">Add Expense</button>
                     <span className="button-spacing"></span>

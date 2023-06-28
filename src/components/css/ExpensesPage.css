@@ -110,3 +110,23 @@ h6 {
   line-height: 24px;
   color: rgb(37, 39, 41);
 }
+
+.note-display {
+  line-height: 1.5;  /* Adjust as needed */
+  height: 600px; 
+  width: 1000px;     /* Adjust as needed */
+  overflow: auto;    /* Adds scroll if the text is longer */
+}
+
+.note-display {
+  white-space: pre-wrap; /* This is to ensure that line-breaks in text are respected */
+  line-height: 1.5; /* Setting line-height for better readability */
+  font-size: 1rem; /* Font size */
+}
+
+.note-display.textarea {
+  border: none; /* Removing the border */
+  width: 100%; /* You can set the desired width */
+  padding: 5px; /* Some padding */
+  resize: none; /* Optionally disabling textarea resizing */
+}

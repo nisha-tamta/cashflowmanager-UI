@@ -284,6 +284,19 @@
   vertical-align: top;
 }
 
+.account-info-item-blurred {
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
+  color: #a8a8a8;
+  font-size: 1rem;
+  line-height: 2.4rem;
+  min-width: 10rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  font-style: italic;
+}
+
 .account-info {
   font-family: "Nunito", Helvetica, Arial, sans-serif;
   color: #002D6B;
@@ -296,6 +309,21 @@
   vertical-align: top;
   margin: 0;
   padding: 0;
+}
+
+.account-info-blurred {
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
+  color: #a8a8a8;
+  font-size: 1rem;
+  line-height: 2.4rem;
+  min-width: 10rem;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
 }
 
 .edit-profile-fields,
@@ -542,4 +570,33 @@
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.description-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.description-wrapper h2 {
+  margin-right: 20px; 
+}
+
+create-chat-input-h2 {
+  font-family: 'Nunito', sans-serif;  
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgb(32, 33, 36);
+  width: 50%;
+  max-width: 400px;
+  border: none;
+  border-bottom: 0.5px solid #ccc;
+  padding: 3px;
+  border-radius: 0px;
+}
+
+.create-chat-input-h2:focus {
+  outline: none;
+  box-shadow: none;
+  transform: scale(1.1);
 }
