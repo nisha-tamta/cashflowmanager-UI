@@ -193,6 +193,10 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
           expense.amount < parseInt(filterAmount)))
   );
 
+  const handleExpenseClick = (expenseId) => {
+    navigate(`/expenses/${expenseId}`);
+  };
+
   return (
     <div>
       {error && <div className="error-message">{error}</div>}
@@ -255,7 +259,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
         </thead>
         <tbody>
           {filteredExpenses.map((expense) => (
-            <tr key={expense.id} style={{ border: "1px solid black" }}>
+            <tr key={expense.id} style={{ border: "1px solid black", cursor: "pointer" }} onClick={() => handleExpenseClick(expense.id)}>
               <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {selectedExpenseId === expense.id ? (
                   <input

@@ -14,6 +14,7 @@ import UserManagement from "./components/js/UserManagement";
 import UserManagementAdd from "./components/js/UserManagementAdd";
 import Employees from "./components/js/Employees";
 import EmployeeAdd from "./components/js/EmployeeAdd";
+import ExpenseDetails from "./components/js/ExpenseDetails";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -91,6 +92,14 @@ const App = () => {
           element={
             <Protected isLoggedIn={localStorage.getItem("user")}>
               <ExpensesPage />
+            </Protected>
+          }
+        />
+        <Route
+          path="/expenses/:expenseId" // Add the dynamic parameter for expense ID
+          element={
+            <Protected isLoggedIn={localStorage.getItem("user")}>
+              <ExpenseDetails />
             </Protected>
           }
         />
