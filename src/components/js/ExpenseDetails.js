@@ -172,10 +172,10 @@ const ExpenseDetails = () => {
                   <div className="profile-sections">
                     <div className="profile-section">
                       <div>
-                        <div className="info-header-expense">
+                        <div className="info-header-expense-details">
                           {editMode ? (
                             <input
-                              className="info-header-expense"
+                              className="info-header-expense-details"
                               type="text"
                               id="description"
                               value={editedExpense.description}
