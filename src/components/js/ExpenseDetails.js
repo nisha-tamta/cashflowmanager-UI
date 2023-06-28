@@ -1,5 +1,5 @@
-import React, { useState, useEffect, } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
@@ -37,8 +37,6 @@ const ExpenseDetails = () => {
 
     const [expense, setExpense] = useState(null);
     const [error, setError] = useState(null);
-    const [formState, setFormState] = useState(expense);
-    const [showBasicInfoEdit, setShowBasicInfoEdit] = useState(false);
 
     const [showDeleteExpenseEdit, setShowDeleteExpenseEdit] = useState(false);
     const [notification, setNotification] = useState({ message: "", visible: false });
@@ -126,7 +124,7 @@ const ExpenseDetails = () => {
                                 {expense ? (
                                     <div className="profile-sections">
                                         <div className="profile-section">
-                                            <div className="info-box">
+                                            <div>
                                                 <div className="info-header">
                                                     <h2>{expense.description}</h2>
                                                     <button className="edit-profile-button">
@@ -154,7 +152,6 @@ const ExpenseDetails = () => {
                                                                 <span className="account-info-item">Amount:</span>
                                                                 <span className="account-info">{expense.amount}</span>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,13 +159,13 @@ const ExpenseDetails = () => {
                                         </div>
                                         <div>
                                             <button onClick={handleDeleteExpense} className="add-expense-button" >Delete Expense</button>
-                                            {showDeleteExpenseEdit && (
+                                            {showDeleteExpenseEdit &&
                                                 <DeleteExpenseEdit
                                                     onConfirm={handleDeleteExpenseEdit}
                                                     onCancel={handleCancelDeleteExpenseEdit}
                                                     error={error}
                                                 />
-                                            )}
+                                            }
                                         </div>
                                     </div>
                                 ) : (
@@ -177,8 +174,8 @@ const ExpenseDetails = () => {
                             </div>
                         </div>
                     </div>
-                </div >
-            </div >
+                </div>
+            </div>
         </div>
     );
 };
