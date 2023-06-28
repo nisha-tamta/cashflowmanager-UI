@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faTimes, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import "../css/NavBar.css";
@@ -175,27 +175,26 @@ const ExpenseDetails = () => {
                         <div className="info-header">
                           {editMode ? (
                             <div>
-                              <h2>
-                                <input
-                                  className="create-chat-input"
-                                  type="text"
-                                  id="description"
-                                  value={editedExpense.description}
-                                  onChange={handleInputChange}
-                                />
+                              <h2 contentEditable={true} suppressContentEditableWarning={true} onBlur={handleInputChange}>
+                                {editedExpense.description}
                               </h2>
-                              <button className="edit-profile-button" onClick={handleSaveExpense}>
-                                Save
-                              </button>
-                              <button className="edit-profile-button" onClick={handleCancelEditExpense}>
-                                Cancel
-                              </button>
                             </div>
                           ) : (
                             <div>
                               <h2>{expense.description}</h2>
-                              <button className="edit-profile-button" onClick={handleEditExpense}>
+                              <button className="button-edit-expense" onClick={() => handleEditExpense()}>
                                 <FontAwesomeIcon icon={faPencilAlt} />
+                              </button>
+                            </div>
+                          )}
+                          {editMode && (
+                            <div>
+                              <button className="button-expense-edit-save" onClick={() => handleSaveExpense()}>
+                                <FontAwesomeIcon icon={faSave} />
+                              </button>
+                              <span className="button-spacing"></span>
+                              <button className="button-expense-edit-cancel" onClick={() => handleCancelEditExpense()}>
+                                Cancel
                               </button>
                             </div>
                           )}
