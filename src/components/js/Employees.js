@@ -120,6 +120,18 @@ const Employees = () => {
         setEditEmployee(updatedEmployee);
     };
 
+    // Handle clicking on the row, but not on the actions
+    const handleRowClick = (event, employeeId) => {
+        // Check if the user clicked on an action button or the action cell
+        if (event.target.closest('.button-expense-edit-save, .button-expense-edit-cancel, .button-edit-expense, .button-delete-expense')) {
+            // If they did, don't do anything
+            event.stopPropagation();
+        } else {
+            // If they didn't, navigate to the expense details
+            navigate(`/employees/${employeeId}`);
+        }
+    };
+
     return (
         <div className="container">
             <NavBar />
@@ -150,7 +162,7 @@ const Employees = () => {
                         </thead>
                         <tbody>
                             {employees.map((employee) => (
-                                <tr key={employee.id} style={{ border: "1px solid black" }}>
+                                <tr key={employee.id} style={{ border: "1px solid black", cursor: "pointer" }} onClick={(event) => handleRowClick(event, employee.id)}>
                                     <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                                         {editEmployee && editEmployee.id === employee.id ? (
                                             <input
