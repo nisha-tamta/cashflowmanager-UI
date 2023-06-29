@@ -19,13 +19,17 @@ const AboutPage = () => {
           <section className="content-chat-container">
             <div className="info-box">
               <h2>Welcome to Expense Tracker Business</h2>
-              <p>Expense Tracker is a user-friendly web-based application designed to simplify expense management. We understand the challenges of budgeting, tracking expenses, and achieving financial goals. Our platform offers comprehensive features, including expense tracking, budget setting, and spending analysis. With a modern and intuitive interface, we prioritize visual appeal and user-friendliness.</p>
+              <p>Expense Tracker Business is a user-friendly web-based application specifically designed to simplify expense management for your business. We understand the challenges you face in budgeting, tracking expenses, and achieving your financial goals. Our platform offers a comprehensive set of features, including expense tracking, budget setting, and spending analysis tailored to meet your business needs. With a modern and intuitive interface, we prioritize visual appeal and user-friendliness to ensure a seamless experience.</p>
 
-              <h2>Why Expense Tracker Business?</h2>
-              <p>Take control of your finances, make informed decisions, and work towards your financial goals with Expense Tracker Business. Start managing your expenses effortlessly today.</p>
+              <h2>Why Choose Expense Tracker Business?</h2>
+              <p>1. Streamlined Expense Management: Take full control of your business finances by effortlessly tracking and managing your expenses. Our platform provides a centralized hub for monitoring and organizing all your business expenditures.</p>
 
-              <h2>Join Us Today</h2>
-              <p>Experience the power of Expense Tracker Business today and take control of your financial future.</p>
+              <p>2. Informed Decision Making: Make smarter financial decisions based on accurate data and insights. Expense Tracker Business provides real-time updates and detailed reports, enabling you to identify spending patterns, optimize your budget, and maximize your savings.</p>
+
+              <p>3. Goal Achievement: Set and track your financial goals with ease. Whether it's reducing costs, increasing revenue, or saving for future investments, our platform empowers you to stay focused and achieve your business objectives.</p>
+
+              <h2>Join Us Today!</h2>
+              <p>Experience the power of Expense Tracker Business and take control of your business's financial future. Start managing your expenses effortlessly today and unlock the potential for growth and success. Join us now to streamline your expense management processes and make informed financial decisions.</p>
             </div>
           </section>
         </div>

@@ -51,3 +51,42 @@
 .buttons-container {
   display: flex;
 }
+
+.inline-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inline-input {
+  height: 25px;
+  border: 1px solid #ddd;
+  border-radius: 1px;
+  margin-bottom: 40px;
+  line-height: 24px;
+  color: rgb(37, 39, 41);
+  font-family: Nunito, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400px;
+  width: 130px;
+  border: none;
+  border-bottom: 0.5px solid #ccc;
+  padding: 3px;
+  margin-right: 10px;
+  border-radius: 0px;
+}
+
+.dashboard-container {
+  margin: 0 auto;
+  box-shadow: 0px 0px 10px #666;
+  width: 40%;
+  height: 50vh;
+  padding: 20px;
+  border: 5px solid black;
+  background: #b4e2d6;
+}
+
+.dashboard-container-box {
+  display: flex;
+  justify-content: space-between;
+}
