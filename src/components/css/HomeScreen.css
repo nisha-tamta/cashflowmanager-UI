@@ -57,6 +57,13 @@
   margin: 50px auto;
 }
 
+.content-chat-container-expense {
+  font-size: 16px;
+  /* Larger font size */
+  color: #333;
+  /* Dark gray color */
+}
+
 .content-header {
   margin-bottom: 20px;
   /* Increasing margin slightly for more space */

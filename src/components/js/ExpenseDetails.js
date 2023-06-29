@@ -166,11 +166,11 @@ const ExpenseDetails = () => {
             <h1>Expense Details</h1>
           </div>
           <div>
-            <div className="content-chat-container">
+            <div className="content-chat-container-expense">
               <div className="content-body">
                 {expense ? (
-                  <div className="profile-sections">
-                    <div className="profile-section">
+                  <div>
+                    <div >
                       <div>
                         <div className="info-header-expense-details">
                           {editMode ? (
@@ -206,7 +206,9 @@ const ExpenseDetails = () => {
                                     onChange={handleInputChange}
                                   />
                                 ) : (
-                                  <span className="account-info">{expense.date}</span>
+                                  <span className="account-info">
+                                    {new Date(expense.date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                                  </span>
                                 )}
                               </div>
                               <div>
