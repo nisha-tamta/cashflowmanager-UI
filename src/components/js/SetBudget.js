@@ -17,17 +17,35 @@ const SetBudget = () => {
   const today = new Date();
   const currentMonth = today.getMonth();
   const nextThreeMonths = [
-    { id: 0, name: Month[currentMonth] },
-    { id: 1, name: Month[(currentMonth + 1) % 12] },
-    { id: 2, name: Month[(currentMonth + 2) % 12] }
-  ];
+    { number: currentMonth, name: Month[currentMonth] },
+    { number: (currentMonth + 1) % 12, name: Month[(currentMonth + 1) % 12] },
+    { number: (currentMonth + 2) % 12, name: Month[(currentMonth + 2) % 12] }
+];
   
-  const handleChange = (event) => {
+  const handleChange = async (event) => {
     const { name, value } = event.target;
     setBudget({
       ...budget,
       [name]: value,
     });
+
+    // Send API call to fetch budget for the selected month and year
+    if (name === "month" && value !== "") {
+      const userId = JSON.parse(localStorage.getItem("user")).id;
+      const monthNumber = nextThreeMonths.find((month) => month.name === value).number + 1;
+      const response = await fetch(
+        `http://192.168.29.40:8080/api/budget/time?userId=${userId}&month=${monthNumber}&year=${budget.year}`
+      );
+      if (response.ok) {
+        const budgetData = await response.json();
+        setBudget((prevBudget) => ({
+          ...prevBudget,
+          amount: budgetData.amount,
+        }));
+      } else {
+        setError("Failed to fetch budget data.");
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
