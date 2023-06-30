@@ -7,11 +7,13 @@
   width: 100vw;
   min-height:100vh;
   height: auto;
+  margin-left:340px;
 }
 
 .content-container {
   padding: 10px;
   margin: 50px auto;
+  margin-bottom: 0%;
   /* Add some top and bottom margins */
 
   width: 100%;

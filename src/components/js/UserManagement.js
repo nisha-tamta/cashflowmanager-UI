@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPencilAlt, faSave } from "@fortawesome/free-solid-svg-icons";
 import NavBar from "./NavBar";
-import "../css/UserManagement.css";
 
 const UserManagement = () => {
     const navigate = useNavigate();

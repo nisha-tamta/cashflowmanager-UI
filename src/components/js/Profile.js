@@ -518,7 +518,7 @@ const Profile = () => {
     <div className="container">
       <NavBar />
       <div className="homescreen-container">
-        <div className="content-container">
+        <div class="content-user-mngmnt-container">
           {notification.visible &&
             <div className="notification-message alert-success">
               {notification.message}
