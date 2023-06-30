@@ -14,7 +14,14 @@ const SetBudget = () => {
     amount: "",
   });
   const [notification, setNotification] = useState({ message: "", visible: false });
-
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const nextThreeMonths = [
+    { id: 0, name: Month[currentMonth] },
+    { id: 1, name: Month[(currentMonth + 1) % 12] },
+    { id: 2, name: Month[(currentMonth + 2) % 12] }
+  ];
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setBudget({
@@ -58,14 +65,6 @@ const SetBudget = () => {
   const handleCancel = () => {
     navigate("/dashboard");
   };
-
-  const today = new Date();
-  const currentMonth = today.getMonth();
-  const nextThreeMonths = [
-    { id: 0, name: Month[currentMonth] },
-    { id: 1, name: Month[(currentMonth + 1) % 12] },
-    { id: 2, name: Month[(currentMonth + 2) % 12] }
-  ];
 
   return (
     <div className="container">
