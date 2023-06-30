@@ -192,10 +192,11 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
           expense.amount < parseInt(filterAmount)))
   );
 
-  // Handle clicking on the row, but not on the actions
+  // Handle clicking on the row, but not on the actions or when in edit mode
   const handleRowClick = (event, expenseId) => {
-    // Check if the user clicked on an action button or the action cell
-    if (event.target.closest('.button-expense-edit-save, .button-expense-edit-cancel, .button-edit-expense, .button-delete-expense')) {
+    if (selectedExpenseId) {
+      event.stopPropagation();
+    } else if (event.target.closest('.button-expense-edit-save, .button-expense-edit-cancel, .button-edit-expense, .button-delete-expense')) {
       // If they did, don't do anything
       event.stopPropagation();
     } else {
