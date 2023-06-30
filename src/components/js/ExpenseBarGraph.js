@@ -41,7 +41,7 @@ const ExpenseBarGraph = ({ time }) => {
   }
 
   // Generate array of all days in the month
-  const daysInMonth = new Date(year, month, 0).getDate();
+  const daysInMonth = new Date(year, month - 1, 0).getDate();
   const allDays = Array.from({ length: daysInMonth }, (_, index) => index + 1);
 
   // Prepare data for the bar graph
