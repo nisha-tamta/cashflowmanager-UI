@@ -5,7 +5,7 @@ import { Bar } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, BarElement } from 'chart.js';
 import "../css/ExpenseBarGraph.css";
 
-Chart.register(CategoryScale, LinearScale, BarElement)
+Chart.register(CategoryScale, LinearScale, BarElement);
 
 const ExpenseBarGraph = ({ time }) => {
   const [expenses, setExpenses] = useState([]);
@@ -40,13 +40,17 @@ const ExpenseBarGraph = ({ time }) => {
     expensesPerDay[day] += expense.amount;
   }
 
+  // Generate array of all days in the month
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const allDays = Array.from({ length: daysInMonth }, (_, index) => index + 1);
+
   // Prepare data for the bar graph
   const chartData = {
-    labels: Object.keys(expensesPerDay),
+    labels: allDays,
     datasets: [
       {
         label: 'Expenses',
-        data: Object.values(expensesPerDay),
+        data: allDays.map(day => expensesPerDay[day]),
         backgroundColor: '#FF6384',
       },
     ],
