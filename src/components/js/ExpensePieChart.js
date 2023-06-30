@@ -2,25 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Pie } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
+import "../css/ExpensePieChart.css";
 
 Chart.register(ArcElement, ChartDataLabels);
 
 const ExpensePieChart = (time) => {
   const [expenses, setExpenses] = useState([]);
   const [allExpenses, setAllExpenses] = useState([]);
+  const { year, month } = time.time;
 
   useEffect(() => {
     const fetchExpensesCurrentMonth = async () => {
       try {
         const userId = JSON.parse(localStorage.getItem("user")).id;
-        const currentDate = new Date();
-        const currentMonth = currentDate.getMonth() + 1;
-        const currentYear = currentDate.getFullYear();
-        const response = await fetch(
-          `http://localhost:8080/api/expenses?userId=${userId}&month=${currentMonth}&year=${currentYear}`
-        );
-        const data = await response.json();
-        setExpenses(data);
+        if (month && year) {
+          const response = await fetch(
+            `http://192.168.29.40:8080/api/expenses?userId=${userId}&month=${month}&year=${year}`
+          );
+          const data = await response.json();
+          setExpenses(data);
+        }
       } catch (error) {
         console.error("Error fetching expenses:", error);
       }
@@ -29,7 +32,7 @@ const ExpensePieChart = (time) => {
       try {
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:8080/api/expenses/all?userId=${userId}`
+          `http://192.168.29.40:8080/api/expenses/all?userId=${userId}`
         );
         const data = await response.json();
         setAllExpenses(data);
@@ -39,15 +42,18 @@ const ExpensePieChart = (time) => {
     };
     fetchExpensesCurrentMonth();
     fetchExpenses();
-  }, []);
+  }, [month, year]);
+
 
   // Calculate total for each category
   let categoryTotals = {};
-  for (let expense of expenses) {
-    if (!categoryTotals[expense.category]) {
-      categoryTotals[expense.category] = 0;
+  if (Array.isArray(expenses)) {
+    for (let expense of expenses) {
+      if (!categoryTotals[expense.category]) {
+        categoryTotals[expense.category] = 0;
+      }
+      categoryTotals[expense.category] += expense.amount;
     }
-    categoryTotals[expense.category] += expense.amount;
   }
 
   // Prepare data for the pie chart
@@ -78,7 +84,7 @@ const ExpensePieChart = (time) => {
         font: {
           size: 16
         },
-        formatter: function(value, context) {
+        formatter: function (value, context) {
           return context.chart.data.labels[context.dataIndex];
         }
       }
@@ -86,7 +92,18 @@ const ExpensePieChart = (time) => {
   };
 
   return (
-    <Pie data={chartData} options={options} />
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+      {expenses && expenses.length > 0 ? (
+        <Pie data={chartData} options={options} />
+      ) : (
+        <div className="no-expenses">
+        <div className="no-expenses-icon">
+          <FontAwesomeIcon icon={faBan} size="8x" color="green" />
+        </div>
+        <div className="no-expenses-text">No Expenses</div>
+      </div>
+      )}
+    </div>
   );
 };
 

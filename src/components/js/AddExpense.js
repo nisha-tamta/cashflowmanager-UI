@@ -34,7 +34,7 @@ const AddExpensePage = () => {
 
   const getEmployees = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/employee/all");
+      const response = await fetch("http://192.168.29.40:8080/api/employee/all");
       if (response.ok) {
         const data = await response.json();
         return data;
@@ -68,7 +68,7 @@ const AddExpensePage = () => {
     }
     try {
       const response = await fetch(
-        `http://localhost:8080/api/expenses?userId=${userId}`,
+        `http://192.168.29.40:8080/api/expenses?userId=${userId}`,
         {
           method: "POST",
           headers: {

@@ -22,7 +22,7 @@ const Employees = () => {
 
     const getEmployees = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/employee/all");
+            const response = await fetch("http://192.168.29.40:8080/api/employee/all");
             if (response.ok) {
                 const data = await response.json();
                 return data;
@@ -42,7 +42,7 @@ const Employees = () => {
 
     const handleSaveEmployee = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/employee/edit/${editEmployee.id}`, {
+            const response = await fetch(`http://192.168.29.40:8080/api/employee/edit/${editEmployee.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const Employees = () => {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:8080/api/employee/delete/${employee.id}`, {
+            const response = await fetch(`http://192.168.29.40:8080/api/employee/delete/${employee.id}`, {
                 method: "DELETE",
             });
 

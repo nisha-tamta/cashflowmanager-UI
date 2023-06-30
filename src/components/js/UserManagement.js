@@ -22,7 +22,7 @@ const UserManagement = () => {
 
     const getUsers = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/user/all");
+            const response = await fetch("http://192.168.29.40:8080/api/user/all");
             if (response.ok) {
                 const data = await response.json();
                 return data;
@@ -42,7 +42,7 @@ const UserManagement = () => {
 
     const handleSaveUser = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/user/edit/${editUser.id}`, {
+            const response = await fetch(`http://192.168.29.40:8080/api/user/edit/${editUser.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -86,7 +86,7 @@ const UserManagement = () => {
             }
         }
         try {
-            const response = await fetch(`http://localhost:8080/api/user/delete/${user.id}`, {
+            const response = await fetch(`http://192.168.29.40:8080/api/user/delete/${user.id}`, {
                 method: "DELETE"
             });
 

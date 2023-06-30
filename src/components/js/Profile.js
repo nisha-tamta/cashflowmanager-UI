@@ -265,7 +265,7 @@ const Profile = () => {
       const fetchUser = async () => {
         try {
           const response = await fetch(
-            `http://localhost:8080/api/user/${userId}`
+            `http://192.168.29.40:8080/api/user/${userId}`
           ); // Use userId in the API endpoint
           if (response.ok) {
             const data = await response.json();
@@ -291,7 +291,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8080/api/user/create`,
+        `http://192.168.29.40:8080/api/user/create`,
         {
           method: "PUT",
           headers: {
@@ -340,7 +340,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8080/api/user/create`,
+        `http://192.168.29.40:8080/api/user/create`,
         {
           method: "PUT",
           headers: {
@@ -388,7 +388,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8080/api/user/create`,
+        `http://192.168.29.40:8080/api/user/create`,
         {
           method: "PUT",
           headers: {
@@ -438,7 +438,7 @@ const Profile = () => {
     }
     const username = JSON.parse(localStorage.getItem("user")).username;
     try {
-      const response = await fetch("http://localhost:8080/api/user/resetPassword", {
+      const response = await fetch("http://192.168.29.40:8080/api/user/resetPassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

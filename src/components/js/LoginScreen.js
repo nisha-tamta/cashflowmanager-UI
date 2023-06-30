@@ -12,7 +12,7 @@ const LoginScreen = ({ onLoginSuccess }) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:8080/api/user/login?username=${username}&password=${password}`,
+        `http://192.168.29.40:8080/api/user/login?username=${username}&password=${password}`,
         {
           method: "GET",
           headers: {

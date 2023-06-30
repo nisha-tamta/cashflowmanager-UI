@@ -24,7 +24,7 @@ const EmployeeAdd = () => {
     const [notification, setNotification] = useState({ message: "", visible: false });
 
     const handleSubmit = () => {
-        fetch("http://localhost:8080/api/employee/create", {
+        fetch("http://192.168.29.40:8080/api/employee/create", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

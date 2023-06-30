@@ -27,7 +27,7 @@ const SetBudget = () => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
-        `http://localhost:8080/api/budget?userId=${userId}`,
+        `http://192.168.29.40:8080/api/budget?userId=${userId}`,
         {
           method: "PUT",
           headers: {

@@ -68,7 +68,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
 
   const getEmployees = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/employee/all");
+      const response = await fetch("http://192.168.29.40:8080/api/employee/all");
       if (response.ok) {
         const data = await response.json();
         return data;
@@ -130,7 +130,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
-        `http://localhost:8080/api/expenses/${expenseId}?userId=${userId}`,
+        `http://192.168.29.40:8080/api/expenses/${expenseId}?userId=${userId}`,
         {
           method: "PUT",
           headers: {
@@ -215,7 +215,7 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     const userId = JSON.parse(localStorage.getItem("user")).id;
     try {
       const response = await fetch(
-        `http://localhost:8080/api/expenses/${deleteExpenseId}?userId=${userId}`,
+        `http://192.168.29.40:8080/api/expenses/${deleteExpenseId}?userId=${userId}`,
         {
           method: "DELETE",
           headers: {

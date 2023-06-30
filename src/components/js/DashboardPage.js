@@ -52,7 +52,7 @@ const DashboardPage = () => {
         const currentMonth = currentDate.getMonth() + 1;
         const currentYear = currentDate.getFullYear();
         const response = await fetch(
-          `http://localhost:8080/api/expenses?userId=${userId}&month=${currentMonth}&year=${currentYear}`
+          `http://192.168.29.40:8080/api/expenses?userId=${userId}&month=${currentMonth}&year=${currentYear}`
         );
         const data = await response.json();
         setExpenses(data);
@@ -64,7 +64,7 @@ const DashboardPage = () => {
       try {
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:8080/api/expenses/all?userId=${userId}`
+          `http://192.168.29.40:8080/api/expenses/all?userId=${userId}`
         );
         const data = await response.json();
         setAllExpenses(data);
@@ -81,7 +81,7 @@ const DashboardPage = () => {
       try {
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:8080/api/reports/all?userId=${userId}`
+          `http://192.168.29.40:8080/api/reports/all?userId=${userId}`
         );
         const data = await response.json();
         setAllReports(data);

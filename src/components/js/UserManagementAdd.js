@@ -37,7 +37,7 @@ const UserManagementAdd = () => {
             setError("Passwords do not match");
             return;
         }
-        fetch("http://localhost:8080/api/user/create", {
+        fetch("http://192.168.29.40:8080/api/user/create", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
