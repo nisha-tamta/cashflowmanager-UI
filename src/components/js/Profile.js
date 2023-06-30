@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
+import logoutImage from '../images/logout.png';
 import "../css/NavBar.css";
 import "../css/Profile.css";
 
@@ -122,7 +123,8 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
     const { id, value } = e.target;
     if (id === "role.roleId") {
       // Update the formState.role.roleId value with the selected value
-      setFormState((prevState) => ({ ...prevState,
+      setFormState((prevState) => ({
+        ...prevState,
         role: { ...prevState.role, roleId: parseInt(value) }
       }));
     } else {
@@ -163,7 +165,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
                     >
                       <option className="item-value-expense" value="1">Administrator</option>
                       <option className="item-value-expense" value="2">User</option>
-                    </select> 
+                    </select>
                   </div>
                 ) : (
                   <div className="create-chat-input-container">
@@ -188,7 +190,7 @@ const AccountSettingsEdit = ({ formState, setFormState, onConfirm, onCancel, err
       </div>
     </div>
   );
-    
+
 };
 
 const ResetPasswordEdit = ({ oldPassword, newPassword, confirmPassword, setOldPassword, setNewPassword, setConfirmPassword, onConfirm, onCancel, error }) => {
@@ -490,8 +492,14 @@ const Profile = () => {
       <div className="confirmation-overlay">
         <div className="confirmation-dialog">
           <div className="create-chat-header">
-            <div className="create-chat-header">
+            <div className="create-chat-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2>Are you sure you want to logout?</h2>
+              <div>
+                <img
+                  src={logoutImage}
+                  style={{ width: '80px', height: '80px', objectFit: 'cover', marginLeft: '10px' }}
+                />
+              </div>
             </div>
           </div>
           <div className="confirmation-buttons">
