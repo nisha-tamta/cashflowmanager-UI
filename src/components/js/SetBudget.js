@@ -10,7 +10,8 @@ const SetBudget = () => {
   const [error, setError] = useState("");
   const [budget, setBudget] = useState({
     month: "",
-    amount: ""
+    year: new Date().getFullYear(),
+    amount: "",
   });
   const [notification, setNotification] = useState({ message: "", visible: false });
 
@@ -40,6 +41,7 @@ const SetBudget = () => {
       if (response.ok) {
         setBudget({
           month: "",
+          year: "",
           amount: ""
         });
         setNotification({ message: 'Budget set!', visible: true });
@@ -80,37 +82,38 @@ const SetBudget = () => {
           }
           <div className="content-header">
             <h1>Set Budget</h1>
-            <div className="add-expense-content">
+            <div className="create-chat-body">
               <form onSubmit={handleSubmit}>
-                <label>
-                  Month:
+                <div className="create-chat-input-container">
+                  <label> Month </label>
                   <select
+                    className="create-chat-input"
                     name="month"
                     value={budget.month}
                     onChange={handleChange}
                   >
-                    <option value="">Select</option>
+                    <option className="item-value-expense" value="">Select</option>
                     {nextThreeMonths.map((month) => (
                       <option key={month.id} value={month.name}>
-                        {month.name}
+                        {month.name} {new Date().getFullYear()}
                       </option>
                     ))}
                   </select>
-                </label>
-                <label>
-                  Amount:
+                </div>
+                <div className="create-chat-input-container">
+                  <label> Amount </label>
                   <input
+                    className="create-chat-input"
                     type="number"
                     name="amount"
                     value={budget.amount}
                     onChange={handleChange}
                   />
-                </label>
+                </div>
                 <div className="add-expense-buttons">
-                  <button type="submit" className="reset-password-form-button">Set</button>
-                  <button type="button" className="reset-password-form-button" onClick={handleCancel}>
-                    Cancel
-                  </button>
+                  <button type="submit" className="create-chat-button" >Set</button>
+                  <span className="button-spacing"></span>
+                  <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
                 </div>
               </form>
             </div>

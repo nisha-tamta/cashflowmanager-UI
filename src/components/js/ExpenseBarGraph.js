@@ -9,13 +9,14 @@ Chart.register(CategoryScale, LinearScale, BarElement);
 
 const ExpenseBarGraph = ({ time }) => {
   const [expenses, setExpenses] = useState([]);
+  const [budget, setBudget] = useState(0); // Initial budget value
   const { year, month } = time || {};
 
   useEffect(() => {
+    const userId = JSON.parse(localStorage.getItem("user")).id;
     if (year && month) {
       const fetchExpenses = async () => {
         try {
-          const userId = JSON.parse(localStorage.getItem("user")).id;
           const response = await fetch(
             `http://192.168.29.40:8080/api/expenses?userId=${userId}&month=${month}&year=${year}`
           );
@@ -25,7 +26,19 @@ const ExpenseBarGraph = ({ time }) => {
           console.error("Error fetching expenses:", error);
         }
       };
+      const fetchBudget = async () => {
+        if (month && year) {
+          try {
+            const response = await fetch(`http://192.168.29.40:8080/api/budget/time?userId=${userId}&month=${month}&year=${year}`);
+            const data = await response.json();
+            setBudget(data.amount);
+          } catch (error) {
+            console.error("Error fetching budget:", error);
+          }
+        }
+      };
       fetchExpenses();
+      fetchBudget();
     }
   }, [year, month]);
 
@@ -70,6 +83,7 @@ const ExpenseBarGraph = ({ time }) => {
           text: 'Amount',
         },
         beginAtZero: true,
+        suggestedMax: budget,
       },
     },
     plugins: {
