@@ -17,26 +17,32 @@ const DashboardPage = () => {
   const location = useLocation();
   const notificationMessage = location.state?.message;
   const [isNotificationVisible, setIsNotificationVisible] = useState(true);
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState(currentYear);
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
   const [availableMonths, setAvailableMonths] = useState([]);
+  const [time, setTime] = useState([]);
 
-  // List all months
-  const months = Array.from({ length: (year === currentYear ? currentMonth : 12) }, (v, i) => i + 1);
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
 
   // List all years from current year to 2000
   const years = Array.from({ length: currentYear - 2000 + 1 }, (v, i) => currentYear - i);
 
   useEffect(() => {
-    if (year === currentYear.toString()) {
+    if (year === currentYear) {
       setAvailableMonths(Array.from({ length: currentMonth }, (v, i) => i + 1));
     } else {
       setAvailableMonths(Array.from({ length: 12 }, (v, i) => i + 1));
     }
   }, [year, currentMonth, currentYear]);
+
+  useEffect(() => {
+    setTime({ year, month });
+  }, [year, month]);
 
   useEffect(() => {
     const fetchExpensesCurrentMonth = async () => {
@@ -112,15 +118,15 @@ const DashboardPage = () => {
             <div className="inline-form">
               <h6>Bring data for </h6>
               <select value={month} onChange={e => setMonth(e.target.value)} className="inline-input">
-                <option className="item-value-expense" value={currentMonth}>{currentMonth}</option>
+                <option value="">Select Month</option>
                 {availableMonths.map((month, index) => (
                   <option className="item-value-expense" key={index} value={month}>
-                    {month}
+                    {monthNames[month - 1]}
                   </option>
                 ))}
               </select>
               <select value={year} onChange={e => setYear(e.target.value)} className="inline-input">
-                <option className="item-value-expense" value={currentYear}>{currentYear}</option>
+                <option value="">Select Year</option>
                 {years.map((year, index) => (
                   <option className="item-value-expense" key={index} value={year}>
                     {year}
@@ -128,7 +134,6 @@ const DashboardPage = () => {
                 ))}
               </select>
             </div>
-
           </div>
           <div className="content-header">
             <div className="buttons-container">
@@ -142,7 +147,7 @@ const DashboardPage = () => {
               <ExpenseBarGraph expenses={expenses} />
             </div>
             <div className="dashboard-container">
-              <ExpensePieChart/>
+              <ExpensePieChart time={time} />
             </div>
           </div>
         </div>

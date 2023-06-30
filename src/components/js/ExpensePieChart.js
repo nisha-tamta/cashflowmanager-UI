@@ -5,7 +5,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 Chart.register(ArcElement, ChartDataLabels);
 
-const ExpensePieChart = () => {
+const ExpensePieChart = (time) => {
   const [expenses, setExpenses] = useState([]);
   const [allExpenses, setAllExpenses] = useState([]);
 
