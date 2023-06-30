@@ -17,11 +17,11 @@ const DashboardPage = () => {
   const location = useLocation();
   const notificationMessage = location.state?.message;
   const [isNotificationVisible, setIsNotificationVisible] = useState(true);
-  const [month, setMonth] = useState(currentMonth);
-  const [year, setYear] = useState(currentYear);
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear();
+  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState(currentYear);
   const [availableMonths, setAvailableMonths] = useState([]);
   const [time, setTime] = useState([]);
 
