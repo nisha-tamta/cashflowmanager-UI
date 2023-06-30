@@ -144,7 +144,7 @@ const DashboardPage = () => {
           </div>
           <div className="dashboard-container-box">
             <div className="dashboard-container">
-              <ExpenseBarGraph expenses={expenses} />
+              <ExpenseBarGraph time={time} />
             </div>
             <div className="dashboard-container">
               <ExpensePieChart time={time} />
