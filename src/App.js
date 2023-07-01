@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginScreen from "./components/js/LoginScreen";
 import CreateUserForm from "./components/js/CreateUserForm";
@@ -24,10 +24,6 @@ const App = () => {
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
-
-  useEffect(() => {
-    localStorage.removeItem("user");
-  }, []);
 
   return (
     <BrowserRouter>
