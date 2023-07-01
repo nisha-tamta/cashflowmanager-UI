@@ -96,7 +96,7 @@ const ExpensesPage = () => {
     <div className="container">
       <NavBar />
       <div className="homescreen-container">
-        <div class="content-container">
+        <div className="content-container">
           <div className="content-header">
             <h1>Expenses</h1>
             <h6>Info about your expenses</h6>
