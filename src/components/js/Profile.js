@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
+import logoutImage from '../images/logout.png';
 import "../css/NavBar.css";
 import "../css/Profile.css";
 
@@ -457,8 +458,14 @@ const Profile = () => {
       <div className="confirmation-overlay">
         <div className="confirmation-dialog">
           <div className="create-chat-header">
-            <div className="create-chat-header">
+            <div className="create-chat-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2>Are you sure you want to logout?</h2>
+              <div>
+                <img
+                  src={logoutImage}
+                  style={{ width: '80px', height: '80px', objectFit: 'cover', marginLeft: '10px' }}
+                />
+              </div>
             </div>
           </div>
           <div className="confirmation-buttons">
@@ -477,7 +484,7 @@ const Profile = () => {
     <div className="container">
       <NavBar />
       <div className="homescreen-container">
-        <div className="content-container">
+        <div className="content-user-mngmnt-container">
           {notification.visible &&
             <div className="notification-message alert-success">
               {notification.message}
@@ -499,7 +506,7 @@ const Profile = () => {
                       <div className="info-box">
                         <div className="info-header">
                           <h2>Basic info</h2>
-                          <button onClick={handleBasicInfo} className="edit-profile-button">
+                          <button onClick={handleBasicInfo} className="button-edit-expense">
                             <FontAwesomeIcon icon={faPencilAlt} />
                           </button>
                           {showBasicInfoEdit && (
@@ -532,7 +539,7 @@ const Profile = () => {
                       <div className="info-box">
                         <div className="info-header">
                           <h2>Contact info</h2>
-                          <button onClick={handleContactInfo} className="edit-profile-button" >
+                          <button onClick={handleContactInfo} className="button-edit-expense" >
                             <FontAwesomeIcon icon={faPencilAlt} />
                           </button>
                           {showContactInfoEdit && (
@@ -566,7 +573,7 @@ const Profile = () => {
                         <div className="info-header">
                           <h2>Account settings</h2>
                           <div className="account-settings">
-                            <button onClick={handleAccountSettings} className="edit-profile-button" >
+                            <button onClick={handleAccountSettings} className="button-edit-expense" >
                               <FontAwesomeIcon icon={faPencilAlt} />
                             </button>
                             {showAccountSettingsEdit && (
@@ -584,7 +591,7 @@ const Profile = () => {
                           <div className="profile-info">
                             <div className="tab-list account-info-list">
                               <div>
-                                <span className="account-info-item">Default Budget::</span>
+                                <span className="account-info-item">Default Budget:</span>
                                 <span className="account-info">{user.defaultBudget}</span>
                               </div>
                             </div>
@@ -593,7 +600,7 @@ const Profile = () => {
                       </div>
                     </div>
                     <div>
-                      <button onClick={handleResetPassword} className="reset-password-button" >Reset Password</button>
+                      <button onClick={handleResetPassword} className="add-expense-button" >Reset Password</button>
                       {showResetPasswordEdit && (
                         <ResetPasswordEdit
                           oldPassword={oldPassword}

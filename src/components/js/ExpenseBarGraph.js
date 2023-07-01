@@ -1,85 +1,110 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
+import { Bar } from 'react-chartjs-2';
+import { Chart, CategoryScale, LinearScale, BarElement } from 'chart.js';
+import "../css/ExpenseBarGraph.css";
 
-const ExpenseBarGraph = ({ expenses }) => {
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
-  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const [error, setError] = useState("");
-  const [budget, setBudget] = useState({
-    month: "",
-    amount: "",
-  });
-  const [amount, setAmount] = useState(0);
-  const [maxExpense, setMaxExpense] = useState(0);
+Chart.register(CategoryScale, LinearScale, BarElement);
 
-  const filteredExpenses = expenses.filter((expense) => {
-    const expenseDate = new Date(expense.date);
-    return (
-      expenseDate.getMonth() === currentMonth &&
-      expenseDate.getFullYear() === currentYear
-    );
-  });
+const ExpenseBarGraph = ({ time }) => {
+  const [expenses, setExpenses] = useState([]);
+  const [budget, setBudget] = useState(0); // Initial budget value
+  const { year, month } = time || {};
 
   useEffect(() => {
-    const fetchReports = async (e) => {
-      const userId = JSON.parse(localStorage.getItem("user")).id;
-      try {
-        const response = await fetch(
-          `http://localhost:8080/api/budget/current?userId=${userId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (response.ok) {
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    if (year && month) {
+      const fetchExpenses = async () => {
+        try {
+          const response = await fetch(
+            `http://localhost:8080/api/expenses?userId=${userId}&month=${month}&year=${year}`
+          );
           const data = await response.json();
-          setBudget(JSON.stringify(data));
-          setAmount(data.amount)
-          setMaxExpense(data.amount / 10);
-        } else {
-          const errorData = await response.json();
-          setError(errorData.message);
+          setExpenses(data);
+        } catch (error) {
+          console.error("Error fetching expenses:", error);
         }
-      } catch (error) {
-        setError("Failed to login. Please try again later.");
-      }
-    };
-    fetchReports();
-  }, []);
-
-  const expensesByDay = filteredExpenses.reduce((acc, expense) => {
-    const expenseDate = new Date(expense.date);
-    const expenseDay = expenseDate.getDate();
-    if (!acc[expenseDay]) {
-      acc[expenseDay] = 0;
+      };
+      const fetchBudget = async () => {
+        if (month && year) {
+          try {
+            const response = await fetch(`http://localhost:8080/api/budget/time?userId=${userId}&month=${month}&year=${year}`);
+            const data = await response.json();
+            setBudget(data.amount);
+          } catch (error) {
+            console.error("Error fetching budget:", error);
+          }
+        }
+      };
+      fetchExpenses();
+      fetchBudget();
     }
-    acc[expenseDay] += expense.amount;
-    return acc;
-  }, {});
+  }, [year, month]);
 
-  const data = [];
-  for (let i = 1; i <= daysInMonth; i++) {
-    data.push({ day: i, expense: expensesByDay[i] || 0 });
+  // Calculate total expenses per day
+  const expensesPerDay = {};
+  for (let expense of expenses) {
+    const date = new Date(expense.date);
+    const day = date.getDate();
+    if (!expensesPerDay[day]) {
+      expensesPerDay[day] = 0;
+    }
+    expensesPerDay[day] += expense.amount;
   }
 
-  const maxBudget = amount;
-  const budgetInterval = maxBudget / 10;
-  
+  // Generate array of all days in the month
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const allDays = Array.from({ length: daysInMonth }, (_, index) => index + 1);
+
+  // Prepare data for the bar graph
+  const chartData = {
+    labels: allDays,
+    datasets: [
+      {
+        label: 'Expenses',
+        data: allDays.map(day => expensesPerDay[day]),
+        backgroundColor: '#FF6384',
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Day',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Amount',
+        },
+        beginAtZero: true,
+        suggestedMax: budget,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+
   return (
-    <div style={{ display: "flex", alignItems: "flex-end", marginBottom: "24px", width: "100%", height: "100%" }}>
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "200px", marginRight: "16px" }}>
-        {[...Array(12)].map((_, i) => (
-          <div key={i} style={{ fontSize: "12px", fontWeight: "bold", textAlign: "right" }}>{budgetInterval * (10 - i)}</div>
-        ))}
-      </div>
-      {data.map((d) => (
-        <div key={d.day} style={{ display: "flex", flexDirection: "column", alignItems: "center", marginRight: "1px", flex: "1 0 0" }}>
-          <div style={{ height: `${(d.expense / maxExpense)*20}px`, width: "16px", background: "#29b6f6", borderRadius: "4px" }} />
-          <div style={{ marginTop: "8px", fontSize: "12px", fontWeight: "bold" }}>{d.day}</div>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
+      {expenses && expenses.length > 0 ? (
+        <Bar data={chartData} options={options} />
+      ) : (
+        <div className="no-expenses">
+          <div className="no-expenses-icon">
+            <FontAwesomeIcon icon={faBan} size="8x" color="green" />
+          </div>
+          <div className="no-expenses-text">No Expenses</div>
         </div>
-      ))}
+      )}
     </div>
   );
 };

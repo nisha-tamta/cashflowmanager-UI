@@ -10,16 +10,42 @@ const SetBudget = () => {
   const [error, setError] = useState("");
   const [budget, setBudget] = useState({
     month: "",
-    amount: ""
+    year: new Date().getFullYear(),
+    amount: "",
   });
   const [notification, setNotification] = useState({ message: "", visible: false });
-
-  const handleChange = (event) => {
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const nextThreeMonths = [
+    { number: currentMonth, name: Month[currentMonth] },
+    { number: (currentMonth + 1) % 12, name: Month[(currentMonth + 1) % 12] },
+    { number: (currentMonth + 2) % 12, name: Month[(currentMonth + 2) % 12] }
+];
+  
+  const handleChange = async (event) => {
     const { name, value } = event.target;
     setBudget({
       ...budget,
       [name]: value,
     });
+
+    // Send API call to fetch budget for the selected month and year
+    if (name === "month" && value !== "") {
+      const userId = JSON.parse(localStorage.getItem("user")).id;
+      const monthNumber = nextThreeMonths.find((month) => month.name === value).number + 1;
+      const response = await fetch(
+        `http://localhost:8080/api/budget/time?userId=${userId}&month=${monthNumber}&year=${budget.year}`
+      );
+      if (response.ok) {
+        const budgetData = await response.json();
+        setBudget((prevBudget) => ({
+          ...prevBudget,
+          amount: budgetData.amount,
+        }));
+      } else {
+        setError("Failed to fetch budget data.");
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -40,6 +66,7 @@ const SetBudget = () => {
       if (response.ok) {
         setBudget({
           month: "",
+          year: "",
           amount: ""
         });
         setNotification({ message: 'Budget set!', visible: true });
@@ -57,14 +84,6 @@ const SetBudget = () => {
     navigate("/dashboard");
   };
 
-  const today = new Date();
-  const currentMonth = today.getMonth();
-  const nextThreeMonths = [
-    { id: 0, name: Month[currentMonth] },
-    { id: 1, name: Month[(currentMonth + 1) % 12] },
-    { id: 2, name: Month[(currentMonth + 2) % 12] }
-  ];
-
   return (
     <div className="container">
       <NavBar />
@@ -80,37 +99,38 @@ const SetBudget = () => {
           }
           <div className="content-header">
             <h1>Set Budget</h1>
-            <div className="add-expense-content">
+            <div className="create-chat-body">
               <form onSubmit={handleSubmit}>
-                <label>
-                  Month:
+                <div className="create-chat-input-container">
+                  <label> Month </label>
                   <select
+                    className="create-chat-input"
                     name="month"
                     value={budget.month}
                     onChange={handleChange}
                   >
-                    <option value="">Select</option>
+                    <option className="item-value-expense" value="">Select</option>
                     {nextThreeMonths.map((month) => (
                       <option key={month.id} value={month.name}>
-                        {month.name}
+                        {month.name} {new Date().getFullYear()}
                       </option>
                     ))}
                   </select>
-                </label>
-                <label>
-                  Amount:
+                </div>
+                <div className="create-chat-input-container">
+                  <label> Amount </label>
                   <input
+                    className="create-chat-input"
                     type="number"
                     name="amount"
                     value={budget.amount}
                     onChange={handleChange}
                   />
-                </label>
+                </div>
                 <div className="add-expense-buttons">
-                  <button type="submit" className="reset-password-form-button">Set</button>
-                  <button type="button" className="reset-password-form-button" onClick={handleCancel}>
-                    Cancel
-                  </button>
+                  <button type="submit" className="create-chat-button" >Set</button>
+                  <span className="button-spacing"></span>
+                  <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
                 </div>
               </form>
             </div>

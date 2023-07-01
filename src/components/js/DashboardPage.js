@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import NavBar from "./NavBar";
 import ExpenseBarGraph from "./ExpenseBarGraph";
-import ExpenseList from "./ExpenseList";
 import "../css/HomeScreen.css";
 import "../css/NavBar.css";
 import "../css/DashboardPage.css";
@@ -14,10 +13,35 @@ const DashboardPage = () => {
   const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
   const [allExpenses, setAllExpenses] = useState([]);
-  const [activeTab, setActiveTab] = useState("thisMonth");
   const location = useLocation();
   const notificationMessage = location.state?.message;
   const [isNotificationVisible, setIsNotificationVisible] = useState(true);
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
+  const [month, setMonth] = useState(currentMonth);
+  const [year, setYear] = useState(currentYear);
+  const [availableMonths, setAvailableMonths] = useState([]);
+  const [time, setTime] = useState([]);
+
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
+  // List all years from current year to 2000
+  const years = Array.from({ length: currentYear - 2000 + 1 }, (v, i) => currentYear - i);
+
+  useEffect(() => {
+    if (year === currentYear) {
+      setAvailableMonths(Array.from({ length: currentMonth }, (v, i) => i + 1));
+    } else {
+      setAvailableMonths(Array.from({ length: 12 }, (v, i) => i + 1));
+    }
+  }, [year, currentMonth, currentYear]);
+
+  useEffect(() => {
+    setTime({ year, month });
+  }, [year, month]);
 
   useEffect(() => {
     const fetchExpensesCurrentMonth = async () => {
@@ -71,10 +95,6 @@ const DashboardPage = () => {
     navigate("/budget/set");
   };
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
-
   const handleClearMessage = () => {
     setIsNotificationVisible(false);
   };
@@ -91,48 +111,44 @@ const DashboardPage = () => {
             </button>
           </div>
         }
-        <div className="content-chat-container">
+        <div className="content-user-mngmnt-container">
           <div className="content-header">
             <h1>Dashboard</h1>
+            <div className="inline-form">
+              <h6>Bring data for </h6>
+              <select value={month} onChange={e => setMonth(e.target.value)} className="inline-input">
+                <option value="">Select Month</option>
+                {availableMonths.map((month, index) => (
+                  <option className="item-value-expense" key={index} value={month}>
+                    {monthNames[month - 1]}
+                  </option>
+                ))}
+              </select>
+              <select value={year} onChange={e => setYear(e.target.value)} className="inline-input">
+                <option value="">Select Year</option>
+                {years.map((year, index) => (
+                  <option className="item-value-expense" key={index} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="content-profile-container">
-            <div className="content-header">
-              <div className="buttons-container">
-                <button
-                  onClick={handleSetBudget}
-                  className="add-expense-button"
-                >
-                  Set Budget
-                </button>
-              </div>
+          <div className="content-header">
+            <div className="buttons-container">
+              <button onClick={handleSetBudget} className="add-expense-button">
+                Set Budget
+              </button>
             </div>
-            <div className="tab-container">
-              <div
-                className={`tab-item ${activeTab === "thisMonth" ? "active" : ""
-                  }`}
-                onClick={() => handleTabChange("thisMonth")}
-              >
-                This Month
-              </div>
-              <div
-                className={`tab-item ${activeTab === "allExpenses" ? "active" : ""
-                  }`}
-                onClick={() => handleTabChange("allExpenses")}
-              >
-              </div>
-            </div>
-
-            <div className="expense-list-container">
-              {activeTab === "thisMonth" ? (
-                <ExpenseBarGraph expenses={expenses} />
-              ) : (
-                <ExpenseList expenses={allExpenses} />
-              )}
+          </div>
+          <div className="dashboard-container-box">
+            <div className="dashboard-container">
+              <ExpenseBarGraph time={time} />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

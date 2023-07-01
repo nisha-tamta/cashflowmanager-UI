@@ -4,6 +4,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faPencilAlt, faSave,faSdCard  } from '@fortawesome/free-solid-svg-icons'
 import "../css/ExpenseList.css";
 
+const DeleteExpenseEdit = ({ onConfirm, onCancel, error }) => {
+  return (
+    <div className="confirmation-overlay-profile">
+      <div className="confirmation-dialog-profile">
+        <div className="create-chat-container">
+          <div className="create-chat-header">
+            <h2>Are you sure you want to delete this expense?</h2>
+          </div>
+          <div className="create-chat-body-profile">
+            <div>
+              <form onSubmit={onConfirm}>
+                {error && <div className="error-message">{error}</div>}
+                <div className="create-chat-button-containers">
+                  <button type="submit" className="cancel-button" onClick={onConfirm}>Delete</button>
+                  <span className="button-spacing"></span>
+                  <button className="login-chat-button" onClick={onCancel}>Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -13,12 +39,15 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
   const [sortColumn, setSortColumn] = useState("");
   const [sortDirection, setSortDirection] = useState("asc");
   const [selectedExpenseId, setSelectedExpenseId] = useState(null);
+  const [employees, setEmployees] = useState([]);
   const [editedExpenseValue, setEditedExpenseValue] = useState({
     date: "",
     category: "",
     description: "",
     amount: ""
   });
+  const [showDeleteExpenseEdit, setShowDeleteExpenseEdit] = useState(false);
+  const [deleteExpenseId, setDeleteExpenseId] = useState(false);
 
   const handleFilterCategoryChange = (e) => {
     setFilterCategory(e.target.value);
@@ -99,35 +128,6 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
     setEditedExpenseValue("");
   };
 
-  const handleDeleteExpense = async (expenseId) => {
-    // You might want to ask the user to confirm the deletion
-    if (!window.confirm('Are you sure you want to delete this expense?')) {
-      return;
-    }
-
-    const userId = JSON.parse(localStorage.getItem("user")).id;
-    try {
-      const response = await fetch(
-        `http://localhost:8080/api/expenses/${expenseId}?userId=${userId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.ok) {
-        onDeleteExpense(expenseId);
-      } else {
-        const errorData = await response.json();
-        setError(errorData.message);
-      }
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
   const sortedExpenses = [...expenses].sort((a, b) => {
     const multiplier = sortDirection === "asc" ? 1 : -1;
     switch (sortColumn) {
@@ -156,6 +156,46 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
         (filterAmountType === "lessThan" &&
           expense.amount < parseInt(filterAmount)))
   );
+
+  const handleDeleteExpense = (expenseId) => {
+    setShowDeleteExpenseEdit(true);
+    setDeleteExpenseId(expenseId);
+  };
+
+  const handleDeleteExpenseEdit = async (e) => {
+    e.preventDefault();
+
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/expenses/${deleteExpenseId}?userId=${userId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        setError(null);
+        setShowDeleteExpenseEdit(false);
+      } else {
+        return response.text().then(errorText => {
+          setError(errorText || "Error during delete expense");
+        });
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+    window.location.href = '/expenses';
+  };
+
+  const handleCancelDeleteExpenseEdit = () => {
+    setError(null);
+    setShowDeleteExpenseEdit(false);
+    window.location.href = '/expenses';
+  };
 
   return (
     <div>
@@ -212,11 +252,14 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
               Amount {sortColumn === "amount" && sortDirection === "asc" && "▲"}
               {sortColumn === "amount" && sortDirection === "desc" && "▼"}
             </th>
+            <th style={{ border: "1px solid black", padding: "8px" }}>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
           {filteredExpenses.map((expense) => (
-            <tr key={expense.id} style={{ border: "1px solid black" }}>
+            <tr key={expense.id} style={{ border: "1px solid black", cursor: "pointer" }}>
               <td className="table-cell" style={{ border: "1px solid black", padding: "8px" }}>
                 {selectedExpenseId === expense.id ? (
                   <input
@@ -296,6 +339,13 @@ const ExpenseList = ({ expenses, onDeleteExpense, onEditExpense }) => {
                   <button className="button-delete-expense" onClick={() => handleDeleteExpense(expense.id)}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </button>
+                  {showDeleteExpenseEdit &&
+                        <DeleteExpenseEdit
+                          onConfirm={handleDeleteExpenseEdit}
+                          onCancel={handleCancelDeleteExpenseEdit}
+                          error={error}
+                        />
+                      }
                 </>
               )}
             </tr>

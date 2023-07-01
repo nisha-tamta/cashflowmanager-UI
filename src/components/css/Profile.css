@@ -284,6 +284,19 @@
   vertical-align: top;
 }
 
+.account-info-item-blurred {
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
+  color: #a8a8a8;
+  font-size: 1rem;
+  line-height: 2.4rem;
+  min-width: 10rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  font-style: italic;
+}
+
 .account-info {
   font-family: "Nunito", Helvetica, Arial, sans-serif;
   color: #002D6B;
@@ -296,6 +309,21 @@
   vertical-align: top;
   margin: 0;
   padding: 0;
+}
+
+.account-info-blurred {
+  font-family: "Nunito", Helvetica, Arial, sans-serif;
+  color: #a8a8a8;
+  font-size: 1rem;
+  line-height: 2.4rem;
+  min-width: 10rem;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+  font-style: italic;
 }
 
 .edit-profile-fields,
@@ -518,4 +546,79 @@
 .logout-button:hover {
   background-color: #bc3f3f;
   /* Change background color of the button on hover */
+}
+
+.info-header-expense {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-header-expense-details {
+  font-family: 'Nunito', sans-serif;  
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgb(32, 33, 36);
+  border: none; /* Removes border */
+  background-color: transparent; /* Changes background color */
+  color: #333; /* Changes text color */
+  font-size: 22px; /* Changes font size */
+  font-weight: 400; /* Changes font weight */
+  line-height: 28px; /* Changes line height */
+  padding: 0; /* Removes padding */
+  margin: 0; /* Removes margin */
+  outline: none; /* Removes outline */
+  width: 100%; /* Adjust width as needed */
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+/* Profile.css */
+
+.create-chat-input-calendar {
+  font-family: Nunito, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.create-chat-input-calendar:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.description-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.description-wrapper h2 {
+  margin-right: 20px; 
+}
+
+create-chat-input-h2 {
+  font-family: 'Nunito', sans-serif;  
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: rgb(32, 33, 36);
+  width: 50%;
+  max-width: 400px;
+  border: none;
+  border-bottom: 0.5px solid #ccc;
+  padding: 3px;
+  border-radius: 0px;
+}
+
+.create-chat-input-h2:focus {
+  outline: none;
+  box-shadow: none;
+  transform: scale(1.1);
 }

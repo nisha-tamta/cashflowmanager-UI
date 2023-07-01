@@ -11,7 +11,7 @@
   padding: 12px;
   border-bottom: 2px solid #000;
   cursor: pointer;
-  background-color: #f8f9fa;
+  background-color: #f9fafb;
 }
 
 .table-expense tbody td {
@@ -20,7 +20,7 @@
 }
 
 .table-expense tbody tr:hover {
-  background-color: #3cb93844;
+  background-color: #b4e2d6;
 }
 
 .table-expense tbody tr {
@@ -28,10 +28,10 @@
 }
 
 .table-expense tbody tr:nth-child(even) {
-  background-color: #e4e4e4;
+  background-color: #fcfcfc;
 }
 .table-expense tbody tr:nth-child(even):hover {
-  background-color: #3cb93844;
+  background-color: #b4e2d6;
 }
 
 .button-edit-expense {
@@ -130,11 +130,8 @@
   font-family: Nunito, Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 16px;
-  width: 200px; /* Adjust this value to fit your needs */
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-
+  margin-bottom: 16px;
+  width: 100%;
 }
 
 .label-spacing {
