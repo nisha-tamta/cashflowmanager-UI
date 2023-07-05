@@ -23,7 +23,7 @@ const MainScreen = () => {
               className="login-logo"
             />
           </div>
-          <div className="login-chat-header">Welcome to Expense Tracker Business</div>
+          <div className="login-chat-header">Welcome to CashFlow Manager</div>
           <button
             type="submit"
             className="login-chat-button"

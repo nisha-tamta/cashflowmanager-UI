@@ -38,6 +38,13 @@
   max-width: 1200px;
 }
 
+.content-about-bottom-container {
+  padding: 10px;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
 .content-profile-container {
   padding: 4rem 6rem;
   position: relative;

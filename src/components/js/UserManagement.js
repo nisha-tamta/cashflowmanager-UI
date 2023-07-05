@@ -120,7 +120,7 @@ const UserManagement = () => {
                 <div className="content-user-mngmnt-container">
                     <div className="content-header">
                         <h1>Account Management</h1>
-                        <h6>Info about the Expense Tracker Business accounts</h6>
+                        <h6>Info about the CashFlow Manager accounts</h6>
                     </div>
                     <div className="content-header">
                         <div className="buttons-container">

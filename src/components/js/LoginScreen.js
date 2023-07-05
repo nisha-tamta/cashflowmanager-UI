@@ -51,7 +51,7 @@ const LoginScreen = ({ onLoginSuccess }) => {
               className="login-logo"
             />
           </div>
-          <div className="login-chat-header">Welcome to Expense Tracker Business</div>
+          <div className="login-chat-header">Welcome to CashFlow Manager</div>
           {error && <div className="error-message">{error}</div>}
 
           <div className="login-chat-body">
